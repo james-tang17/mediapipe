@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <pipeline>
+    <!-- This config file consists of two parts:
+         1. Global settings
+         2. Per channel settings 
+    -->
+
+    <!-- Start of global settings -->
     <src>1</src>                      <!-- 0: use videotestsrc, 1: use v4l2src, 2: use filesrc -->
 
     <!-- filesrc property settings, valid ONLY if filesrc enabled -->
@@ -41,21 +47,29 @@
         6: d1           - 704 x 576
         -->
     <smart-resolution>0</smart-resolution>
+
+    <!-- Start of face detection setting -->
     <enable-facedetect>0</enable-facedetect>    <!-- 0:disable facedetect, 1:enable facedetect -->
     <facedetect-conf>0</facedetect-conf>  <!-- 0:haar 1:lpb  -->
     <facedetect-interval>10</facedetect-interval>  <!-- frame interval between 2 detection  -->
     <facedetect-mode>1</facedetect-mode>
     <enable-getfacepic>0</enable-getfacepic>    <!-- 0:disable getfacepic, 1:enable getfacepic -->
     <enable-facerecognise>0</enable-facerecognise> <!-- 0:disable facerecognise, 1:enable facerecognise -->
+    <!-- End of face detection setting -->
+
     <enable-lumagain-threshold>0</enable-lumagain-threshold> <!-- 0:disable lumagain_threshold, 1:enable lumagain_threshold -->
     <lumagain-threshold-value>100</lumagain-threshold-value> <!-- lumagain-threshold-value -->
     <enable-bright-compensation>0</enable-bright-compensation>                       <!-- 0:disable bright.  1:enable-bright -->
+
+    <!-- Start of HDR -->
     <enable-autohdr>0</enable-autohdr>                       <!-- 0:disable autohdr.  1:enable-autohdr -->
     <autohdr-mode>0</autohdr-mode>            <!-- 0:disable. 1:auto mode. 2:drak mode. 3.mid mode. 4.white mode -->
     <enable-hdr-custom>0</enable-hdr-custom>  <!-- 0:disable hdr-custom.  1:enable hdr-custom -->
     <enable-hdr-custom-rgb>0</enable-hdr-custom-rgb>  <!-- 0:disable hdr-custom-rgb.  1:enable hdr-custom-rgb -->
     <hdr-custom-table>2</hdr-custom-table>
     <hdr-custom-rgb-table>2</hdr-custom-rgb-table>
+    <!-- End of HDR -->
+
     <rotation>1</rotation>                    <!-- 1: don't rotate 2: 90-degree 3: 180-degree 4:270-degree   -->
     <flip>0</flip>                            <!-- 0: don't flip   1: flip horizontal  2: flip vertically  -->
     <enable-mask>0</enable-mask>              <!-- 0: disable masking sample code,   1: enable masking sample code -->
@@ -72,6 +86,9 @@
     <dvs-offset-x>0</dvs-offset-x>            <!-- set video global offset for x axis, >0: move right, ==0: no offset, <0: move left -->
     <dvs-offset-y>0</dvs-offset-y>            <!-- set video global offset for y axis  >0: move down, ==0: no offset,  <0: move up   -->
     <smart-bright>0</smart-bright>            <!-- 1: to override default smart analysis by auto bright adjustment, 0: use defaul smart analysis -->
+
+    <!-- End of global settings -->
+
     <channel id="0" enable="1">             <!-- channel_0 1080p-->
         <!-- encoder properties
                 rate-control    - rate control mode (1: cqp, 2: cbr, 4:vbr, 5:vbr_constrained)

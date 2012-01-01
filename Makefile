@@ -50,3 +50,6 @@ $(BIN) : $(OBJECTS)
 
 clean:
 	rm -f $(OBJECTS) $(BIN)
+
+install:
+	cp mediapipe /usr/bin/

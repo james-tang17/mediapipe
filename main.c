@@ -1313,7 +1313,6 @@ video_frame_smart_callback (
 
 
     Mat cvframe;
-    double scale = 1.0;
     char cascadename[100];
     const string fn_csv = "/usr/share/OpenCV/csv.txt";
     const string dataname  = "/usr/share/OpenCV/Fisher.yml";
@@ -1324,9 +1323,6 @@ video_frame_smart_callback (
     static int init_state = 0;
     vector<Rect> faces;
     int i=0;
-    int im_width,im_height;
-    int prediction;
-    double confidence;
 
     data_smart = (SmartData *)g_list_nth_data(smart_queue, 0);
     if(facedetect_conf)
@@ -3226,6 +3222,12 @@ handle_keyboard (GIOChannel *source, GIOCondition cond, gpointer data)
       }  else if (str[0] == '#') {
 	      media_pipe_set_v4l2_src_enable_3a(pipe, FALSE);
 	      LOG_PRINT("pause 3A");
+      }  else if (str[0] == '}') {
+	      media_pipe_set_channel_encoder_bitrate(pipe, VIDEO_CHANNEL_1080P, 8000);
+	      LOG_PRINT("set bitrate as 8000kbps for 1080P channel");
+      }  else if (str[0] == '{') {
+	      media_pipe_set_channel_encoder_bitrate(pipe, VIDEO_CHANNEL_1080P, 2000);
+	      LOG_PRINT("set bitrate as 2000kbps for 1080P channel");
       }else {
          LOG_PRINT(" =========== mediapipe commands ==========");
          LOG_PRINT(" ===== '+' : increate luminace 10%%   =====");
@@ -3244,6 +3246,8 @@ handle_keyboard (GIOChannel *source, GIOCondition cond, gpointer data)
          LOG_PRINT(" ===== 'a' : dump smart analysis raw data =====");
          LOG_PRINT(" ===== '3' : enable 3A =====");
 	 LOG_PRINT(" ===== '#' : disable 3A =====");
+	 LOG_PRINT(" ===== '}' : set bitrate as 8000kbps for 1080P channel =====");
+	 LOG_PRINT(" ===== '{' : set bitrate as 2000kbps for 1080P channel =====");
          LOG_PRINT(" =========================================");
       }
       if (set_luma == TRUE) {

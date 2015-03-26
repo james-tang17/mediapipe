@@ -125,6 +125,7 @@ const gchar *src_name[SRC_NUM] = {
    "filesrc"
 };
 
+gboolean smart_bright = FALSE;
 gfloat smart_factor = 0.25;
 int dump_smart_analysis_raw_data = 0;
 gboolean smart_control = FALSE;
@@ -2015,7 +2016,12 @@ parse_config()
                 atoi(node->child->value.text.string);
             LOG_DEBUG("\t dvs_offset_y:%d", dvs_offset_y);
         }else
-
+        if(strcmp(name, "smart-bright") == 0)
+        {
+            smart_bright =
+                atoi(node->child->value.text.string);
+            LOG_DEBUG("\t smart_bright:%d", smart_bright);
+        }else
         if(strcmp(name, "luma-gain") == 0)
         {
             config.luma_gain = atoi(node->child->value.text.string);
@@ -2364,9 +2370,17 @@ int main (int argc,  char *agrv[])
         goto end;
     }
 
-    result = media_pipe_set_src_frame_smart_callback (media_pipe,
-                                                  video_frame_smart_callback,
-                                                  NULL);
+    if(smart_bright)
+    {
+       result = media_pipe_set_src_frame_smart_callback (media_pipe,
+             video_frame_bright_callback,
+             NULL);
+    }else {
+       result = media_pipe_set_src_frame_smart_callback (media_pipe,
+             video_frame_smart_callback,
+             NULL);
+    }
+
     if(!result)
     {
         LOG_ERROR("Set smart resolution Fail");
@@ -2382,17 +2396,6 @@ int main (int argc,  char *agrv[])
         LOG_ERROR("Set src parse 3aconf callback Fail");
         goto end;
     }
-
-    result = media_pipe_set_src_frame_smart_callback (media_pipe,
-                                                  video_frame_bright_callback,
-                                                  NULL);
-
-    if(!result)
-    {
-        LOG_ERROR("Set src smart callback Fail");
-        goto end;
-    }
-
 
     result = media_pipe_set_vpp_src_enable_autohdr(media_pipe, src_setting.enable_autohdr);
     if(!result)

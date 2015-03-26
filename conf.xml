@@ -71,6 +71,7 @@
                                               <!-- 1: the result of smart analysis determine whether to push a 1080p buffer -->
     <dvs-offset-x>0</dvs-offset-x>            <!-- set video global offset for x axis, >0: move right, ==0: no offset, <0: move left -->
     <dvs-offset-y>0</dvs-offset-y>            <!-- set video global offset for y axis  >0: move down, ==0: no offset,  <0: move up   -->
+    <smart-bright>0</smart-bright>            <!-- 1: to override default smart analysis by auto bright adjustment, 0: use defaul smart analysis -->
     <channel id="0" enable="1">             <!-- channel_0 1080p-->
         <!-- encoder properties
                 rate-control    - rate control mode (1: cqp, 2: cbr, 4:vbr, 5:vbr_constrained)

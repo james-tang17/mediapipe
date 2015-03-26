@@ -1,0 +1,1566 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+AMQP_ACCESS_CLASS	./amqp_framing.h	553;"	d
+AMQP_ACCESS_REFUSED	./amqp_framing.h	58;"	d
+AMQP_ACCESS_REQUEST_METHOD	./amqp_framing.h	229;"	d
+AMQP_ACCESS_REQUEST_OK_METHOD	./amqp_framing.h	239;"	d
+AMQP_BASIC_ACK_METHOD	./amqp_framing.h	466;"	d
+AMQP_BASIC_APP_ID_FLAG	./amqp_framing.h	584;"	d
+AMQP_BASIC_CANCEL_METHOD	./amqp_framing.h	408;"	d
+AMQP_BASIC_CANCEL_OK_METHOD	./amqp_framing.h	414;"	d
+AMQP_BASIC_CLASS	./amqp_framing.h	571;"	d
+AMQP_BASIC_CLUSTER_ID_FLAG	./amqp_framing.h	585;"	d
+AMQP_BASIC_CONSUME_METHOD	./amqp_framing.h	391;"	d
+AMQP_BASIC_CONSUME_OK_METHOD	./amqp_framing.h	403;"	d
+AMQP_BASIC_CONTENT_ENCODING_FLAG	./amqp_framing.h	573;"	d
+AMQP_BASIC_CONTENT_TYPE_FLAG	./amqp_framing.h	572;"	d
+AMQP_BASIC_CORRELATION_ID_FLAG	./amqp_framing.h	577;"	d
+AMQP_BASIC_DELIVERY_MODE_FLAG	./amqp_framing.h	575;"	d
+AMQP_BASIC_DELIVER_METHOD	./amqp_framing.h	436;"	d
+AMQP_BASIC_EXPIRATION_FLAG	./amqp_framing.h	579;"	d
+AMQP_BASIC_GET_EMPTY_METHOD	./amqp_framing.h	461;"	d
+AMQP_BASIC_GET_METHOD	./amqp_framing.h	445;"	d
+AMQP_BASIC_GET_OK_METHOD	./amqp_framing.h	452;"	d
+AMQP_BASIC_HEADERS_FLAG	./amqp_framing.h	574;"	d
+AMQP_BASIC_MESSAGE_ID_FLAG	./amqp_framing.h	580;"	d
+AMQP_BASIC_NACK_METHOD	./amqp_framing.h	493;"	d
+AMQP_BASIC_PRIORITY_FLAG	./amqp_framing.h	576;"	d
+AMQP_BASIC_PUBLISH_METHOD	./amqp_framing.h	419;"	d
+AMQP_BASIC_QOS_METHOD	./amqp_framing.h	379;"	d
+AMQP_BASIC_QOS_OK_METHOD	./amqp_framing.h	386;"	d
+AMQP_BASIC_RECOVER_ASYNC_METHOD	./amqp_framing.h	478;"	d
+AMQP_BASIC_RECOVER_METHOD	./amqp_framing.h	483;"	d
+AMQP_BASIC_RECOVER_OK_METHOD	./amqp_framing.h	488;"	d
+AMQP_BASIC_REJECT_METHOD	./amqp_framing.h	472;"	d
+AMQP_BASIC_REPLY_TO_FLAG	./amqp_framing.h	578;"	d
+AMQP_BASIC_RETURN_METHOD	./amqp_framing.h	428;"	d
+AMQP_BASIC_TIMESTAMP_FLAG	./amqp_framing.h	581;"	d
+AMQP_BASIC_TYPE_FLAG	./amqp_framing.h	582;"	d
+AMQP_BASIC_USER_ID_FLAG	./amqp_framing.h	583;"	d
+AMQP_BEGIN_DECLS	./amqp.h	44;"	d
+AMQP_BEGIN_DECLS	./amqp.h	47;"	d
+AMQP_BIG_ENDIAN	./amqp_private.h	263;"	d
+AMQP_BIG_ENDIAN	./amqp_private.h	269;"	d
+AMQP_BIG_ENDIAN	./amqp_private.h	277;"	d
+AMQP_CALL	./amqp.h	113;"	d
+AMQP_CALL	./amqp.h	120;"	d
+AMQP_CALL	./amqp.h	124;"	d
+AMQP_CALL	./amqp.h	71;"	d
+AMQP_CALL	./amqp.h	85;"	d
+AMQP_CALL	./amqp.h	99;"	d
+AMQP_CHANNEL_CLASS	./amqp_framing.h	547;"	d
+AMQP_CHANNEL_CLOSE_METHOD	./amqp_framing.h	216;"	d
+AMQP_CHANNEL_CLOSE_OK_METHOD	./amqp_framing.h	224;"	d
+AMQP_CHANNEL_ERROR	./amqp_framing.h	67;"	d
+AMQP_CHANNEL_FLOW_METHOD	./amqp_framing.h	206;"	d
+AMQP_CHANNEL_FLOW_OK_METHOD	./amqp_framing.h	211;"	d
+AMQP_CHANNEL_OPEN_METHOD	./amqp_framing.h	196;"	d
+AMQP_CHANNEL_OPEN_OK_METHOD	./amqp_framing.h	201;"	d
+AMQP_COMMAND_INVALID	./amqp_framing.h	66;"	d
+AMQP_CONFIRM_CLASS	./amqp_framing.h	610;"	d
+AMQP_CONFIRM_SELECT_METHOD	./amqp_framing.h	530;"	d
+AMQP_CONFIRM_SELECT_OK_METHOD	./amqp_framing.h	535;"	d
+AMQP_CONNECTION_BLOCKED_METHOD	./amqp_framing.h	186;"	d
+AMQP_CONNECTION_CLASS	./amqp_framing.h	541;"	d
+AMQP_CONNECTION_CLOSE_METHOD	./amqp_framing.h	173;"	d
+AMQP_CONNECTION_CLOSE_OK_METHOD	./amqp_framing.h	181;"	d
+AMQP_CONNECTION_FORCED	./amqp_framing.h	62;"	d
+AMQP_CONNECTION_OPEN_METHOD	./amqp_framing.h	161;"	d
+AMQP_CONNECTION_OPEN_OK_METHOD	./amqp_framing.h	168;"	d
+AMQP_CONNECTION_SECURE_METHOD	./amqp_framing.h	137;"	d
+AMQP_CONNECTION_SECURE_OK_METHOD	./amqp_framing.h	142;"	d
+AMQP_CONNECTION_START_METHOD	./amqp_framing.h	120;"	d
+AMQP_CONNECTION_START_OK_METHOD	./amqp_framing.h	129;"	d
+AMQP_CONNECTION_TUNE_METHOD	./amqp_framing.h	147;"	d
+AMQP_CONNECTION_TUNE_OK_METHOD	./amqp_framing.h	154;"	d
+AMQP_CONNECTION_UNBLOCKED_METHOD	./amqp_framing.h	191;"	d
+AMQP_CONTENT_TOO_LARGE	./amqp_framing.h	55;"	d
+AMQP_DEFAULT_FRAME_SIZE	./amqp.h	321;"	d
+AMQP_DEFAULT_HEARTBEAT	./amqp.h	343;"	d
+AMQP_DEFAULT_MAX_CHANNELS	./amqp.h	332;"	d
+AMQP_DELIVERY_NONPERSISTENT	./amqp.h	/^	AMQP_DELIVERY_NONPERSISTENT = 1, \/**< Non-persistent message *\/$/;"	e	enum:__anon10
+AMQP_DELIVERY_PERSISTENT	./amqp.h	/^	AMQP_DELIVERY_PERSISTENT = 2 \/**< Persistent message *\/$/;"	e	enum:__anon10
+AMQP_DEPRECATED	./amqp.h	128;"	d
+AMQP_DEPRECATED	./amqp.h	131;"	d
+AMQP_DEPRECATED	./amqp.h	134;"	d
+AMQP_EMPTY_ARRAY	./amqp.h	791;"	d
+AMQP_EMPTY_BYTES	./amqp.h	769;"	d
+AMQP_EMPTY_TABLE	./amqp.h	780;"	d
+AMQP_END_DECLS	./amqp.h	45;"	d
+AMQP_END_DECLS	./amqp.h	48;"	d
+AMQP_EXCHANGE_BIND_METHOD	./amqp_framing.h	275;"	d
+AMQP_EXCHANGE_BIND_OK_METHOD	./amqp_framing.h	285;"	d
+AMQP_EXCHANGE_CLASS	./amqp_framing.h	559;"	d
+AMQP_EXCHANGE_DECLARE_METHOD	./amqp_framing.h	244;"	d
+AMQP_EXCHANGE_DECLARE_OK_METHOD	./amqp_framing.h	257;"	d
+AMQP_EXCHANGE_DELETE_METHOD	./amqp_framing.h	262;"	d
+AMQP_EXCHANGE_DELETE_OK_METHOD	./amqp_framing.h	270;"	d
+AMQP_EXCHANGE_UNBIND_METHOD	./amqp_framing.h	290;"	d
+AMQP_EXCHANGE_UNBIND_OK_METHOD	./amqp_framing.h	300;"	d
+AMQP_FIELD_KIND_ARRAY	./amqp.h	/^  AMQP_FIELD_KIND_ARRAY = 'A',    \/**< field array (repeated values of another datatype. datatype: amqp_array_t *\/$/;"	e	enum:__anon6
+AMQP_FIELD_KIND_BOOLEAN	./amqp.h	/^  AMQP_FIELD_KIND_BOOLEAN = 't',  \/**< boolean type. 0 = false, 1 = true @see amqp_boolean_t *\/$/;"	e	enum:__anon6
+AMQP_FIELD_KIND_BYTES	./amqp.h	/^  AMQP_FIELD_KIND_BYTES = 'x'     \/**< unformatted byte string, datatype: amqp_bytes_t *\/$/;"	e	enum:__anon6
+AMQP_FIELD_KIND_DECIMAL	./amqp.h	/^  AMQP_FIELD_KIND_DECIMAL = 'D',  \/**< amqp-decimal value, datatype: amqp_decimal_t *\/$/;"	e	enum:__anon6
+AMQP_FIELD_KIND_F32	./amqp.h	/^  AMQP_FIELD_KIND_F32 = 'f',      \/**< single-precision floating point value, datatype: float *\/$/;"	e	enum:__anon6
+AMQP_FIELD_KIND_F64	./amqp.h	/^  AMQP_FIELD_KIND_F64 = 'd',      \/**< double-precision floating point value, datatype: double *\/$/;"	e	enum:__anon6
+AMQP_FIELD_KIND_I16	./amqp.h	/^  AMQP_FIELD_KIND_I16 = 's',      \/**< 16-bit signed integer, datatype: int16_t *\/$/;"	e	enum:__anon6
+AMQP_FIELD_KIND_I32	./amqp.h	/^  AMQP_FIELD_KIND_I32 = 'I',      \/**< 32-bit signed integer, datatype: int32_t *\/$/;"	e	enum:__anon6
+AMQP_FIELD_KIND_I64	./amqp.h	/^  AMQP_FIELD_KIND_I64 = 'l',      \/**< 64-bit signed integer, datatype: int64_t *\/$/;"	e	enum:__anon6
+AMQP_FIELD_KIND_I8	./amqp.h	/^  AMQP_FIELD_KIND_I8 = 'b',       \/**< 8-bit signed integer, datatype: int8_t *\/$/;"	e	enum:__anon6
+AMQP_FIELD_KIND_TABLE	./amqp.h	/^  AMQP_FIELD_KIND_TABLE = 'F',    \/**< field table. encapsulates a table inside a table entry. datatype: amqp_table_t *\/$/;"	e	enum:__anon6
+AMQP_FIELD_KIND_TIMESTAMP	./amqp.h	/^  AMQP_FIELD_KIND_TIMESTAMP = 'T',\/**< 64-bit timestamp. datatype uint64_t *\/$/;"	e	enum:__anon6
+AMQP_FIELD_KIND_U16	./amqp.h	/^  AMQP_FIELD_KIND_U16 = 'u',      \/**< 16-bit unsigned integer, datatype: uint16_t *\/$/;"	e	enum:__anon6
+AMQP_FIELD_KIND_U32	./amqp.h	/^  AMQP_FIELD_KIND_U32 = 'i',      \/**< 32-bit unsigned integer, datatype: uint32_t *\/$/;"	e	enum:__anon6
+AMQP_FIELD_KIND_U64	./amqp.h	/^  AMQP_FIELD_KIND_U64 = 'L',      \/**< 64-bit unsigned integer, datatype: uint64_t *\/$/;"	e	enum:__anon6
+AMQP_FIELD_KIND_U8	./amqp.h	/^  AMQP_FIELD_KIND_U8 = 'B',       \/**< 8-bit unsigned integer, datatype: uint8_t *\/$/;"	e	enum:__anon6
+AMQP_FIELD_KIND_UTF8	./amqp.h	/^  AMQP_FIELD_KIND_UTF8 = 'S',     \/**< UTF-8 null-terminated character string, datatype: amqp_bytes_t *\/$/;"	e	enum:__anon6
+AMQP_FIELD_KIND_VOID	./amqp.h	/^  AMQP_FIELD_KIND_VOID = 'V',     \/**< empty entry *\/$/;"	e	enum:__anon6
+AMQP_FRAME_BODY	./amqp_framing.h	50;"	d
+AMQP_FRAME_END	./amqp_framing.h	53;"	d
+AMQP_FRAME_ERROR	./amqp_framing.h	64;"	d
+AMQP_FRAME_HEADER	./amqp_framing.h	49;"	d
+AMQP_FRAME_HEARTBEAT	./amqp_framing.h	51;"	d
+AMQP_FRAME_METHOD	./amqp_framing.h	48;"	d
+AMQP_FRAME_MIN_SIZE	./amqp_framing.h	52;"	d
+AMQP_FRAMING_H	./amqp_framing.h	38;"	d
+AMQP_H	./amqp.h	39;"	d
+AMQP_INIT_TIMER	./amqp_timer.h	47;"	d
+AMQP_INTERNAL_ERROR	./amqp_framing.h	72;"	d
+AMQP_INVALID_PATH	./amqp_framing.h	63;"	d
+AMQP_LITTLE_ENDIAN	./amqp_private.h	261;"	d
+AMQP_LITTLE_ENDIAN	./amqp_private.h	272;"	d
+AMQP_LITTLE_ENDIAN	./amqp_private.h	283;"	d
+AMQP_MS_PER_S	./amqp_timer.h	41;"	d
+AMQP_NORETURN	./amqp_private.h	68;"	d
+AMQP_NORETURN	./amqp_private.h	73;"	d
+AMQP_NOT_ALLOWED	./amqp_framing.h	70;"	d
+AMQP_NOT_FOUND	./amqp_framing.h	59;"	d
+AMQP_NOT_IMPLEMENTED	./amqp_framing.h	71;"	d
+AMQP_NO_CONSUMERS	./amqp_framing.h	57;"	d
+AMQP_NO_ROUTE	./amqp_framing.h	56;"	d
+AMQP_NS_PER_MS	./amqp_timer.h	44;"	d
+AMQP_NS_PER_S	./amqp_timer.h	43;"	d
+AMQP_NS_PER_US	./amqp_timer.h	45;"	d
+AMQP_PRECONDITION_FAILED	./amqp_framing.h	61;"	d
+AMQP_PRIVATE	./amqp_private.h	78;"	d
+AMQP_PRIVATE	./amqp_private.h	81;"	d
+AMQP_PROTOCOL_PORT	./amqp_framing.h	47;"	d
+AMQP_PROTOCOL_VERSION_MAJOR	./amqp_framing.h	44;"	d
+AMQP_PROTOCOL_VERSION_MINOR	./amqp_framing.h	45;"	d
+AMQP_PROTOCOL_VERSION_REVISION	./amqp_framing.h	46;"	d
+AMQP_PSEUDOFRAME_PROTOCOL_HEADER	./amqp_private.h	128;"	d
+AMQP_PUBLIC_FUNCTION	./amqp.h	103;"	d
+AMQP_PUBLIC_FUNCTION	./amqp.h	106;"	d
+AMQP_PUBLIC_FUNCTION	./amqp.h	116;"	d
+AMQP_PUBLIC_FUNCTION	./amqp.h	122;"	d
+AMQP_PUBLIC_FUNCTION	./amqp.h	61;"	d
+AMQP_PUBLIC_FUNCTION	./amqp.h	64;"	d
+AMQP_PUBLIC_FUNCTION	./amqp.h	75;"	d
+AMQP_PUBLIC_FUNCTION	./amqp.h	78;"	d
+AMQP_PUBLIC_FUNCTION	./amqp.h	89;"	d
+AMQP_PUBLIC_FUNCTION	./amqp.h	92;"	d
+AMQP_PUBLIC_VARIABLE	./amqp.h	104;"	d
+AMQP_PUBLIC_VARIABLE	./amqp.h	108;"	d
+AMQP_PUBLIC_VARIABLE	./amqp.h	110;"	d
+AMQP_PUBLIC_VARIABLE	./amqp.h	118;"	d
+AMQP_PUBLIC_VARIABLE	./amqp.h	123;"	d
+AMQP_PUBLIC_VARIABLE	./amqp.h	62;"	d
+AMQP_PUBLIC_VARIABLE	./amqp.h	66;"	d
+AMQP_PUBLIC_VARIABLE	./amqp.h	68;"	d
+AMQP_PUBLIC_VARIABLE	./amqp.h	76;"	d
+AMQP_PUBLIC_VARIABLE	./amqp.h	80;"	d
+AMQP_PUBLIC_VARIABLE	./amqp.h	82;"	d
+AMQP_PUBLIC_VARIABLE	./amqp.h	90;"	d
+AMQP_PUBLIC_VARIABLE	./amqp.h	94;"	d
+AMQP_PUBLIC_VARIABLE	./amqp.h	96;"	d
+AMQP_QUEUE_BIND_METHOD	./amqp_framing.h	324;"	d
+AMQP_QUEUE_BIND_OK_METHOD	./amqp_framing.h	334;"	d
+AMQP_QUEUE_CLASS	./amqp_framing.h	565;"	d
+AMQP_QUEUE_DECLARE_METHOD	./amqp_framing.h	305;"	d
+AMQP_QUEUE_DECLARE_OK_METHOD	./amqp_framing.h	317;"	d
+AMQP_QUEUE_DELETE_METHOD	./amqp_framing.h	351;"	d
+AMQP_QUEUE_DELETE_OK_METHOD	./amqp_framing.h	360;"	d
+AMQP_QUEUE_PURGE_METHOD	./amqp_framing.h	339;"	d
+AMQP_QUEUE_PURGE_OK_METHOD	./amqp_framing.h	346;"	d
+AMQP_QUEUE_UNBIND_METHOD	./amqp_framing.h	365;"	d
+AMQP_QUEUE_UNBIND_OK_METHOD	./amqp_framing.h	374;"	d
+AMQP_REPLY_SUCCESS	./amqp_framing.h	54;"	d
+AMQP_RESOURCE_ERROR	./amqp_framing.h	69;"	d
+AMQP_RESOURCE_LOCKED	./amqp_framing.h	60;"	d
+AMQP_RESPONSE_LIBRARY_EXCEPTION	./amqp.h	/^  AMQP_RESPONSE_LIBRARY_EXCEPTION,\/**< library error, an error occurred in the library, examine the library_error *\/$/;"	e	enum:amqp_response_type_enum_
+AMQP_RESPONSE_NONE	./amqp.h	/^  AMQP_RESPONSE_NONE = 0,         \/**< the library got an EOF from the socket *\/$/;"	e	enum:amqp_response_type_enum_
+AMQP_RESPONSE_NORMAL	./amqp.h	/^  AMQP_RESPONSE_NORMAL,           \/**< response normal, the RPC completed successfully *\/$/;"	e	enum:amqp_response_type_enum_
+AMQP_RESPONSE_SERVER_EXCEPTION	./amqp.h	/^  AMQP_RESPONSE_SERVER_EXCEPTION  \/**< server exception, the broker returned an error, check replay *\/$/;"	e	enum:amqp_response_type_enum_
+AMQP_SASL_METHOD_PLAIN	./amqp.h	/^  AMQP_SASL_METHOD_PLAIN = 0      \/**< the PLAIN SASL method for authentication to the broker *\/$/;"	e	enum:amqp_sasl_method_enum_
+AMQP_SOCKET_H	./amqp_socket.h	33;"	d
+AMQP_SSL_H	./amqp_ssl_socket.h	30;"	d
+AMQP_STATUS_BAD_AMQP_DATA	./amqp.h	/^  AMQP_STATUS_BAD_AMQP_DATA =             -0x0002, \/**< Incorrect or corrupt$/;"	e	enum:amqp_status_enum_
+AMQP_STATUS_BAD_URL	./amqp.h	/^  AMQP_STATUS_BAD_URL =                   -0x0008, \/**< malformed AMQP URL *\/$/;"	e	enum:amqp_status_enum_
+AMQP_STATUS_CONNECTION_CLOSED	./amqp.h	/^  AMQP_STATUS_CONNECTION_CLOSED =         -0x0007, \/**< The connection to the$/;"	e	enum:amqp_status_enum_
+AMQP_STATUS_HEARTBEAT_TIMEOUT	./amqp.h	/^  AMQP_STATUS_HEARTBEAT_TIMEOUT =         -0x000F, \/**< Timed out waiting for$/;"	e	enum:amqp_status_enum_
+AMQP_STATUS_HOSTNAME_RESOLUTION_FAILED	./amqp.h	/^  AMQP_STATUS_HOSTNAME_RESOLUTION_FAILED= -0x0005, \/**< Unable to resolve the$/;"	e	enum:amqp_status_enum_
+AMQP_STATUS_INCOMPATIBLE_AMQP_VERSION	./amqp.h	/^  AMQP_STATUS_INCOMPATIBLE_AMQP_VERSION = -0x0006, \/**< The broker advertised$/;"	e	enum:amqp_status_enum_
+AMQP_STATUS_INVALID_PARAMETER	./amqp.h	/^  AMQP_STATUS_INVALID_PARAMETER =         -0x000A, \/**< An invalid parameter$/;"	e	enum:amqp_status_enum_
+AMQP_STATUS_NO_MEMORY	./amqp.h	/^  AMQP_STATUS_NO_MEMORY =                 -0x0001,  \/**< Memory allocation$/;"	e	enum:amqp_status_enum_
+AMQP_STATUS_OK	./amqp.h	/^  AMQP_STATUS_OK =                         0x0,     \/**< Operation successful *\/$/;"	e	enum:amqp_status_enum_
+AMQP_STATUS_SOCKET_ERROR	./amqp.h	/^  AMQP_STATUS_SOCKET_ERROR =              -0x0009, \/**< A socket error$/;"	e	enum:amqp_status_enum_
+AMQP_STATUS_SSL_CONNECTION_FAILED	./amqp.h	/^  AMQP_STATUS_SSL_CONNECTION_FAILED =     -0x0203  \/**< SSL handshake failed. *\/$/;"	e	enum:amqp_status_enum_
+AMQP_STATUS_SSL_ERROR	./amqp.h	/^  AMQP_STATUS_SSL_ERROR =                 -0x0200, \/**< A generic SSL error$/;"	e	enum:amqp_status_enum_
+AMQP_STATUS_SSL_HOSTNAME_VERIFY_FAILED	./amqp.h	/^  AMQP_STATUS_SSL_HOSTNAME_VERIFY_FAILED= -0x0201, \/**< SSL validation of$/;"	e	enum:amqp_status_enum_
+AMQP_STATUS_SSL_PEER_VERIFY_FAILED	./amqp.h	/^  AMQP_STATUS_SSL_PEER_VERIFY_FAILED =    -0x0202, \/**< SSL validation of peer$/;"	e	enum:amqp_status_enum_
+AMQP_STATUS_TABLE_TOO_BIG	./amqp.h	/^  AMQP_STATUS_TABLE_TOO_BIG =             -0x000B, \/**< The amqp_table_t object$/;"	e	enum:amqp_status_enum_
+AMQP_STATUS_TCP_ERROR	./amqp.h	/^  AMQP_STATUS_TCP_ERROR =                 -0x0100, \/**< A generic TCP error$/;"	e	enum:amqp_status_enum_
+AMQP_STATUS_TCP_SOCKETLIB_INIT_ERROR	./amqp.h	/^  AMQP_STATUS_TCP_SOCKETLIB_INIT_ERROR =  -0x0101, \/**< An error occurred trying$/;"	e	enum:amqp_status_enum_
+AMQP_STATUS_TIMEOUT	./amqp.h	/^  AMQP_STATUS_TIMEOUT =                   -0x000D, \/**< Operation timed out *\/$/;"	e	enum:amqp_status_enum_
+AMQP_STATUS_TIMER_FAILURE	./amqp.h	/^  AMQP_STATUS_TIMER_FAILURE =             -0x000E, \/**< The underlying system$/;"	e	enum:amqp_status_enum_
+AMQP_STATUS_UNEXPECTED_STATE	./amqp.h	/^  AMQP_STATUS_UNEXPECTED_STATE =          -0x0010, \/**< Unexpected protocol$/;"	e	enum:amqp_status_enum_
+AMQP_STATUS_UNKNOWN_CLASS	./amqp.h	/^  AMQP_STATUS_UNKNOWN_CLASS =             -0x0003, \/**< An unknown AMQP class$/;"	e	enum:amqp_status_enum_
+AMQP_STATUS_UNKNOWN_METHOD	./amqp.h	/^  AMQP_STATUS_UNKNOWN_METHOD =            -0x0004, \/**< An unknown AMQP method$/;"	e	enum:amqp_status_enum_
+AMQP_STATUS_WRONG_METHOD	./amqp.h	/^  AMQP_STATUS_WRONG_METHOD =              -0x000C, \/**< The wrong method was$/;"	e	enum:amqp_status_enum_
+AMQP_SYNTAX_ERROR	./amqp_framing.h	65;"	d
+AMQP_TCP_SOCKET_H	./amqp_tcp_socket.h	34;"	d
+AMQP_TIMER_H	./amqp_timer.h	25;"	d
+AMQP_TX_CLASS	./amqp_framing.h	604;"	d
+AMQP_TX_COMMIT_METHOD	./amqp_framing.h	510;"	d
+AMQP_TX_COMMIT_OK_METHOD	./amqp_framing.h	515;"	d
+AMQP_TX_ROLLBACK_METHOD	./amqp_framing.h	520;"	d
+AMQP_TX_ROLLBACK_OK_METHOD	./amqp_framing.h	525;"	d
+AMQP_TX_SELECT_METHOD	./amqp_framing.h	500;"	d
+AMQP_TX_SELECT_OK_METHOD	./amqp_framing.h	505;"	d
+AMQP_UNEXPECTED_FRAME	./amqp_framing.h	68;"	d
+AMQP_UNUSED	./amqp_private.h	70;"	d
+AMQP_UNUSED	./amqp_private.h	74;"	d
+AMQP_US_PER_MS	./amqp_timer.h	42;"	d
+AMQP_VERSION	./amqp.h	249;"	d
+AMQP_VERSION_IS_RELEASE	./amqp.h	228;"	d
+AMQP_VERSION_MAJOR	./amqp.h	225;"	d
+AMQP_VERSION_MINOR	./amqp.h	226;"	d
+AMQP_VERSION_PATCH	./amqp.h	227;"	d
+AMQP_VERSION_STRING	./amqp.h	276;"	d
+AMQ_COPYRIGHT	./amqp_private.h	44;"	d
+AMQ_STRINGIFY	./amqp.h	255;"	d
+AMQ_STRINGIFY_HELPER	./amqp.h	256;"	d
+AMQ_VERSION_STRING	./amqp.h	258;"	d
+BIG_FONT_HEIGHT	./mediapipe.c	778;"	d	file:
+BIG_FONT_WIDTH	./mediapipe.c	777;"	d	file:
+BIN	./Makefile	/^BIN=mediapipe$/;"	m
+BIN	./utest/facedetect/Makefile	/^BIN = fd$/;"	m
+BIN	./utest/simplecodec/Makefile	/^BIN=simplecodec$/;"	m
+BIN	./utest/simplepipe/Makefile	/^BIN=simplepipe$/;"	m
+CFLAGS	./utest/facedetect/Makefile	/^CFLAGS = -O0 -g -DDEBUG$/;"	m
+CFLAGS	./utest/facedetect/Makefile	/^CFLAGS = -O2 -DNDEBUG$/;"	m
+CHANNEL_1080P_OSD_0	./mediapipe.c	775;"	d	file:
+CHANNEL_D1_OSD_0	./mediapipe.c	776;"	d	file:
+CHECK_RET	./utest/simplecodec/simplecodec.c	16;"	d	file:
+CHECK_RET	./utest/simplepipe/simplepipe.c	16;"	d	file:
+CHECK_UPDATE_OSD	./mediapipe.c	1001;"	d	file:
+COLON_DATA_INDEX	./mediapipe.c	782;"	d	file:
+COLOR_KEY_Y	./mediapipe.h	98;"	d
+CONFIGFLAG_3A_EXPOSURE	./mediapipe.h	/^    CONFIGFLAG_3A_EXPOSURE 		= 0x00000002,$/;"	e	enum:_Camera3AReconfigFlags
+CONFIGFLAG_3A_OTHERS	./mediapipe.h	/^    CONFIGFLAG_3A_OTHERS        = 0x00000008,$/;"	e	enum:_Camera3AReconfigFlags
+CONFIGFLAG_3A_PICQUALITY	./mediapipe.h	/^    CONFIGFLAG_3A_PICQUALITY 	= 0x00000004,$/;"	e	enum:_Camera3AReconfigFlags
+CONFIGFLAG_3A_WHITEBALANCE	./mediapipe.h	/^    CONFIGFLAG_3A_WHITEBALANCE 	= 0x00000001,$/;"	e	enum:_Camera3AReconfigFlags
+CONFIG_3ACONF_FILE_NAME	./main.c	2608;"	d	file:
+CONFIG_FILE_NAME	./main.c	108;"	d	file:
+CONNECTION_STATE_BODY	./amqp_private.h	/^  CONNECTION_STATE_BODY$/;"	e	enum:amqp_connection_state_enum_
+CONNECTION_STATE_HEADER	./amqp_private.h	/^  CONNECTION_STATE_HEADER,$/;"	e	enum:amqp_connection_state_enum_
+CONNECTION_STATE_IDLE	./amqp_private.h	/^  CONNECTION_STATE_IDLE = 0,$/;"	e	enum:amqp_connection_state_enum_
+CONNECTION_STATE_INITIAL	./amqp_private.h	/^  CONNECTION_STATE_INITIAL,$/;"	e	enum:amqp_connection_state_enum_
+Cameara3a_Exposure	./mediapipe.h	/^}Cameara3a_Exposure;$/;"	t	typeref:struct:_Cameara3a_Exposure
+Cameara3a_Others	./mediapipe.h	/^}Cameara3a_Others;$/;"	t	typeref:struct:_Cameara3a_Others
+Cameara3a_PicQuality	./mediapipe.h	/^}Cameara3a_PicQuality;$/;"	t	typeref:struct:_Cameara3a_PicQuality
+Cameara3a_WhiteBalance	./mediapipe.h	/^}Cameara3a_WhiteBalance;$/;"	t	typeref:struct:_Cameara3a_WhiteBalance
+Camera3AReconfigFlags	./mediapipe.h	/^}Camera3AReconfigFlags;$/;"	t	typeref:enum:_Camera3AReconfigFlags
+Config3A	./mediapipe.h	/^}Config3A;$/;"	t	typeref:struct:_3a_Config
+DECLARE_CODEC_BASE_TYPE	./amqp_private.h	209;"	d
+DECLARE_XTOXLL	./amqp_private.h	290;"	d
+DECLARE_XTOXLL	./amqp_private.h	307;"	d
+DEVICE_STR_LEN	./main.c	145;"	d	file:
+DMA_MODE	./mediapipe.h	102;"	d
+DynamicChannelData	./mediapipe_impl.h	/^}DynamicChannelData;$/;"	t	typeref:struct:_DynamicChannelData
+ELM_NUM	./mediapipe.c	781;"	d	file:
+EncodeFrameCallback	./mediapipe.h	/^typedef gboolean (*EncodeFrameCallback)   (GstBuffer *encode_buf, gpointer user_data, VideoChannelIndex channel);$/;"	t
+FAKE_SINK	./mediapipe.h	/^    FAKE_SINK = 0,$/;"	e	enum:_MediaSinkType
+FILE_SINK	./mediapipe.h	/^    FILE_SINK,$/;"	e	enum:_MediaSinkType
+FOOTER_SIZE	./amqp_private.h	126;"	d
+FPS_CALCULATION	./main.c	65;"	d	file:
+GAMMATABLESIZE	./mediapipe.h	274;"	d
+GST_APP_CFLAGS	./Makefile	/^GST_APP_CFLAGS=$(shell pkg-config gstreamer-app-1.0 --cflags)$/;"	m
+GST_APP_CFLAGS	./utest/simplecodec/Makefile	/^GST_APP_CFLAGS=$(shell pkg-config gstreamer-app-1.0 --cflags)$/;"	m
+GST_APP_CFLAGS	./utest/simplepipe/Makefile	/^GST_APP_CFLAGS=$(shell pkg-config gstreamer-app-1.0 --cflags)$/;"	m
+GST_APP_LIB	./Makefile	/^GST_APP_LIB=$(shell pkg-config gstreamer-app-1.0 --libs)$/;"	m
+GST_APP_LIB	./utest/simplecodec/Makefile	/^GST_APP_LIB=$(shell pkg-config gstreamer-app-1.0 --libs)$/;"	m
+GST_APP_LIB	./utest/simplepipe/Makefile	/^GST_APP_LIB=$(shell pkg-config gstreamer-app-1.0 --libs)$/;"	m
+GST_CFLAGS	./Makefile	/^GST_CFLAGS=$(shell pkg-config gstreamer-1.0 --cflags)$/;"	m
+GST_CFLAGS	./utest/simplecodec/Makefile	/^GST_CFLAGS=$(shell pkg-config gstreamer-1.0 --cflags)$/;"	m
+GST_CFLAGS	./utest/simplepipe/Makefile	/^GST_CFLAGS=$(shell pkg-config gstreamer-1.0 --cflags)$/;"	m
+GST_LIB	./Makefile	/^GST_LIB=$(shell pkg-config gstreamer-1.0 gstreamer-rtsp-server-1.0 gstreamer-rtsp-1.0 --libs)$/;"	m
+GST_LIB	./utest/simplecodec/Makefile	/^GST_LIB=$(shell pkg-config gstreamer-1.0 --libs)$/;"	m
+GST_LIB	./utest/simplepipe/Makefile	/^GST_LIB=$(shell pkg-config gstreamer-1.0 --libs)$/;"	m
+GST_VAAPI_CFLAGS	./Makefile	/^GST_VAAPI_CFLAGS=$(shell pkg-config gstreamer-vaapi-1.2 --cflags)$/;"	m
+GST_VAAPI_CFLAGS	./utest/simplecodec/Makefile	/^GST_VAAPI_CFLAGS=$(shell pkg-config gstreamer-vaapi-1.2 --cflags)$/;"	m
+GST_VAAPI_CFLAGS	./utest/simplepipe/Makefile	/^GST_VAAPI_CFLAGS=$(shell pkg-config gstreamer-vaapi-1.2 --cflags)$/;"	m
+GST_VAAPI_LIB	./Makefile	/^GST_VAAPI_LIB=$(shell pkg-config gstreamer-vaapi-1.2 --libs)$/;"	m
+GST_VAAPI_LIB	./utest/simplecodec/Makefile	/^GST_VAAPI_LIB=$(shell pkg-config gstreamer-vaapi-1.2 --libs)$/;"	m
+GST_VAAPI_LIB	./utest/simplepipe/Makefile	/^GST_VAAPI_LIB=$(shell pkg-config gstreamer-vaapi-1.2 --libs)$/;"	m
+GST_VIDEO_CFLAGS	./Makefile	/^GST_VIDEO_CFLAGS=$(shell pkg-config gstreamer-video-1.0 --cflags)$/;"	m
+GST_VIDEO_CFLAGS	./utest/simplecodec/Makefile	/^GST_VIDEO_CFLAGS=$(shell pkg-config gstreamer-video-1.0 --cflags)$/;"	m
+GST_VIDEO_CFLAGS	./utest/simplepipe/Makefile	/^GST_VIDEO_CFLAGS=$(shell pkg-config gstreamer-video-1.0 --cflags)$/;"	m
+GST_VIDEO_LIB	./Makefile	/^GST_VIDEO_LIB=$(shell pkg-config gstreamer-video-1.0 --libs)$/;"	m
+GST_VIDEO_LIB	./utest/simplecodec/Makefile	/^GST_VIDEO_LIB=$(shell pkg-config gstreamer-video-1.0 --libs)$/;"	m
+GST_VIDEO_LIB	./utest/simplepipe/Makefile	/^GST_VIDEO_LIB=$(shell pkg-config gstreamer-video-1.0 --libs)$/;"	m
+HEADER_SIZE	./amqp_private.h	125;"	d
+IMPL_CAST	./mediapipe_impl.h	192;"	d
+JPEG_CFLAGS	./Makefile	/^JPEG_CFLAGS=$(shell pkg-config libjpeg_interface --cflags)$/;"	m
+JPEG_CFLAGS	./utest/simplecodec/Makefile	/^JPEG_CFLAGS=$(shell pkg-config libjpeg_interface --cflags)$/;"	m
+JPEG_CFLAGS	./utest/simplepipe/Makefile	/^JPEG_CFLAGS=$(shell pkg-config libjpeg_interface --cflags)$/;"	m
+JPEG_LIB	./Makefile	/^JPEG_LIB=$(shell pkg-config libjpeg_interface --libs)$/;"	m
+JPEG_LIB	./utest/simplecodec/Makefile	/^JPEG_LIB=$(shell pkg-config libjpeg_interface --libs)$/;"	m
+JPEG_LIB	./utest/simplepipe/Makefile	/^JPEG_LIB=$(shell pkg-config libjpeg_interface --libs)$/;"	m
+JPEG_OUTPUT_BUFFER	./main.c	/^    JPEG_OUTPUT_BUFFER = 0,$/;"	e	enum:_JpegOutputMode	file:
+JPEG_OUTPUT_FILE	./main.c	/^    JPEG_OUTPUT_FILE$/;"	e	enum:_JpegOutputMode	file:
+JPEG_QUEUE_LEN	./mediapipe.c	1427;"	d	file:
+JpegOutputMode	./main.c	/^}JpegOutputMode;$/;"	t	typeref:enum:_JpegOutputMode	file:
+JpgEnc_Misc_Config	./main.c	/^}JpgEnc_Misc_Config;$/;"	t	typeref:struct:_JpgEnc_Misc_Config	file:
+KMS_SINK	./mediapipe.h	/^    KMS_SINK,$/;"	e	enum:_MediaSinkType
+LOCATION_STR_LEN	./main.c	144;"	d	file:
+LOG_DEBUG	./main.c	102;"	d	file:
+LOG_DEBUG	./main.c	104;"	d	file:
+LOG_DEBUG	./mediapipe.c	44;"	d	file:
+LOG_DEBUG	./mediapipe.c	46;"	d	file:
+LOG_ERROR	./main.c	92;"	d	file:
+LOG_ERROR	./mediapipe.c	37;"	d	file:
+LOG_PRINT	./main.c	98;"	d	file:
+LOG_PRINT	./utest/simplecodec/simplecodec.c	22;"	d	file:
+LOG_WARNING	./main.c	95;"	d	file:
+LOG_WARNING	./mediapipe.c	40;"	d	file:
+MASK_REGION_MAX_NUM	./mediapipe.h	93;"	d
+MAX_MSG_LENGTH	./main.c	310;"	d	file:
+MEDIA_PIPE_APP_SRC_NAME	./mediapipe.c	71;"	d	file:
+MEDIA_PIPE_CAPSFILTER_NAME	./mediapipe.c	63;"	d	file:
+MEDIA_PIPE_ENCODER_NAME	./mediapipe.c	66;"	d	file:
+MEDIA_PIPE_FAKE_SINK_NAME	./mediapipe.c	68;"	d	file:
+MEDIA_PIPE_FILE_SINK_NAME	./mediapipe.c	67;"	d	file:
+MEDIA_PIPE_H	./mediapipe.h	82;"	d
+MEDIA_PIPE_IMPL_H	./mediapipe_impl.h	23;"	d
+MEDIA_PIPE_KMS_SINK_NAME	./mediapipe.c	70;"	d	file:
+MEDIA_PIPE_POSTPROC_NAME	./mediapipe.c	64;"	d	file:
+MEDIA_PIPE_PREPROC_NAME	./mediapipe.c	65;"	d	file:
+MEDIA_PIPE_TCP_SINK_NAME	./mediapipe.c	69;"	d	file:
+MEDIA_PIPE_TEST_SOURCE_NAME	./mediapipe.c	60;"	d	file:
+MEDIA_PIPE_V4L2_SOURCE_NAME	./mediapipe.c	61;"	d	file:
+MEDIA_PIPE_VIDEORATE_NAME	./mediapipe.c	72;"	d	file:
+MEDIA_VIDEO_DEFAULT_FORMAT	./mediapipe.c	54;"	d	file:
+MEDIA_VIDEO_DEFAULT_FPS_D	./mediapipe.c	56;"	d	file:
+MEDIA_VIDEO_DEFAULT_FPS_N	./mediapipe.c	55;"	d	file:
+MEDIA_VIDEO_DEFAULT_HEIGHT	./mediapipe.c	53;"	d	file:
+MEDIA_VIDEO_DEFAULT_KEY_PERIOD	./mediapipe.c	57;"	d	file:
+MEDIA_VIDEO_DEFAULT_SENSOR_ID	./mediapipe.c	51;"	d	file:
+MEDIA_VIDEO_DEFAULT_WIDTH	./mediapipe.c	52;"	d	file:
+MMAP_MODE	./mediapipe.h	103;"	d
+MP4MUX_PLUGIN_NAME	./mediapipe.c	76;"	d	file:
+MXML_CFLAGS	./Makefile	/^MXML_CFLAGS=$(shell pkg-config mxml --cflags)$/;"	m
+MXML_CFLAGS	./utest/simplecodec/Makefile	/^MXML_CFLAGS=$(shell pkg-config mxml --cflags)$/;"	m
+MXML_CFLAGS	./utest/simplepipe/Makefile	/^MXML_CFLAGS=$(shell pkg-config mxml --cflags)$/;"	m
+MXML_LIB	./Makefile	/^MXML_LIB=$(shell pkg-config mxml --libs)$/;"	m
+MXML_LIB	./utest/simplecodec/Makefile	/^MXML_LIB=$(shell pkg-config mxml --libs)$/;"	m
+MXML_LIB	./utest/simplepipe/Makefile	/^MXML_LIB=$(shell pkg-config mxml --libs)$/;"	m
+MediaEncoder	./mediapipe_impl.h	/^}MediaEncoder;$/;"	t	typeref:struct:_MediaEncoder
+MediaPipe	./mediapipe.h	/^typedef struct _MediaPipe MediaPipe;$/;"	t	typeref:struct:_MediaPipe
+MediaPipeImpl	./mediapipe_impl.h	/^} MediaPipeImpl;$/;"	t	typeref:struct:__anon3
+MediaPreProc	./mediapipe_impl.h	/^}MediaPreProc;$/;"	t	typeref:struct:_MediaPreProc
+MediaSink	./mediapipe_impl.h	/^}MediaSink;$/;"	t	typeref:struct:_MediaSink
+MediaSinkType	./mediapipe.h	/^}MediaSinkType;$/;"	t	typeref:enum:_MediaSinkType
+MediaSource	./mediapipe_impl.h	/^}MediaSource;$/;"	t	typeref:struct:_MediaSource
+MessageCallback	./mediapipe.h	/^typedef gboolean (*MessageCallback)   (GstMessage *mesg, gpointer user_data);$/;"	t
+MyChannelInfo	./utest/simplepipe/simplepipe.c	/^}MyChannelInfo;$/;"	t	typeref:struct:_MyChannelInfo	file:
+NV12toBGR	./main.c	/^static void NV12toBGR(int width, int height,int stride, unsigned char *src, unsigned char *dst, int uvoffset)$/;"	f	file:
+OBJECTS	./Makefile	/^OBJECTS=$(SOURCES:.c=.o)$/;"	m
+OBJECTS	./utest/facedetect/Makefile	/^OBJECTS = $(SOURCES:.c=.o)$/;"	m
+OBJECTS	./utest/simplecodec/Makefile	/^OBJECTS=$(SOURCES:.c=.o)$/;"	m
+OBJECTS	./utest/simplepipe/Makefile	/^OBJECTS=$(SOURCES:.c=.o)$/;"	m
+OPENCV_LIB	./Makefile	/^OPENCV_LIB=-lopencv_calib3d -lopencv_core -lopencv_features2d -lopencv_flann -lopencv_highgui -lopencv_imgproc -lopencv_ml -lopencv_objdetect -lopencv_photo -lopencv_stitching -lopencv_superres -lopencv_imgcodecs$/;"	m
+OPENCV_LIB	./utest/facedetect/Makefile	/^OPENCV_LIB=`pkg-config --libs opencv`$/;"	m
+OSD_CHN	./mediapipe.c	790;"	d	file:
+OSD_CHN_HEIGHT	./mediapipe.c	774;"	d	file:
+OSD_CHN_WIDTH	./mediapipe.c	773;"	d	file:
+OSD_DATA_HEIGHT	./mediapipe.c	786;"	d	file:
+OSD_DATA_WIDTH	./mediapipe.c	785;"	d	file:
+OSD_ENG	./mediapipe.c	789;"	d	file:
+OSD_REFINE	./mediapipe.h	92;"	d
+OSD_REGION_MAX_NUM	./mediapipe.h	94;"	d
+OSD_TEMPLATE	./osd_template.h	2;"	d
+OSD_TEMPLATE2	./osd_template2.h	2;"	d
+OSD_TIME	./mediapipe.c	791;"	d	file:
+PLANE_NUM	./mediapipe.c	784;"	d	file:
+POOL_TABLE_SIZE	./amqp_private.h	135;"	d
+PREPARED_WIRE_FRME_NUM	./utest/simplepipe/simplepipe.c	48;"	d	file:
+Parse3AConfCallback	./mediapipe.h	/^typedef gboolean (*Parse3AConfCallback)   (Config3A *ptrConf, gpointer user_data);$/;"	t
+PostLinkInfo	./mediapipe_impl.h	/^} PostLinkInfo;$/;"	t	typeref:struct:__anon4
+QUEUE_PLUGIN_NAME	./mediapipe.c	75;"	d	file:
+Qos	./mediapipe.h	/^}Qos;$/;"	t	typeref:struct:__anon11
+RABBITMQ_LIB	./Makefile	/^RABBITMQ_LIB=-lrabbitmq -lm$/;"	m
+RTSP_SINK	./mediapipe.h	/^    RTSP_SINK,$/;"	e	enum:_MediaSinkType
+Rect_Facedetect_Jpeg	./main.c	/^}Rect_Facedetect_Jpeg;$/;"	t	typeref:struct:_Rect_Facedetect_Jpeg	file:
+ResolutionPack	./mediapipe.c	/^}ResolutionPack;$/;"	t	typeref:struct:_ResolutionPack	file:
+SAMPLE_OSD_DATA_STRIDE	./mediapipe.c	787;"	d	file:
+SINK_MAX	./mediapipe.h	/^    SINK_MAX$/;"	e	enum:_MediaSinkType
+SINK_TYPE_RESERVE_1	./mediapipe.h	/^    SINK_TYPE_RESERVE_1,$/;"	e	enum:_MediaSinkType
+SINK_TYPE_RESERVE_2	./mediapipe.h	/^    SINK_TYPE_RESERVE_2,$/;"	e	enum:_MediaSinkType
+SINK_TYPE_RESERVE_3	./mediapipe.h	/^    SINK_TYPE_RESERVE_3,$/;"	e	enum:_MediaSinkType
+SMALL_FONT_HEIGHT	./mediapipe.c	780;"	d	file:
+SMALL_FONT_WIDTH	./mediapipe.c	779;"	d	file:
+SMART_RES_176_100	./mediapipe.h	/^    SMART_RES_176_100 = 0,$/;"	e	enum:_SmartResolution
+SMART_RES_352_198	./mediapipe.h	/^    SMART_RES_352_198,$/;"	e	enum:_SmartResolution
+SMART_RES_352_200	./mediapipe.h	/^    SMART_RES_352_200,$/;"	e	enum:_SmartResolution
+SMART_RES_480_270	./mediapipe.h	/^    SMART_RES_480_270,$/;"	e	enum:_SmartResolution
+SMART_RES_480_272	./mediapipe.h	/^    SMART_RES_480_272,$/;"	e	enum:_SmartResolution
+SMART_RES_CIF	./mediapipe.h	/^    SMART_RES_CIF,$/;"	e	enum:_SmartResolution
+SMART_RES_D1	./mediapipe.h	/^    SMART_RES_D1$/;"	e	enum:_SmartResolution
+SOURCES	./Makefile	/^SOURCES= mediapipe.c main.c facedetect.c utils.c cJSON.c$/;"	m
+SOURCES	./utest/facedetect/Makefile	/^SOURCES = fd.c facedetect.c$/;"	m
+SOURCES	./utest/simplecodec/Makefile	/^SOURCES= simplecodec.c$/;"	m
+SOURCES	./utest/simplepipe/Makefile	/^SOURCES= simplepipe.c$/;"	m
+SRC_NUM	./mediapipe.h	/^   SRC_NUM$/;"	e	enum:_SrcType
+SRC_TYPE_FILE	./mediapipe.h	/^   SRC_TYPE_FILE, \/*!< video from file system, for demo or debug *\/$/;"	e	enum:_SrcType
+SRC_TYPE_V4L2	./mediapipe.h	/^   SRC_TYPE_V4L2, \/*!< video from camera, normal usage *\/$/;"	e	enum:_SrcType
+SRC_TYPE_VIDEO_TEST	./mediapipe.h	/^   SRC_TYPE_VIDEO_TEST, \/*!< video will be from videotestsrc, for debug *\/$/;"	e	enum:_SrcType
+SUPPORT_MV	./main.c	110;"	d	file:
+Smart1080pData	./mediapipe.h	/^}Smart1080pData;$/;"	t	typeref:struct:_Smart1080pData
+SmartData	./mediapipe.h	/^}SmartData;$/;"	t	typeref:struct:_SmartData
+SmartFrameCallback	./mediapipe.h	/^typedef gboolean (*SmartFrameCallback)   (GList *smart_queue, GList *smart_1080p_queue, gpointer user_data);$/;"	t
+SmartResolution	./mediapipe.h	/^}SmartResolution;$/;"	t	typeref:enum:_SmartResolution
+SrcType	./mediapipe.h	/^}SrcType;$/;"	t	typeref:enum:_SrcType
+Src_Setting	./main.c	/^}Src_Setting;$/;"	t	typeref:struct:_Src_Setting	file:
+StringContainer	./mediapipe.c	/^}StringContainer;$/;"	t	typeref:struct:_StringContainer	file:
+TCP_SINK	./mediapipe.h	/^    TCP_SINK,$/;"	e	enum:_MediaSinkType
+TEE_PLUGIN_NAME	./mediapipe.c	77;"	d	file:
+TESTCHANNEL	./utest/simplepipe/simplepipe.c	45;"	d	file:
+TIME_SLOT_HH_0	./mediapipe.c	/^    TIME_SLOT_HH_0 = 0,$/;"	e	enum:__anon1	file:
+TIME_SLOT_HH_1	./mediapipe.c	/^    TIME_SLOT_HH_1,$/;"	e	enum:__anon1	file:
+TIME_SLOT_MM_0	./mediapipe.c	/^    TIME_SLOT_MM_0,$/;"	e	enum:__anon1	file:
+TIME_SLOT_MM_1	./mediapipe.c	/^    TIME_SLOT_MM_1,$/;"	e	enum:__anon1	file:
+TIME_SLOT_NUM	./mediapipe.c	/^    TIME_SLOT_NUM$/;"	e	enum:__anon1	file:
+TIME_SLOT_SS_0	./mediapipe.c	/^    TIME_SLOT_SS_0,$/;"	e	enum:__anon1	file:
+TIME_SLOT_SS_1	./mediapipe.c	/^    TIME_SLOT_SS_1,$/;"	e	enum:__anon1	file:
+TOP	./utest/facedetect/Makefile	/^TOP = ..\/..$/;"	m
+UDP_SINK	./mediapipe.h	/^    UDP_SINK,$/;"	e	enum:_MediaSinkType
+USE_SMART_META	./utest/simplepipe/simplepipe.c	14;"	d	file:
+UV_PLANE_OFFSET	./mediapipe.c	788;"	d	file:
+V4L2_SINK	./mediapipe.h	/^    V4L2_SINK,$/;"	e	enum:_MediaSinkType
+VA_CBR	./mediapipe.h	107;"	d
+VA_CQP	./mediapipe.h	106;"	d
+VA_VBR	./mediapipe.h	108;"	d
+VA_VBR_CONSTRAINED	./mediapipe.h	109;"	d
+VIDEO_CHANNEL_1080P	./mediapipe.h	/^    VIDEO_CHANNEL_1080P = 0,$/;"	e	enum:_VideoChannelIndex
+VIDEO_CHANNEL_352_198	./mediapipe.h	/^    VIDEO_CHANNEL_352_198,$/;"	e	enum:_VideoChannelIndex
+VIDEO_CHANNEL_352_200	./mediapipe.h	/^    VIDEO_CHANNEL_352_200,$/;"	e	enum:_VideoChannelIndex
+VIDEO_CHANNEL_480_270	./mediapipe.h	/^    VIDEO_CHANNEL_480_270,$/;"	e	enum:_VideoChannelIndex
+VIDEO_CHANNEL_480_272	./mediapipe.h	/^    VIDEO_CHANNEL_480_272,$/;"	e	enum:_VideoChannelIndex
+VIDEO_CHANNEL_720P	./mediapipe.h	/^    VIDEO_CHANNEL_720P,$/;"	e	enum:_VideoChannelIndex
+VIDEO_CHANNEL_CIF	./mediapipe.h	/^    VIDEO_CHANNEL_CIF,$/;"	e	enum:_VideoChannelIndex
+VIDEO_CHANNEL_D1	./mediapipe.h	/^    VIDEO_CHANNEL_D1,$/;"	e	enum:_VideoChannelIndex
+VIDEO_CHANNEL_JPEG	./mediapipe.h	/^    VIDEO_CHANNEL_JPEG,$/;"	e	enum:_VideoChannelIndex
+VIDEO_CHANNEL_MAX	./mediapipe.h	/^    VIDEO_CHANNEL_MAX$/;"	e	enum:_VideoChannelIndex
+VIDEO_CHANNEL_SMART	./mediapipe.h	/^    VIDEO_CHANNEL_SMART,$/;"	e	enum:_VideoChannelIndex
+VIDEO_FORMAT_NV12	./mediapipe.h	100;"	d
+VPATH	./utest/facedetect/Makefile	/^VPATH=.:$(TOP)$/;"	m
+VideoChannel	./mediapipe_impl.h	/^}VideoChannel;$/;"	t	typeref:struct:_VideoChannel
+VideoChannelIndex	./mediapipe.h	/^}VideoChannelIndex;$/;"	t	typeref:enum:_VideoChannelIndex
+VideoFrameCallback	./mediapipe.h	/^typedef gboolean (*VideoFrameCallback)   (GstVideoPreprocBuffer *video_buf, gpointer user_data, VideoChannelIndex channel);$/;"	t
+Video_Channel_Config	./main.c	/^}Video_Channel_Config;$/;"	t	typeref:struct:_Video_Channel_Config	file:
+Video_Impl_Config	./main.c	/^}Video_Impl_Config;$/;"	t	typeref:struct:_Video_Impl_Config	file:
+WIN32_LEAN_AND_MEAN	./amqp_private.h	58;"	d
+WIN32_LEAN_AND_MEAN	./amqp_timer.h	34;"	d
+WINVER	./amqp_private.h	55;"	d
+WINVER	./amqp_timer.h	31;"	d
+WIRE_FRAME_REGION_MAX_NUM	./mediapipe.h	95;"	d
+WireFrameData	./main.c	/^}WireFrameData;$/;"	t	typeref:struct:_WireFrameData	file:
+_3a_Config	./mediapipe.h	/^typedef struct _3a_Config$/;"	s
+_Cameara3a_Exposure	./mediapipe.h	/^typedef struct _Cameara3a_Exposure$/;"	s
+_Cameara3a_Others	./mediapipe.h	/^typedef struct _Cameara3a_Others$/;"	s
+_Cameara3a_PicQuality	./mediapipe.h	/^typedef struct _Cameara3a_PicQuality$/;"	s
+_Cameara3a_WhiteBalance	./mediapipe.h	/^typedef struct _Cameara3a_WhiteBalance$/;"	s
+_Camera3AReconfigFlags	./mediapipe.h	/^typedef enum _Camera3AReconfigFlags$/;"	g
+_DynamicChannelData	./mediapipe_impl.h	/^typedef struct _DynamicChannelData$/;"	s
+_JpegOutputMode	./main.c	/^typedef enum _JpegOutputMode$/;"	g	file:
+_JpgEnc_Misc_Config	./main.c	/^typedef struct _JpgEnc_Misc_Config$/;"	s	file:
+_MediaEncoder	./mediapipe_impl.h	/^typedef struct _MediaEncoder{$/;"	s
+_MediaPipe	./mediapipe.h	/^struct _MediaPipe {$/;"	s
+_MediaPreProc	./mediapipe_impl.h	/^typedef struct _MediaPreProc{$/;"	s
+_MediaSink	./mediapipe_impl.h	/^typedef struct _MediaSink{$/;"	s
+_MediaSinkType	./mediapipe.h	/^typedef enum _MediaSinkType$/;"	g
+_MediaSource	./mediapipe_impl.h	/^typedef struct _MediaSource{$/;"	s
+_MyChannelInfo	./utest/simplepipe/simplepipe.c	/^typedef struct _MyChannelInfo$/;"	s	file:
+_RawFrameProbeData	./main.c	/^struct _RawFrameProbeData {$/;"	s	file:
+_Rect_Facedetect_Jpeg	./main.c	/^typedef struct _Rect_Facedetect_Jpeg$/;"	s	file:
+_ResolutionPack	./mediapipe.c	/^typedef struct _ResolutionPack$/;"	s	file:
+_Smart1080pData	./mediapipe.h	/^typedef struct _Smart1080pData$/;"	s
+_SmartData	./mediapipe.h	/^typedef struct _SmartData$/;"	s
+_SmartResolution	./mediapipe.h	/^typedef enum _SmartResolution$/;"	g
+_SrcType	./mediapipe.h	/^typedef enum _SrcType$/;"	g
+_Src_Setting	./main.c	/^typedef struct _Src_Setting$/;"	s	file:
+_StringContainer	./mediapipe.c	/^typedef struct _StringContainer$/;"	s	file:
+_VideoChannel	./mediapipe_impl.h	/^typedef struct _VideoChannel$/;"	s
+_VideoChannelIndex	./mediapipe.h	/^typedef enum _VideoChannelIndex$/;"	g
+_Video_Channel_Config	./main.c	/^typedef struct _Video_Channel_Config$/;"	s	file:
+_Video_Impl_Config	./main.c	/^typedef struct _Video_Impl_Config$/;"	s	file:
+_W64	./amqp.h	142;"	d
+_W64	./amqp.h	144;"	d
+_WireFrameData	./main.c	/^typedef struct _WireFrameData$/;"	s	file:
+__FACE_DETECT_H__	./facedetect.h	2;"	d
+_flags	./amqp_framing.h	/^  amqp_flags_t _flags;$/;"	m	struct:amqp_access_properties_t_
+_flags	./amqp_framing.h	/^  amqp_flags_t _flags;$/;"	m	struct:amqp_basic_properties_t_
+_flags	./amqp_framing.h	/^  amqp_flags_t _flags;$/;"	m	struct:amqp_channel_properties_t_
+_flags	./amqp_framing.h	/^  amqp_flags_t _flags;$/;"	m	struct:amqp_confirm_properties_t_
+_flags	./amqp_framing.h	/^  amqp_flags_t _flags;$/;"	m	struct:amqp_connection_properties_t_
+_flags	./amqp_framing.h	/^  amqp_flags_t _flags;$/;"	m	struct:amqp_exchange_properties_t_
+_flags	./amqp_framing.h	/^  amqp_flags_t _flags;$/;"	m	struct:amqp_queue_properties_t_
+_flags	./amqp_framing.h	/^  amqp_flags_t _flags;$/;"	m	struct:amqp_tx_properties_t_
+_smart_meta_mask_info_free	./mediapipe.c	/^_smart_meta_mask_info_free(GstVideoPreprocMaskInfo *info)$/;"	f	file:
+_smart_meta_osd_info_free	./mediapipe.c	/^_smart_meta_osd_info_free(GstVideoPreprocOsdInfo *info)$/;"	f	file:
+_smart_meta_wf_info_free	./mediapipe.c	/^_smart_meta_wf_info_free(GstVideoPreprocWireFrameInfo *info)$/;"	f	file:
+active	./amqp_framing.h	/^  amqp_boolean_t active;$/;"	m	struct:amqp_access_request_t_
+active	./amqp_framing.h	/^  amqp_boolean_t active;$/;"	m	struct:amqp_channel_flow_ok_t_
+active	./amqp_framing.h	/^  amqp_boolean_t active;$/;"	m	struct:amqp_channel_flow_t_
+add_osd_update	./mediapipe.c	/^add_osd_update(GList *osd_infos, guint id, GstVideoPreprocOsdCfg *cfg,$/;"	f	file:
+alloc_block	./amqp.h	/^  char *alloc_block;  \/**< pointer to the current allocation block *\/$/;"	m	struct:amqp_pool_t_
+alloc_used	./amqp.h	/^  size_t alloc_used;  \/**< number of bytes in the current allocation block that has been used *\/$/;"	m	struct:amqp_pool_t_
+amqp_access_properties_t	./amqp_framing.h	/^} amqp_access_properties_t;$/;"	t	typeref:struct:amqp_access_properties_t_
+amqp_access_properties_t_	./amqp_framing.h	/^typedef struct amqp_access_properties_t_ {$/;"	s
+amqp_access_request_ok_t	./amqp_framing.h	/^} amqp_access_request_ok_t;$/;"	t	typeref:struct:amqp_access_request_ok_t_
+amqp_access_request_ok_t_	./amqp_framing.h	/^typedef struct amqp_access_request_ok_t_ {$/;"	s
+amqp_access_request_t	./amqp_framing.h	/^} amqp_access_request_t;$/;"	t	typeref:struct:amqp_access_request_t_
+amqp_access_request_t_	./amqp_framing.h	/^typedef struct amqp_access_request_t_ {$/;"	s
+amqp_array_t	./amqp.h	/^} amqp_array_t;$/;"	t	typeref:struct:amqp_array_t_
+amqp_array_t_	./amqp.h	/^typedef struct amqp_array_t_ {$/;"	s
+amqp_basic_ack_t	./amqp_framing.h	/^} amqp_basic_ack_t;$/;"	t	typeref:struct:amqp_basic_ack_t_
+amqp_basic_ack_t_	./amqp_framing.h	/^typedef struct amqp_basic_ack_t_ {$/;"	s
+amqp_basic_cancel_ok_t	./amqp_framing.h	/^} amqp_basic_cancel_ok_t;$/;"	t	typeref:struct:amqp_basic_cancel_ok_t_
+amqp_basic_cancel_ok_t_	./amqp_framing.h	/^typedef struct amqp_basic_cancel_ok_t_ {$/;"	s
+amqp_basic_cancel_t	./amqp_framing.h	/^} amqp_basic_cancel_t;$/;"	t	typeref:struct:amqp_basic_cancel_t_
+amqp_basic_cancel_t_	./amqp_framing.h	/^typedef struct amqp_basic_cancel_t_ {$/;"	s
+amqp_basic_consume_ok_t	./amqp_framing.h	/^} amqp_basic_consume_ok_t;$/;"	t	typeref:struct:amqp_basic_consume_ok_t_
+amqp_basic_consume_ok_t_	./amqp_framing.h	/^typedef struct amqp_basic_consume_ok_t_ {$/;"	s
+amqp_basic_consume_t	./amqp_framing.h	/^} amqp_basic_consume_t;$/;"	t	typeref:struct:amqp_basic_consume_t_
+amqp_basic_consume_t_	./amqp_framing.h	/^typedef struct amqp_basic_consume_t_ {$/;"	s
+amqp_basic_deliver_t	./amqp_framing.h	/^} amqp_basic_deliver_t;$/;"	t	typeref:struct:amqp_basic_deliver_t_
+amqp_basic_deliver_t_	./amqp_framing.h	/^typedef struct amqp_basic_deliver_t_ {$/;"	s
+amqp_basic_get_empty_t	./amqp_framing.h	/^} amqp_basic_get_empty_t;$/;"	t	typeref:struct:amqp_basic_get_empty_t_
+amqp_basic_get_empty_t_	./amqp_framing.h	/^typedef struct amqp_basic_get_empty_t_ {$/;"	s
+amqp_basic_get_ok_t	./amqp_framing.h	/^} amqp_basic_get_ok_t;$/;"	t	typeref:struct:amqp_basic_get_ok_t_
+amqp_basic_get_ok_t_	./amqp_framing.h	/^typedef struct amqp_basic_get_ok_t_ {$/;"	s
+amqp_basic_get_t	./amqp_framing.h	/^} amqp_basic_get_t;$/;"	t	typeref:struct:amqp_basic_get_t_
+amqp_basic_get_t_	./amqp_framing.h	/^typedef struct amqp_basic_get_t_ {$/;"	s
+amqp_basic_nack_t	./amqp_framing.h	/^} amqp_basic_nack_t;$/;"	t	typeref:struct:amqp_basic_nack_t_
+amqp_basic_nack_t_	./amqp_framing.h	/^typedef struct amqp_basic_nack_t_ {$/;"	s
+amqp_basic_properties_t	./amqp_framing.h	/^} amqp_basic_properties_t;$/;"	t	typeref:struct:amqp_basic_properties_t_
+amqp_basic_properties_t_	./amqp_framing.h	/^typedef struct amqp_basic_properties_t_ {$/;"	s
+amqp_basic_publish_t	./amqp_framing.h	/^} amqp_basic_publish_t;$/;"	t	typeref:struct:amqp_basic_publish_t_
+amqp_basic_publish_t_	./amqp_framing.h	/^typedef struct amqp_basic_publish_t_ {$/;"	s
+amqp_basic_qos_ok_t	./amqp_framing.h	/^} amqp_basic_qos_ok_t;$/;"	t	typeref:struct:amqp_basic_qos_ok_t_
+amqp_basic_qos_ok_t_	./amqp_framing.h	/^typedef struct amqp_basic_qos_ok_t_ {$/;"	s
+amqp_basic_qos_t	./amqp_framing.h	/^} amqp_basic_qos_t;$/;"	t	typeref:struct:amqp_basic_qos_t_
+amqp_basic_qos_t_	./amqp_framing.h	/^typedef struct amqp_basic_qos_t_ {$/;"	s
+amqp_basic_recover_async_t	./amqp_framing.h	/^} amqp_basic_recover_async_t;$/;"	t	typeref:struct:amqp_basic_recover_async_t_
+amqp_basic_recover_async_t_	./amqp_framing.h	/^typedef struct amqp_basic_recover_async_t_ {$/;"	s
+amqp_basic_recover_ok_t	./amqp_framing.h	/^} amqp_basic_recover_ok_t;$/;"	t	typeref:struct:amqp_basic_recover_ok_t_
+amqp_basic_recover_ok_t_	./amqp_framing.h	/^typedef struct amqp_basic_recover_ok_t_ {$/;"	s
+amqp_basic_recover_t	./amqp_framing.h	/^} amqp_basic_recover_t;$/;"	t	typeref:struct:amqp_basic_recover_t_
+amqp_basic_recover_t_	./amqp_framing.h	/^typedef struct amqp_basic_recover_t_ {$/;"	s
+amqp_basic_reject_t	./amqp_framing.h	/^} amqp_basic_reject_t;$/;"	t	typeref:struct:amqp_basic_reject_t_
+amqp_basic_reject_t_	./amqp_framing.h	/^typedef struct amqp_basic_reject_t_ {$/;"	s
+amqp_basic_return_t	./amqp_framing.h	/^} amqp_basic_return_t;$/;"	t	typeref:struct:amqp_basic_return_t_
+amqp_basic_return_t_	./amqp_framing.h	/^typedef struct amqp_basic_return_t_ {$/;"	s
+amqp_boolean_t	./amqp.h	/^typedef int amqp_boolean_t;$/;"	t
+amqp_bytes_t	./amqp.h	/^} amqp_bytes_t;$/;"	t	typeref:struct:amqp_bytes_t_
+amqp_bytes_t_	./amqp.h	/^typedef struct amqp_bytes_t_ {$/;"	s
+amqp_calc_next_recv_heartbeat	./amqp_private.h	/^static inline uint64_t amqp_calc_next_recv_heartbeat(amqp_connection_state_t state, uint64_t cur)$/;"	f
+amqp_calc_next_send_heartbeat	./amqp_private.h	/^static inline uint64_t amqp_calc_next_send_heartbeat(amqp_connection_state_t state, uint64_t cur)$/;"	f
+amqp_channel_close_ok_t	./amqp_framing.h	/^} amqp_channel_close_ok_t;$/;"	t	typeref:struct:amqp_channel_close_ok_t_
+amqp_channel_close_ok_t_	./amqp_framing.h	/^typedef struct amqp_channel_close_ok_t_ {$/;"	s
+amqp_channel_close_t	./amqp_framing.h	/^} amqp_channel_close_t;$/;"	t	typeref:struct:amqp_channel_close_t_
+amqp_channel_close_t_	./amqp_framing.h	/^typedef struct amqp_channel_close_t_ {$/;"	s
+amqp_channel_flow_ok_t	./amqp_framing.h	/^} amqp_channel_flow_ok_t;$/;"	t	typeref:struct:amqp_channel_flow_ok_t_
+amqp_channel_flow_ok_t_	./amqp_framing.h	/^typedef struct amqp_channel_flow_ok_t_ {$/;"	s
+amqp_channel_flow_t	./amqp_framing.h	/^} amqp_channel_flow_t;$/;"	t	typeref:struct:amqp_channel_flow_t_
+amqp_channel_flow_t_	./amqp_framing.h	/^typedef struct amqp_channel_flow_t_ {$/;"	s
+amqp_channel_open_ok_t	./amqp_framing.h	/^} amqp_channel_open_ok_t;$/;"	t	typeref:struct:amqp_channel_open_ok_t_
+amqp_channel_open_ok_t_	./amqp_framing.h	/^typedef struct amqp_channel_open_ok_t_ {$/;"	s
+amqp_channel_open_t	./amqp_framing.h	/^} amqp_channel_open_t;$/;"	t	typeref:struct:amqp_channel_open_t_
+amqp_channel_open_t_	./amqp_framing.h	/^typedef struct amqp_channel_open_t_ {$/;"	s
+amqp_channel_properties_t	./amqp_framing.h	/^} amqp_channel_properties_t;$/;"	t	typeref:struct:amqp_channel_properties_t_
+amqp_channel_properties_t_	./amqp_framing.h	/^typedef struct amqp_channel_properties_t_ {$/;"	s
+amqp_channel_t	./amqp.h	/^typedef uint16_t amqp_channel_t;$/;"	t
+amqp_confirm_properties_t	./amqp_framing.h	/^} amqp_confirm_properties_t;$/;"	t	typeref:struct:amqp_confirm_properties_t_
+amqp_confirm_properties_t_	./amqp_framing.h	/^typedef struct amqp_confirm_properties_t_ {$/;"	s
+amqp_confirm_select_ok_t	./amqp_framing.h	/^} amqp_confirm_select_ok_t;$/;"	t	typeref:struct:amqp_confirm_select_ok_t_
+amqp_confirm_select_ok_t_	./amqp_framing.h	/^typedef struct amqp_confirm_select_ok_t_ {$/;"	s
+amqp_confirm_select_t	./amqp_framing.h	/^} amqp_confirm_select_t;$/;"	t	typeref:struct:amqp_confirm_select_t_
+amqp_confirm_select_t_	./amqp_framing.h	/^typedef struct amqp_confirm_select_t_ {$/;"	s
+amqp_connection_blocked_t	./amqp_framing.h	/^} amqp_connection_blocked_t;$/;"	t	typeref:struct:amqp_connection_blocked_t_
+amqp_connection_blocked_t_	./amqp_framing.h	/^typedef struct amqp_connection_blocked_t_ {$/;"	s
+amqp_connection_close_ok_t	./amqp_framing.h	/^} amqp_connection_close_ok_t;$/;"	t	typeref:struct:amqp_connection_close_ok_t_
+amqp_connection_close_ok_t_	./amqp_framing.h	/^typedef struct amqp_connection_close_ok_t_ {$/;"	s
+amqp_connection_close_t	./amqp_framing.h	/^} amqp_connection_close_t;$/;"	t	typeref:struct:amqp_connection_close_t_
+amqp_connection_close_t_	./amqp_framing.h	/^typedef struct amqp_connection_close_t_ {$/;"	s
+amqp_connection_info	./amqp.h	/^struct amqp_connection_info {$/;"	s
+amqp_connection_open_ok_t	./amqp_framing.h	/^} amqp_connection_open_ok_t;$/;"	t	typeref:struct:amqp_connection_open_ok_t_
+amqp_connection_open_ok_t_	./amqp_framing.h	/^typedef struct amqp_connection_open_ok_t_ {$/;"	s
+amqp_connection_open_t	./amqp_framing.h	/^} amqp_connection_open_t;$/;"	t	typeref:struct:amqp_connection_open_t_
+amqp_connection_open_t_	./amqp_framing.h	/^typedef struct amqp_connection_open_t_ {$/;"	s
+amqp_connection_properties_t	./amqp_framing.h	/^} amqp_connection_properties_t;$/;"	t	typeref:struct:amqp_connection_properties_t_
+amqp_connection_properties_t_	./amqp_framing.h	/^typedef struct amqp_connection_properties_t_ {$/;"	s
+amqp_connection_secure_ok_t	./amqp_framing.h	/^} amqp_connection_secure_ok_t;$/;"	t	typeref:struct:amqp_connection_secure_ok_t_
+amqp_connection_secure_ok_t_	./amqp_framing.h	/^typedef struct amqp_connection_secure_ok_t_ {$/;"	s
+amqp_connection_secure_t	./amqp_framing.h	/^} amqp_connection_secure_t;$/;"	t	typeref:struct:amqp_connection_secure_t_
+amqp_connection_secure_t_	./amqp_framing.h	/^typedef struct amqp_connection_secure_t_ {$/;"	s
+amqp_connection_start_ok_t	./amqp_framing.h	/^} amqp_connection_start_ok_t;$/;"	t	typeref:struct:amqp_connection_start_ok_t_
+amqp_connection_start_ok_t_	./amqp_framing.h	/^typedef struct amqp_connection_start_ok_t_ {$/;"	s
+amqp_connection_start_t	./amqp_framing.h	/^} amqp_connection_start_t;$/;"	t	typeref:struct:amqp_connection_start_t_
+amqp_connection_start_t_	./amqp_framing.h	/^typedef struct amqp_connection_start_t_ {$/;"	s
+amqp_connection_state_enum	./amqp_private.h	/^} amqp_connection_state_enum;$/;"	t	typeref:enum:amqp_connection_state_enum_
+amqp_connection_state_enum_	./amqp_private.h	/^typedef enum amqp_connection_state_enum_ {$/;"	g
+amqp_connection_state_t	./amqp.h	/^typedef struct amqp_connection_state_t_ *amqp_connection_state_t;$/;"	t	typeref:struct:amqp_connection_state_t_
+amqp_connection_state_t_	./amqp_private.h	/^struct amqp_connection_state_t_ {$/;"	s
+amqp_connection_tune_ok_t	./amqp_framing.h	/^} amqp_connection_tune_ok_t;$/;"	t	typeref:struct:amqp_connection_tune_ok_t_
+amqp_connection_tune_ok_t_	./amqp_framing.h	/^typedef struct amqp_connection_tune_ok_t_ {$/;"	s
+amqp_connection_tune_t	./amqp_framing.h	/^} amqp_connection_tune_t;$/;"	t	typeref:struct:amqp_connection_tune_t_
+amqp_connection_tune_t_	./amqp_framing.h	/^typedef struct amqp_connection_tune_t_ {$/;"	s
+amqp_connection_unblocked_t	./amqp_framing.h	/^} amqp_connection_unblocked_t;$/;"	t	typeref:struct:amqp_connection_unblocked_t_
+amqp_connection_unblocked_t_	./amqp_framing.h	/^typedef struct amqp_connection_unblocked_t_ {$/;"	s
+amqp_decimal_t	./amqp.h	/^} amqp_decimal_t;$/;"	t	typeref:struct:amqp_decimal_t_
+amqp_decimal_t_	./amqp.h	/^typedef struct amqp_decimal_t_ {$/;"	s
+amqp_decode_bytes	./amqp_private.h	/^static inline int amqp_decode_bytes(amqp_bytes_t encoded, size_t *offset,$/;"	f
+amqp_delivery_mode_enum	./amqp.h	/^} amqp_delivery_mode_enum;$/;"	t	typeref:enum:__anon10
+amqp_dump	./utils.c	/^void amqp_dump(void const *buffer, size_t len)$/;"	f
+amqp_empty_array	./amqp.h	/^AMQP_PUBLIC_VARIABLE const amqp_array_t amqp_empty_array;$/;"	v
+amqp_empty_bytes	./amqp.h	/^AMQP_PUBLIC_VARIABLE const amqp_bytes_t amqp_empty_bytes;$/;"	v
+amqp_empty_table	./amqp.h	/^AMQP_PUBLIC_VARIABLE const amqp_table_t amqp_empty_table;$/;"	v
+amqp_encode_bytes	./amqp_private.h	/^static inline int amqp_encode_bytes(amqp_bytes_t encoded, size_t *offset,$/;"	f
+amqp_envelope_t	./amqp.h	/^} amqp_envelope_t;$/;"	t	typeref:struct:amqp_envelope_t_
+amqp_envelope_t_	./amqp.h	/^typedef struct amqp_envelope_t_ {$/;"	s
+amqp_exchange_bind_ok_t	./amqp_framing.h	/^} amqp_exchange_bind_ok_t;$/;"	t	typeref:struct:amqp_exchange_bind_ok_t_
+amqp_exchange_bind_ok_t_	./amqp_framing.h	/^typedef struct amqp_exchange_bind_ok_t_ {$/;"	s
+amqp_exchange_bind_t	./amqp_framing.h	/^} amqp_exchange_bind_t;$/;"	t	typeref:struct:amqp_exchange_bind_t_
+amqp_exchange_bind_t_	./amqp_framing.h	/^typedef struct amqp_exchange_bind_t_ {$/;"	s
+amqp_exchange_declare_ok_t	./amqp_framing.h	/^} amqp_exchange_declare_ok_t;$/;"	t	typeref:struct:amqp_exchange_declare_ok_t_
+amqp_exchange_declare_ok_t_	./amqp_framing.h	/^typedef struct amqp_exchange_declare_ok_t_ {$/;"	s
+amqp_exchange_declare_t	./amqp_framing.h	/^} amqp_exchange_declare_t;$/;"	t	typeref:struct:amqp_exchange_declare_t_
+amqp_exchange_declare_t_	./amqp_framing.h	/^typedef struct amqp_exchange_declare_t_ {$/;"	s
+amqp_exchange_delete_ok_t	./amqp_framing.h	/^} amqp_exchange_delete_ok_t;$/;"	t	typeref:struct:amqp_exchange_delete_ok_t_
+amqp_exchange_delete_ok_t_	./amqp_framing.h	/^typedef struct amqp_exchange_delete_ok_t_ {$/;"	s
+amqp_exchange_delete_t	./amqp_framing.h	/^} amqp_exchange_delete_t;$/;"	t	typeref:struct:amqp_exchange_delete_t_
+amqp_exchange_delete_t_	./amqp_framing.h	/^typedef struct amqp_exchange_delete_t_ {$/;"	s
+amqp_exchange_properties_t	./amqp_framing.h	/^} amqp_exchange_properties_t;$/;"	t	typeref:struct:amqp_exchange_properties_t_
+amqp_exchange_properties_t_	./amqp_framing.h	/^typedef struct amqp_exchange_properties_t_ {$/;"	s
+amqp_exchange_unbind_ok_t	./amqp_framing.h	/^} amqp_exchange_unbind_ok_t;$/;"	t	typeref:struct:amqp_exchange_unbind_ok_t_
+amqp_exchange_unbind_ok_t_	./amqp_framing.h	/^typedef struct amqp_exchange_unbind_ok_t_ {$/;"	s
+amqp_exchange_unbind_t	./amqp_framing.h	/^} amqp_exchange_unbind_t;$/;"	t	typeref:struct:amqp_exchange_unbind_t_
+amqp_exchange_unbind_t_	./amqp_framing.h	/^typedef struct amqp_exchange_unbind_t_ {$/;"	s
+amqp_field_value_kind_t	./amqp.h	/^} amqp_field_value_kind_t;$/;"	t	typeref:enum:__anon6
+amqp_field_value_t	./amqp.h	/^} amqp_field_value_t;$/;"	t	typeref:struct:amqp_field_value_t_
+amqp_field_value_t_	./amqp.h	/^typedef struct amqp_field_value_t_ {$/;"	s
+amqp_flags_t	./amqp.h	/^typedef uint32_t amqp_flags_t;$/;"	t
+amqp_frame_t	./amqp.h	/^} amqp_frame_t;$/;"	t	typeref:struct:amqp_frame_t_
+amqp_frame_t_	./amqp.h	/^typedef struct amqp_frame_t_ {$/;"	s
+amqp_heartbeat_enabled	./amqp_private.h	/^static inline amqp_boolean_t amqp_heartbeat_enabled(amqp_connection_state_t state)$/;"	f
+amqp_link_t	./amqp_private.h	/^} amqp_link_t;$/;"	t	typeref:struct:amqp_link_t_
+amqp_link_t_	./amqp_private.h	/^typedef struct amqp_link_t_ {$/;"	s
+amqp_message_t	./amqp.h	/^} amqp_message_t;$/;"	t	typeref:struct:amqp_message_t_
+amqp_message_t_	./amqp.h	/^typedef struct amqp_message_t_ {$/;"	s
+amqp_method_number_t	./amqp.h	/^typedef uint32_t amqp_method_number_t;$/;"	t
+amqp_method_t	./amqp.h	/^} amqp_method_t;$/;"	t	typeref:struct:amqp_method_t_
+amqp_method_t_	./amqp.h	/^typedef struct amqp_method_t_ {$/;"	s
+amqp_offset	./amqp_private.h	/^static inline void *amqp_offset(void *data, size_t offset)$/;"	f
+amqp_pool_blocklist_t	./amqp.h	/^} amqp_pool_blocklist_t;$/;"	t	typeref:struct:amqp_pool_blocklist_t_
+amqp_pool_blocklist_t_	./amqp.h	/^typedef struct amqp_pool_blocklist_t_ {$/;"	s
+amqp_pool_t	./amqp.h	/^} amqp_pool_t;$/;"	t	typeref:struct:amqp_pool_t_
+amqp_pool_t_	./amqp.h	/^typedef struct amqp_pool_t_ {$/;"	s
+amqp_pool_table_entry_t	./amqp_private.h	/^} amqp_pool_table_entry_t;$/;"	t	typeref:struct:amqp_pool_table_entry_t_
+amqp_pool_table_entry_t_	./amqp_private.h	/^typedef struct amqp_pool_table_entry_t_ {$/;"	s
+amqp_queue_bind_ok_t	./amqp_framing.h	/^} amqp_queue_bind_ok_t;$/;"	t	typeref:struct:amqp_queue_bind_ok_t_
+amqp_queue_bind_ok_t_	./amqp_framing.h	/^typedef struct amqp_queue_bind_ok_t_ {$/;"	s
+amqp_queue_bind_t	./amqp_framing.h	/^} amqp_queue_bind_t;$/;"	t	typeref:struct:amqp_queue_bind_t_
+amqp_queue_bind_t_	./amqp_framing.h	/^typedef struct amqp_queue_bind_t_ {$/;"	s
+amqp_queue_declare_ok_t	./amqp_framing.h	/^} amqp_queue_declare_ok_t;$/;"	t	typeref:struct:amqp_queue_declare_ok_t_
+amqp_queue_declare_ok_t_	./amqp_framing.h	/^typedef struct amqp_queue_declare_ok_t_ {$/;"	s
+amqp_queue_declare_t	./amqp_framing.h	/^} amqp_queue_declare_t;$/;"	t	typeref:struct:amqp_queue_declare_t_
+amqp_queue_declare_t_	./amqp_framing.h	/^typedef struct amqp_queue_declare_t_ {$/;"	s
+amqp_queue_delete_ok_t	./amqp_framing.h	/^} amqp_queue_delete_ok_t;$/;"	t	typeref:struct:amqp_queue_delete_ok_t_
+amqp_queue_delete_ok_t_	./amqp_framing.h	/^typedef struct amqp_queue_delete_ok_t_ {$/;"	s
+amqp_queue_delete_t	./amqp_framing.h	/^} amqp_queue_delete_t;$/;"	t	typeref:struct:amqp_queue_delete_t_
+amqp_queue_delete_t_	./amqp_framing.h	/^typedef struct amqp_queue_delete_t_ {$/;"	s
+amqp_queue_properties_t	./amqp_framing.h	/^} amqp_queue_properties_t;$/;"	t	typeref:struct:amqp_queue_properties_t_
+amqp_queue_properties_t_	./amqp_framing.h	/^typedef struct amqp_queue_properties_t_ {$/;"	s
+amqp_queue_purge_ok_t	./amqp_framing.h	/^} amqp_queue_purge_ok_t;$/;"	t	typeref:struct:amqp_queue_purge_ok_t_
+amqp_queue_purge_ok_t_	./amqp_framing.h	/^typedef struct amqp_queue_purge_ok_t_ {$/;"	s
+amqp_queue_purge_t	./amqp_framing.h	/^} amqp_queue_purge_t;$/;"	t	typeref:struct:amqp_queue_purge_t_
+amqp_queue_purge_t_	./amqp_framing.h	/^typedef struct amqp_queue_purge_t_ {$/;"	s
+amqp_queue_unbind_ok_t	./amqp_framing.h	/^} amqp_queue_unbind_ok_t;$/;"	t	typeref:struct:amqp_queue_unbind_ok_t_
+amqp_queue_unbind_ok_t_	./amqp_framing.h	/^typedef struct amqp_queue_unbind_ok_t_ {$/;"	s
+amqp_queue_unbind_t	./amqp_framing.h	/^} amqp_queue_unbind_t;$/;"	t	typeref:struct:amqp_queue_unbind_t_
+amqp_queue_unbind_t_	./amqp_framing.h	/^typedef struct amqp_queue_unbind_t_ {$/;"	s
+amqp_response_type_enum	./amqp.h	/^} amqp_response_type_enum;$/;"	t	typeref:enum:amqp_response_type_enum_
+amqp_response_type_enum_	./amqp.h	/^typedef enum amqp_response_type_enum_ {$/;"	g
+amqp_rpc_reply_t	./amqp.h	/^} amqp_rpc_reply_t;$/;"	t	typeref:struct:amqp_rpc_reply_t_
+amqp_rpc_reply_t_	./amqp.h	/^typedef struct amqp_rpc_reply_t_ {$/;"	s
+amqp_sasl_method_enum	./amqp.h	/^} amqp_sasl_method_enum;$/;"	t	typeref:enum:amqp_sasl_method_enum_
+amqp_sasl_method_enum_	./amqp.h	/^typedef enum amqp_sasl_method_enum_ {$/;"	g
+amqp_socket_class_t	./amqp_socket.h	/^struct amqp_socket_class_t {$/;"	s
+amqp_socket_close_fn	./amqp_socket.h	/^typedef int (*amqp_socket_close_fn)(void *);$/;"	t
+amqp_socket_delete_fn	./amqp_socket.h	/^typedef void (*amqp_socket_delete_fn)(void *);$/;"	t
+amqp_socket_get_sockfd_fn	./amqp_socket.h	/^typedef int (*amqp_socket_get_sockfd_fn)(void *);$/;"	t
+amqp_socket_open_fn	./amqp_socket.h	/^typedef int (*amqp_socket_open_fn)(void *, const char *, int, struct timeval *);$/;"	t
+amqp_socket_recv_fn	./amqp_socket.h	/^typedef ssize_t (*amqp_socket_recv_fn)(void *, void *, size_t, int);$/;"	t
+amqp_socket_send_fn	./amqp_socket.h	/^typedef ssize_t (*amqp_socket_send_fn)(void *, const void *, size_t);$/;"	t
+amqp_socket_t	./amqp.h	/^typedef struct amqp_socket_t_ amqp_socket_t;$/;"	t	typeref:struct:amqp_socket_t_
+amqp_socket_t_	./amqp_socket.h	/^struct amqp_socket_t_ {$/;"	s
+amqp_socket_writev_fn	./amqp_socket.h	/^typedef ssize_t (*amqp_socket_writev_fn)(void *, struct iovec *, int);$/;"	t
+amqp_status_enum	./amqp.h	/^} amqp_status_enum;$/;"	t	typeref:enum:amqp_status_enum_
+amqp_status_enum_	./amqp.h	/^typedef enum amqp_status_enum_$/;"	g
+amqp_table_entry_t	./amqp.h	/^} amqp_table_entry_t;$/;"	t	typeref:struct:amqp_table_entry_t_
+amqp_table_entry_t_	./amqp.h	/^typedef struct amqp_table_entry_t_ {$/;"	s
+amqp_table_t	./amqp.h	/^} amqp_table_t;$/;"	t	typeref:struct:amqp_table_t_
+amqp_table_t_	./amqp.h	/^typedef struct amqp_table_t_ {$/;"	s
+amqp_timer_t	./amqp_timer.h	/^} amqp_timer_t;$/;"	t	typeref:struct:amqp_timer_t_
+amqp_timer_t_	./amqp_timer.h	/^typedef struct amqp_timer_t_ {$/;"	s
+amqp_tx_commit_ok_t	./amqp_framing.h	/^} amqp_tx_commit_ok_t;$/;"	t	typeref:struct:amqp_tx_commit_ok_t_
+amqp_tx_commit_ok_t_	./amqp_framing.h	/^typedef struct amqp_tx_commit_ok_t_ {$/;"	s
+amqp_tx_commit_t	./amqp_framing.h	/^} amqp_tx_commit_t;$/;"	t	typeref:struct:amqp_tx_commit_t_
+amqp_tx_commit_t_	./amqp_framing.h	/^typedef struct amqp_tx_commit_t_ {$/;"	s
+amqp_tx_properties_t	./amqp_framing.h	/^} amqp_tx_properties_t;$/;"	t	typeref:struct:amqp_tx_properties_t_
+amqp_tx_properties_t_	./amqp_framing.h	/^typedef struct amqp_tx_properties_t_ {$/;"	s
+amqp_tx_rollback_ok_t	./amqp_framing.h	/^} amqp_tx_rollback_ok_t;$/;"	t	typeref:struct:amqp_tx_rollback_ok_t_
+amqp_tx_rollback_ok_t_	./amqp_framing.h	/^typedef struct amqp_tx_rollback_ok_t_ {$/;"	s
+amqp_tx_rollback_t	./amqp_framing.h	/^} amqp_tx_rollback_t;$/;"	t	typeref:struct:amqp_tx_rollback_t_
+amqp_tx_rollback_t_	./amqp_framing.h	/^typedef struct amqp_tx_rollback_t_ {$/;"	s
+amqp_tx_select_ok_t	./amqp_framing.h	/^} amqp_tx_select_ok_t;$/;"	t	typeref:struct:amqp_tx_select_ok_t_
+amqp_tx_select_ok_t_	./amqp_framing.h	/^typedef struct amqp_tx_select_ok_t_ {$/;"	s
+amqp_tx_select_t	./amqp_framing.h	/^} amqp_tx_select_t;$/;"	t	typeref:struct:amqp_tx_select_t_
+amqp_tx_select_t_	./amqp_framing.h	/^typedef struct amqp_tx_select_t_ {$/;"	s
+app_id	./amqp_framing.h	/^  amqp_bytes_t app_id;$/;"	m	struct:amqp_basic_properties_t_
+app_src	./mediapipe_impl.h	/^    GstElement      *app_src;$/;"	m	struct:_MediaSource
+arguments	./amqp_framing.h	/^  amqp_table_t arguments;$/;"	m	struct:amqp_basic_consume_t_
+arguments	./amqp_framing.h	/^  amqp_table_t arguments;$/;"	m	struct:amqp_exchange_bind_t_
+arguments	./amqp_framing.h	/^  amqp_table_t arguments;$/;"	m	struct:amqp_exchange_declare_t_
+arguments	./amqp_framing.h	/^  amqp_table_t arguments;$/;"	m	struct:amqp_exchange_unbind_t_
+arguments	./amqp_framing.h	/^  amqp_table_t arguments;$/;"	m	struct:amqp_queue_bind_t_
+arguments	./amqp_framing.h	/^  amqp_table_t arguments;$/;"	m	struct:amqp_queue_declare_t_
+arguments	./amqp_framing.h	/^  amqp_table_t arguments;$/;"	m	struct:amqp_queue_unbind_t_
+array	./amqp.h	/^    amqp_array_t array;       \/**< amqp_array_t type AMQP_FIELD_KIND_ARRAY *\/$/;"	m	union:amqp_field_value_t_::__anon5
+auto_delete	./amqp_framing.h	/^  amqp_boolean_t auto_delete;$/;"	m	struct:amqp_exchange_declare_t_
+auto_delete	./amqp_framing.h	/^  amqp_boolean_t auto_delete;$/;"	m	struct:amqp_queue_declare_t_
+auto_hdr_mode	./main.c	/^GstVideoPreprocAutoHDRMode auto_hdr_mode;$/;"	v
+autohdr_mode	./main.c	/^    guint               autohdr_mode;$/;"	m	struct:_Src_Setting	file:
+bitrate	./main.c	/^    guint    bitrate;$/;"	m	struct:_Video_Channel_Config	file:
+bitrate	./mediapipe_impl.h	/^    guint           bitrate;  \/\/ kpbs$/;"	m	struct:_MediaEncoder
+blocklist	./amqp.h	/^  void **blocklist;   \/**< Array of memory blocks *\/$/;"	m	struct:amqp_pool_blocklist_t_
+body	./amqp.h	/^  amqp_bytes_t body;                  \/**< message body *\/$/;"	m	struct:amqp_message_t_
+body_fragment	./amqp.h	/^    amqp_bytes_t body_fragment; \/**< a body fragment, use if frame_type == AMQP_FRAME_BODY *\/$/;"	m	union:amqp_frame_t_::__anon7
+body_size	./amqp.h	/^      uint64_t body_size;   \/**< size of the body in bytes *\/$/;"	m	struct:amqp_frame_t_::__anon7::__anon8
+boolean	./amqp.h	/^    amqp_boolean_t boolean;   \/**< boolean type AMQP_FIELD_KIND_BOOLEAN *\/$/;"	m	union:amqp_field_value_t_::__anon5
+buf	./mediapipe.h	/^    GstBuffer   *buf;$/;"	m	struct:_Smart1080pData
+buf	./mediapipe.h	/^    GstBuffer   *buf;$/;"	m	struct:_SmartData
+build_pipeline	./mediapipe.c	/^build_pipeline (MediaPipe *pipe)$/;"	f	file:
+bytes	./amqp.h	/^    amqp_bytes_t bytes;       \/**< amqp_bytes_t type AMQP_FIELD_KIND_UTF8, AMQP_FIELD_KIND_BYTES *\/$/;"	m	union:amqp_field_value_t_::__anon5
+bytes	./amqp.h	/^  void *bytes;  \/**< pointer to the beginning of the buffer *\/$/;"	m	struct:amqp_bytes_t_
+cJSON	./cJSON.h	/^typedef struct cJSON {$/;"	s
+cJSON	./cJSON.h	/^} cJSON;$/;"	t	typeref:struct:cJSON
+cJSON_AddBoolToObject	./cJSON.h	132;"	d
+cJSON_AddFalseToObject	./cJSON.h	131;"	d
+cJSON_AddItemReferenceToArray	./cJSON.c	/^void	cJSON_AddItemReferenceToArray(cJSON *array, cJSON *item)						{cJSON_AddItemToArray(array,create_reference(item));}$/;"	f
+cJSON_AddItemReferenceToObject	./cJSON.c	/^void	cJSON_AddItemReferenceToObject(cJSON *object,const char *string,cJSON *item)	{cJSON_AddItemToObject(object,string,create_reference(item));}$/;"	f
+cJSON_AddItemToArray	./cJSON.c	/^void   cJSON_AddItemToArray(cJSON *array, cJSON *item)						{cJSON *c=array->child;if (!item) return; if (!c) {array->child=item;} else {while (c && c->next) c=c->next; suffix_object(c,item);}}$/;"	f
+cJSON_AddItemToObject	./cJSON.c	/^void   cJSON_AddItemToObject(cJSON *object,const char *string,cJSON *item)	{if (!item) return; if (item->string) cJSON_free(item->string);item->string=cJSON_strdup(string);cJSON_AddItemToArray(object,item);}$/;"	f
+cJSON_AddNullToObject	./cJSON.h	129;"	d
+cJSON_AddNumberToObject	./cJSON.h	133;"	d
+cJSON_AddStringToObject	./cJSON.h	134;"	d
+cJSON_AddTrueToObject	./cJSON.h	130;"	d
+cJSON_Array	./cJSON.h	37;"	d
+cJSON_CreateArray	./cJSON.c	/^cJSON *cJSON_CreateArray(void)					{cJSON *item=cJSON_New_Item();if(item)item->type=cJSON_Array;return item;}$/;"	f
+cJSON_CreateBool	./cJSON.c	/^cJSON *cJSON_CreateBool(int b)					{cJSON *item=cJSON_New_Item();if(item)item->type=b?cJSON_True:cJSON_False;return item;}$/;"	f
+cJSON_CreateDoubleArray	./cJSON.c	/^cJSON *cJSON_CreateDoubleArray(const double *numbers,int count)	{int i;cJSON *n=0,*p=0,*a=cJSON_CreateArray();for(i=0;a && i<count;i++){n=cJSON_CreateNumber(numbers[i]);if(!i)a->child=n;else suffix_object(p,n);p=n;}return a;}$/;"	f
+cJSON_CreateFalse	./cJSON.c	/^cJSON *cJSON_CreateFalse(void)					{cJSON *item=cJSON_New_Item();if(item)item->type=cJSON_False;return item;}$/;"	f
+cJSON_CreateFloatArray	./cJSON.c	/^cJSON *cJSON_CreateFloatArray(const float *numbers,int count)	{int i;cJSON *n=0,*p=0,*a=cJSON_CreateArray();for(i=0;a && i<count;i++){n=cJSON_CreateNumber(numbers[i]);if(!i)a->child=n;else suffix_object(p,n);p=n;}return a;}$/;"	f
+cJSON_CreateIntArray	./cJSON.c	/^cJSON *cJSON_CreateIntArray(const int *numbers,int count)		{int i;cJSON *n=0,*p=0,*a=cJSON_CreateArray();for(i=0;a && i<count;i++){n=cJSON_CreateNumber(numbers[i]);if(!i)a->child=n;else suffix_object(p,n);p=n;}return a;}$/;"	f
+cJSON_CreateNull	./cJSON.c	/^cJSON *cJSON_CreateNull(void)					{cJSON *item=cJSON_New_Item();if(item)item->type=cJSON_NULL;return item;}$/;"	f
+cJSON_CreateNumber	./cJSON.c	/^cJSON *cJSON_CreateNumber(double num)			{cJSON *item=cJSON_New_Item();if(item){item->type=cJSON_Number;item->valuedouble=num;item->valueint=(int)num;}return item;}$/;"	f
+cJSON_CreateObject	./cJSON.c	/^cJSON *cJSON_CreateObject(void)					{cJSON *item=cJSON_New_Item();if(item)item->type=cJSON_Object;return item;}$/;"	f
+cJSON_CreateString	./cJSON.c	/^cJSON *cJSON_CreateString(const char *string)	{cJSON *item=cJSON_New_Item();if(item){item->type=cJSON_String;item->valuestring=cJSON_strdup(string);}return item;}$/;"	f
+cJSON_CreateStringArray	./cJSON.c	/^cJSON *cJSON_CreateStringArray(const char **strings,int count)	{int i;cJSON *n=0,*p=0,*a=cJSON_CreateArray();for(i=0;a && i<count;i++){n=cJSON_CreateString(strings[i]);if(!i)a->child=n;else suffix_object(p,n);p=n;}return a;}$/;"	f
+cJSON_CreateTrue	./cJSON.c	/^cJSON *cJSON_CreateTrue(void)					{cJSON *item=cJSON_New_Item();if(item)item->type=cJSON_True;return item;}$/;"	f
+cJSON_Delete	./cJSON.c	/^void cJSON_Delete(cJSON *c)$/;"	f
+cJSON_DeleteItemFromArray	./cJSON.c	/^void   cJSON_DeleteItemFromArray(cJSON *array,int which)			{cJSON_Delete(cJSON_DetachItemFromArray(array,which));}$/;"	f
+cJSON_DeleteItemFromObject	./cJSON.c	/^void   cJSON_DeleteItemFromObject(cJSON *object,const char *string) {cJSON_Delete(cJSON_DetachItemFromObject(object,string));}$/;"	f
+cJSON_DetachItemFromArray	./cJSON.c	/^cJSON *cJSON_DetachItemFromArray(cJSON *array,int which)			{cJSON *c=array->child;while (c && which>0) c=c->next,which--;if (!c) return 0;$/;"	f
+cJSON_DetachItemFromObject	./cJSON.c	/^cJSON *cJSON_DetachItemFromObject(cJSON *object,const char *string) {int i=0;cJSON *c=object->child;while (c && cJSON_strcasecmp(c->string,string)) i++,c=c->next;if (c) return cJSON_DetachItemFromArray(object,i);return 0;}$/;"	f
+cJSON_Duplicate	./cJSON.c	/^cJSON *cJSON_Duplicate(cJSON *item,int recurse)$/;"	f
+cJSON_False	./cJSON.h	32;"	d
+cJSON_GetArrayItem	./cJSON.c	/^cJSON *cJSON_GetArrayItem(cJSON *array,int item)				{cJSON *c=array->child;  while (c && item>0) item--,c=c->next; return c;}$/;"	f
+cJSON_GetArraySize	./cJSON.c	/^int    cJSON_GetArraySize(cJSON *array)							{cJSON *c=array->child;int i=0;while(c)i++,c=c->next;return i;}$/;"	f
+cJSON_GetErrorPtr	./cJSON.c	/^const char *cJSON_GetErrorPtr(void) {return ep;}$/;"	f
+cJSON_GetObjectItem	./cJSON.c	/^cJSON *cJSON_GetObjectItem(cJSON *object,const char *string)	{cJSON *c=object->child; while (c && cJSON_strcasecmp(c->string,string)) c=c->next; return c;}$/;"	f
+cJSON_Hooks	./cJSON.h	/^typedef struct cJSON_Hooks {$/;"	s
+cJSON_Hooks	./cJSON.h	/^} cJSON_Hooks;$/;"	t	typeref:struct:cJSON_Hooks
+cJSON_InitHooks	./cJSON.c	/^void cJSON_InitHooks(cJSON_Hooks* hooks)$/;"	f
+cJSON_IsReference	./cJSON.h	40;"	d
+cJSON_Minify	./cJSON.c	/^void cJSON_Minify(char *json)$/;"	f
+cJSON_NULL	./cJSON.h	34;"	d
+cJSON_New_Item	./cJSON.c	/^static cJSON *cJSON_New_Item(void)$/;"	f	file:
+cJSON_Number	./cJSON.h	35;"	d
+cJSON_Object	./cJSON.h	38;"	d
+cJSON_Parse	./cJSON.c	/^cJSON *cJSON_Parse(const char *value) {return cJSON_ParseWithOpts(value,0,0);}$/;"	f
+cJSON_ParseWithOpts	./cJSON.c	/^cJSON *cJSON_ParseWithOpts(const char *value,const char **return_parse_end,int require_null_terminated)$/;"	f
+cJSON_Print	./cJSON.c	/^char *cJSON_Print(cJSON *item)				{return print_value(item,0,1);}$/;"	f
+cJSON_PrintUnformatted	./cJSON.c	/^char *cJSON_PrintUnformatted(cJSON *item)	{return print_value(item,0,0);}$/;"	f
+cJSON_ReplaceItemInArray	./cJSON.c	/^void   cJSON_ReplaceItemInArray(cJSON *array,int which,cJSON *newitem)		{cJSON *c=array->child;while (c && which>0) c=c->next,which--;if (!c) return;$/;"	f
+cJSON_ReplaceItemInObject	./cJSON.c	/^void   cJSON_ReplaceItemInObject(cJSON *object,const char *string,cJSON *newitem){int i=0;cJSON *c=object->child;while(c && cJSON_strcasecmp(c->string,string))i++,c=c->next;if(c){newitem->string=cJSON_strdup(string);cJSON_ReplaceItemInArray(object,i,newitem);}}$/;"	f
+cJSON_SetIntValue	./cJSON.h	137;"	d
+cJSON_String	./cJSON.h	36;"	d
+cJSON_True	./cJSON.h	33;"	d
+cJSON__h	./cJSON.h	24;"	d
+cJSON_free	./cJSON.c	/^static void (*cJSON_free)(void *ptr) = free;$/;"	v	file:
+cJSON_malloc	./cJSON.c	/^static void *(*cJSON_malloc)(size_t sz) = malloc;$/;"	v	file:
+cJSON_strcasecmp	./cJSON.c	/^static int cJSON_strcasecmp(const char *s1,const char *s2)$/;"	f	file:
+cJSON_strdup	./cJSON.c	/^static char* cJSON_strdup(const char* str)$/;"	f	file:
+callback	./mediapipe_impl.h	/^    EncodeFrameCallback   callback;$/;"	m	struct:_MediaEncoder
+can_push	./mediapipe.h	/^    gboolean    can_push;$/;"	m	struct:_Smart1080pData
+capabilities	./amqp_framing.h	/^  amqp_bytes_t capabilities;$/;"	m	struct:amqp_connection_open_t_
+capture_filename	./main.c	/^    gchar          capture_filename[128];$/;"	m	struct:_JpgEnc_Misc_Config	file:
+capture_jpeg_frame	./main.c	/^capture_jpeg_frame (void)$/;"	f	file:
+capture_mode	./main.c	/^    guint               capture_mode;$/;"	m	struct:_Src_Setting	file:
+capture_raw_frame	./main.c	/^capture_raw_frame (MediaPipe *pipe, int flag)$/;"	f	file:
+capture_raw_frame_probe_callback	./main.c	/^capture_raw_frame_probe_callback ($/;"	f	file:
+cascade	./facedetect.c	/^static CascadeClassifier cascade;$/;"	v	file:
+challenge	./amqp_framing.h	/^  amqp_bytes_t challenge;$/;"	m	struct:amqp_connection_secure_t_
+channel	./amqp.h	/^  amqp_channel_t channel;           \/**< channel message was delivered on *\/$/;"	m	struct:amqp_envelope_t_
+channel	./amqp.h	/^  amqp_channel_t channel;   \/**< the channel the frame was received on *\/$/;"	m	struct:amqp_frame_t_
+channel	./amqp_private.h	/^  amqp_channel_t channel;$/;"	m	struct:amqp_pool_table_entry_t_
+channel	./mediapipe_impl.h	/^    VideoChannel    channel[VIDEO_CHANNEL_MAX];$/;"	m	struct:__anon3
+channel_config	./main.c	/^    Video_Channel_Config        channel_config[VIDEO_CHANNEL_MAX];$/;"	m	struct:_Video_Impl_Config	file:
+channel_id	./amqp_framing.h	/^  amqp_bytes_t channel_id;$/;"	m	struct:amqp_channel_open_ok_t_
+channel_index	./mediapipe_impl.h	/^    guint           channel_index;$/;"	m	struct:_VideoChannel
+channel_max	./amqp_framing.h	/^  uint16_t channel_max;$/;"	m	struct:amqp_connection_tune_ok_t_
+channel_max	./amqp_framing.h	/^  uint16_t channel_max;$/;"	m	struct:amqp_connection_tune_t_
+channel_max	./amqp_private.h	/^  int channel_max;$/;"	m	struct:amqp_connection_state_t_
+channel_name	./mediapipe.c	/^const gchar *channel_name[VIDEO_CHANNEL_MAX] = {$/;"	v
+channel_names	./main.c	/^const gchar *channel_names[VIDEO_CHANNEL_MAX] =$/;"	v
+channel_num	./mediapipe_impl.h	/^    VideoChannelIndex           channel_num;$/;"	m	struct:_DynamicChannelData
+channel_on	./mediapipe_impl.h	/^    gboolean        channel_on;$/;"	m	struct:_VideoChannel
+check_range	./main.c	/^static guchar check_range(int a)$/;"	f	file:
+child	./cJSON.h	/^	struct cJSON *child;		\/* An array or object item will have a child pointer pointing to a chain of the items in the array\/object. *\/$/;"	m	struct:cJSON	typeref:struct:cJSON::cJSON
+chinese_osd2	./osd_template2.h	/^static guint32 chinese_osd2 []  = {$/;"	v
+class_id	./amqp.h	/^      uint16_t class_id;    \/**< the class for the properties *\/$/;"	m	struct:amqp_frame_t_::__anon7::__anon8
+class_id	./amqp_framing.h	/^  uint16_t class_id;$/;"	m	struct:amqp_channel_close_t_
+class_id	./amqp_framing.h	/^  uint16_t class_id;$/;"	m	struct:amqp_connection_close_t_
+client_properties	./amqp_framing.h	/^  amqp_table_t client_properties;$/;"	m	struct:amqp_connection_start_ok_t_
+close	./amqp_socket.h	/^  amqp_socket_close_fn close;$/;"	m	struct:amqp_socket_class_t
+cluster_id	./amqp_framing.h	/^  amqp_bytes_t cluster_id;$/;"	m	struct:amqp_basic_get_empty_t_
+cluster_id	./amqp_framing.h	/^  amqp_bytes_t cluster_id;$/;"	m	struct:amqp_basic_properties_t_
+colors	./utest/facedetect/fd.c	/^const static Scalar colors[] =  { CV_RGB(0,0,255),$/;"	v	file:
+conf_gm_table	./mediapipe.h	/^	gboolean	conf_gm_table;$/;"	m	struct:_Cameara3a_Others
+config	./main.c	/^Video_Impl_Config config = {(GstVideoPreprocRotateMode)0};$/;"	v
+configure_wire_frame_cb	./utest/simplepipe/simplepipe.c	/^configure_wire_frame_cb(GstVideoPreproc *preproc, GstClockTime ts, GstVideoPreprocBufferUsage usage, gpointer user_data)$/;"	f	file:
+conn	./main.c	/^amqp_connection_state_t conn;$/;"	v
+consumer_count	./amqp_framing.h	/^  uint32_t consumer_count;$/;"	m	struct:amqp_queue_declare_ok_t_
+consumer_tag	./amqp.h	/^  amqp_bytes_t consumer_tag;        \/**< the consumer tag the message was delivered to *\/$/;"	m	struct:amqp_envelope_t_
+consumer_tag	./amqp_framing.h	/^  amqp_bytes_t consumer_tag;$/;"	m	struct:amqp_basic_cancel_ok_t_
+consumer_tag	./amqp_framing.h	/^  amqp_bytes_t consumer_tag;$/;"	m	struct:amqp_basic_cancel_t_
+consumer_tag	./amqp_framing.h	/^  amqp_bytes_t consumer_tag;$/;"	m	struct:amqp_basic_consume_ok_t_
+consumer_tag	./amqp_framing.h	/^  amqp_bytes_t consumer_tag;$/;"	m	struct:amqp_basic_consume_t_
+consumer_tag	./amqp_framing.h	/^  amqp_bytes_t consumer_tag;$/;"	m	struct:amqp_basic_deliver_t_
+content_encoding	./amqp_framing.h	/^  amqp_bytes_t content_encoding;$/;"	m	struct:amqp_basic_properties_t_
+content_type	./amqp_framing.h	/^  amqp_bytes_t content_type;$/;"	m	struct:amqp_basic_properties_t_
+convert_time_slot	./mediapipe.c	/^convert_time_slot(struct tm* curret_time, guint *time_slot_tmp)$/;"	f	file:
+correlation_id	./amqp_framing.h	/^  amqp_bytes_t correlation_id;$/;"	m	struct:amqp_basic_properties_t_
+create_element	./mediapipe.c	/^create_element (const char *plugin, const char *name)$/;"	f	file:
+create_filesrc_bin	./mediapipe.c	/^create_filesrc_bin (gchar *location)$/;"	f	file:
+create_reference	./cJSON.c	/^static cJSON *create_reference(cJSON *item) {cJSON *ref=cJSON_New_Item();if (!ref) return 0;memcpy(ref,item,sizeof(cJSON));ref->string=0;ref->type|=cJSON_IsReference;ref->next=ref->prev=0;return ref;}$/;"	f	file:
+crop_jpeg_num	./main.c	/^unsigned int crop_jpeg_num = 0;$/;"	v
+current_timestamp	./amqp_timer.h	/^  uint64_t current_timestamp;$/;"	m	struct:amqp_timer_t_
+cv	./facedetect.c	/^using namespace cv;$/;"	v
+cv	./main.c	/^using namespace cv;$/;"	v
+cv	./utest/facedetect/fd.c	/^using namespace cv;$/;"	v
+cv_wire_frames	./mediapipe.c	/^GstVideoPreprocWireFrame cv_wire_frames[WIRE_FRAME_REGION_MAX_NUM] = {$/;"	v
+data	./amqp_private.h	/^  void *data;$/;"	m	struct:amqp_link_t_
+decimal	./amqp.h	/^    amqp_decimal_t decimal;   \/**< amqp_decimal_t AMQP_FIELD_KIND_DECIMAL *\/$/;"	m	union:amqp_field_value_t_::__anon5
+decimals	./amqp.h	/^  uint8_t decimals;   \/**< the location of the decimal point *\/$/;"	m	struct:amqp_decimal_t_
+decoded	./amqp.h	/^      void *decoded;        \/**< the decoded properties *\/$/;"	m	struct:amqp_frame_t_::__anon7::__anon8
+decoded	./amqp.h	/^  void *decoded;                \/**< pointer to the decoded method,$/;"	m	struct:amqp_method_t_
+delivery_mode	./amqp_framing.h	/^  uint8_t delivery_mode;$/;"	m	struct:amqp_basic_properties_t_
+delivery_tag	./amqp.h	/^  uint64_t delivery_tag;            \/**< the messages delivery tag *\/$/;"	m	struct:amqp_envelope_t_
+delivery_tag	./amqp_framing.h	/^  uint64_t delivery_tag;$/;"	m	struct:amqp_basic_ack_t_
+delivery_tag	./amqp_framing.h	/^  uint64_t delivery_tag;$/;"	m	struct:amqp_basic_deliver_t_
+delivery_tag	./amqp_framing.h	/^  uint64_t delivery_tag;$/;"	m	struct:amqp_basic_get_ok_t_
+delivery_tag	./amqp_framing.h	/^  uint64_t delivery_tag;$/;"	m	struct:amqp_basic_nack_t_
+delivery_tag	./amqp_framing.h	/^  uint64_t delivery_tag;$/;"	m	struct:amqp_basic_reject_t_
+dest_region_cfg	./main.c	/^GstVideoPreprocOsdCfg dest_region_cfg[OSD_REGION_MAX_NUM] = {$/;"	v
+destination	./amqp_framing.h	/^  amqp_bytes_t destination;$/;"	m	struct:amqp_exchange_bind_t_
+destination	./amqp_framing.h	/^  amqp_bytes_t destination;$/;"	m	struct:amqp_exchange_unbind_t_
+destroy_pipeline	./mediapipe.c	/^destroy_pipeline (MediaPipe *pipe)$/;"	f	file:
+die	./utils.c	/^void die(const char *fmt, ...)$/;"	f
+die_on_amqp_error	./utils.c	/^void die_on_amqp_error(amqp_rpc_reply_t x, char const *context)$/;"	f
+die_on_error	./utils.c	/^void die_on_error(int x, char const *context)$/;"	f
+dirpath	./main.c	/^string dirpath;$/;"	v
+disable_video_channel	./mediapipe.c	/^disable_video_channel(MediaPipe *pipe, VideoChannelIndex channel_num)$/;"	f	file:
+disable_video_impl_preproc	./mediapipe.c	/^disable_video_impl_preproc(MediaPipe *pipe)$/;"	f	file:
+dummy	./amqp_framing.h	/^  char dummy; \/* Dummy field to avoid empty struct *\/$/;"	m	struct:amqp_access_properties_t_
+dummy	./amqp_framing.h	/^  char dummy; \/* Dummy field to avoid empty struct *\/$/;"	m	struct:amqp_basic_qos_ok_t_
+dummy	./amqp_framing.h	/^  char dummy; \/* Dummy field to avoid empty struct *\/$/;"	m	struct:amqp_basic_recover_ok_t_
+dummy	./amqp_framing.h	/^  char dummy; \/* Dummy field to avoid empty struct *\/$/;"	m	struct:amqp_channel_close_ok_t_
+dummy	./amqp_framing.h	/^  char dummy; \/* Dummy field to avoid empty struct *\/$/;"	m	struct:amqp_channel_properties_t_
+dummy	./amqp_framing.h	/^  char dummy; \/* Dummy field to avoid empty struct *\/$/;"	m	struct:amqp_confirm_properties_t_
+dummy	./amqp_framing.h	/^  char dummy; \/* Dummy field to avoid empty struct *\/$/;"	m	struct:amqp_confirm_select_ok_t_
+dummy	./amqp_framing.h	/^  char dummy; \/* Dummy field to avoid empty struct *\/$/;"	m	struct:amqp_connection_close_ok_t_
+dummy	./amqp_framing.h	/^  char dummy; \/* Dummy field to avoid empty struct *\/$/;"	m	struct:amqp_connection_properties_t_
+dummy	./amqp_framing.h	/^  char dummy; \/* Dummy field to avoid empty struct *\/$/;"	m	struct:amqp_connection_unblocked_t_
+dummy	./amqp_framing.h	/^  char dummy; \/* Dummy field to avoid empty struct *\/$/;"	m	struct:amqp_exchange_bind_ok_t_
+dummy	./amqp_framing.h	/^  char dummy; \/* Dummy field to avoid empty struct *\/$/;"	m	struct:amqp_exchange_declare_ok_t_
+dummy	./amqp_framing.h	/^  char dummy; \/* Dummy field to avoid empty struct *\/$/;"	m	struct:amqp_exchange_delete_ok_t_
+dummy	./amqp_framing.h	/^  char dummy; \/* Dummy field to avoid empty struct *\/$/;"	m	struct:amqp_exchange_properties_t_
+dummy	./amqp_framing.h	/^  char dummy; \/* Dummy field to avoid empty struct *\/$/;"	m	struct:amqp_exchange_unbind_ok_t_
+dummy	./amqp_framing.h	/^  char dummy; \/* Dummy field to avoid empty struct *\/$/;"	m	struct:amqp_queue_bind_ok_t_
+dummy	./amqp_framing.h	/^  char dummy; \/* Dummy field to avoid empty struct *\/$/;"	m	struct:amqp_queue_properties_t_
+dummy	./amqp_framing.h	/^  char dummy; \/* Dummy field to avoid empty struct *\/$/;"	m	struct:amqp_queue_unbind_ok_t_
+dummy	./amqp_framing.h	/^  char dummy; \/* Dummy field to avoid empty struct *\/$/;"	m	struct:amqp_tx_commit_ok_t_
+dummy	./amqp_framing.h	/^  char dummy; \/* Dummy field to avoid empty struct *\/$/;"	m	struct:amqp_tx_commit_t_
+dummy	./amqp_framing.h	/^  char dummy; \/* Dummy field to avoid empty struct *\/$/;"	m	struct:amqp_tx_properties_t_
+dummy	./amqp_framing.h	/^  char dummy; \/* Dummy field to avoid empty struct *\/$/;"	m	struct:amqp_tx_rollback_ok_t_
+dummy	./amqp_framing.h	/^  char dummy; \/* Dummy field to avoid empty struct *\/$/;"	m	struct:amqp_tx_rollback_t_
+dummy	./amqp_framing.h	/^  char dummy; \/* Dummy field to avoid empty struct *\/$/;"	m	struct:amqp_tx_select_ok_t_
+dummy	./amqp_framing.h	/^  char dummy; \/* Dummy field to avoid empty struct *\/$/;"	m	struct:amqp_tx_select_t_
+dump_nv12	./main.c	/^gboolean dump_nv12(GstVideoPreprocBuffer *preBuf, char *filename)$/;"	f
+dump_nv12_timed	./main.c	/^gboolean dump_nv12_timed(GstVideoPreprocBuffer *preBuf, char *prefix)$/;"	f
+dump_row	./utils.c	/^static void dump_row(long count, int numinrow, int *chs)$/;"	f	file:
+dump_smart_analysis_raw_data	./main.c	/^int dump_smart_analysis_raw_data = 0;$/;"	v
+durable	./amqp_framing.h	/^  amqp_boolean_t durable;$/;"	m	struct:amqp_exchange_declare_t_
+durable	./amqp_framing.h	/^  amqp_boolean_t durable;$/;"	m	struct:amqp_queue_declare_t_
+dvs_offset_x	./main.c	/^gint dvs_offset_x = 0;$/;"	v
+dvs_offset_y	./main.c	/^gint dvs_offset_y = 0;$/;"	v
+dynamic_channel_thread_func	./main.c	/^dynamic_channel_thread_func (gpointer data)$/;"	f
+dynamic_disable_channel_probe_callback	./mediapipe.c	/^dynamic_disable_channel_probe_callback ($/;"	f	file:
+dynamic_enable_channel_probe_callback	./mediapipe.c	/^dynamic_enable_channel_probe_callback ($/;"	f	file:
+dynamic_enable_channel_push_cap_event_callback	./mediapipe.c	/^dynamic_enable_channel_push_cap_event_callback ($/;"	f	file:
+dynamic_update_params_thread_func	./main.c	/^dynamic_update_params_thread_func (gpointer data)$/;"	f
+element	./mediapipe_impl.h	/^    GstElement                  *element;$/;"	m	struct:_MediaPreProc
+element	./mediapipe_impl.h	/^    GstElement      *element;$/;"	m	struct:_MediaEncoder
+element	./mediapipe_impl.h	/^    GstElement      *element;$/;"	m	struct:_MediaSink
+enable	./mediapipe_impl.h	/^    gboolean        enable;$/;"	m	struct:_MediaEncoder
+enable	./mediapipe_impl.h	/^    gboolean        enable;$/;"	m	struct:_VideoChannel
+enable_3a	./main.c	/^    gboolean            enable_3a;$/;"	m	struct:_Src_Setting	file:
+enable_autohdr	./main.c	/^    gboolean            enable_autohdr;$/;"	m	struct:_Src_Setting	file:
+enable_bright_compensation	./main.c	/^gboolean enable_bright_compensation;$/;"	v
+enable_cabac	./main.c	/^    gboolean enable_cabac;$/;"	m	struct:_Video_Channel_Config	file:
+enable_cabac	./mediapipe_impl.h	/^    gboolean        enable_cabac;$/;"	m	struct:_MediaEncoder
+enable_channel	./main.c	/^    gboolean enable_channel;$/;"	m	struct:_Video_Channel_Config	file:
+enable_dct8x8	./main.c	/^    gboolean enable_dct8x8;$/;"	m	struct:_Video_Channel_Config	file:
+enable_dct8x8	./mediapipe_impl.h	/^    gboolean        enable_dct8x8;$/;"	m	struct:_MediaEncoder
+enable_facedetect	./main.c	/^gboolean enable_facedetect;$/;"	v
+enable_facerecognise	./main.c	/^gboolean enable_facerecognise;$/;"	v
+enable_getfacepic	./main.c	/^gboolean enable_getfacepic;$/;"	v
+enable_h264	./main.c	/^    gboolean enable_h264;$/;"	m	struct:_Video_Channel_Config	file:
+enable_hdr	./main.c	/^gboolean enable_hdr;$/;"	v
+enable_hdr_custom	./main.c	/^gboolean enable_hdr_custom;$/;"	v
+enable_hdr_custom_rgb	./main.c	/^gboolean enable_hdr_custom_rgb;$/;"	v
+enable_lumagain_threshold	./main.c	/^gboolean enable_lumagain_threshold;$/;"	v
+enable_mask	./main.c	/^    gboolean                    enable_mask;$/;"	m	struct:_Video_Impl_Config	file:
+enable_mask	./mediapipe_impl.h	/^    gboolean                    enable_mask;$/;"	m	struct:_MediaPreProc
+enable_osd	./mediapipe_impl.h	/^    gboolean                    enable_osd;$/;"	m	struct:_VideoChannel
+enable_qos	./main.c	/^gboolean enable_qos = FALSE;$/;"	v
+enable_roi	./utest/simplecodec/simplecodec.c	/^guint enable_roi = 1;$/;"	v
+enable_video_channel	./mediapipe.c	/^enable_video_channel(MediaPipe *pipe, VideoChannelIndex channel_num)$/;"	f	file:
+enable_video_impl_preproc	./mediapipe.c	/^enable_video_impl_preproc(MediaPipe *pipe)$/;"	f	file:
+enable_wireframe	./main.c	/^    gboolean                    enable_wireframe;$/;"	m	struct:_Video_Impl_Config	file:
+enable_wireframe	./mediapipe_impl.h	/^    gboolean                    enable_wireframe;$/;"	m	struct:_MediaPreProc
+encode_queue_overrun_cb	./mediapipe.c	/^encode_queue_overrun_cb(gpointer q, gpointer data)$/;"	f	file:
+encoder	./mediapipe_impl.h	/^    MediaEncoder    encoder;$/;"	m	struct:_VideoChannel
+encoder_queue	./mediapipe_impl.h	/^    GstElement      *encoder_queue;$/;"	m	struct:_VideoChannel
+entries	./amqp.h	/^  struct amqp_field_value_t_ *entries;  \/**< linked list of field values *\/$/;"	m	struct:amqp_array_t_	typeref:struct:amqp_array_t_::amqp_field_value_t_
+entries	./amqp.h	/^  struct amqp_table_entry_t_ *entries;  \/**< an array of table entries *\/$/;"	m	struct:amqp_table_t_	typeref:struct:amqp_table_t_::amqp_table_entry_t_
+ep	./cJSON.c	/^static const char *ep;$/;"	v	file:
+ep	./mediapipe.h	/^    Cameara3a_Exposure		 		 ep;$/;"	m	struct:_3a_Config
+exchange	./amqp.h	/^  amqp_bytes_t exchange;            \/**< exchange this message was published to *\/$/;"	m	struct:amqp_envelope_t_
+exchange	./amqp_framing.h	/^  amqp_bytes_t exchange;$/;"	m	struct:amqp_basic_deliver_t_
+exchange	./amqp_framing.h	/^  amqp_bytes_t exchange;$/;"	m	struct:amqp_basic_get_ok_t_
+exchange	./amqp_framing.h	/^  amqp_bytes_t exchange;$/;"	m	struct:amqp_basic_publish_t_
+exchange	./amqp_framing.h	/^  amqp_bytes_t exchange;$/;"	m	struct:amqp_basic_return_t_
+exchange	./amqp_framing.h	/^  amqp_bytes_t exchange;$/;"	m	struct:amqp_exchange_declare_t_
+exchange	./amqp_framing.h	/^  amqp_bytes_t exchange;$/;"	m	struct:amqp_exchange_delete_t_
+exchange	./amqp_framing.h	/^  amqp_bytes_t exchange;$/;"	m	struct:amqp_queue_bind_t_
+exchange	./amqp_framing.h	/^  amqp_bytes_t exchange;$/;"	m	struct:amqp_queue_unbind_t_
+exclusive	./amqp_framing.h	/^  amqp_boolean_t exclusive;$/;"	m	struct:amqp_access_request_t_
+exclusive	./amqp_framing.h	/^  amqp_boolean_t exclusive;$/;"	m	struct:amqp_basic_consume_t_
+exclusive	./amqp_framing.h	/^  amqp_boolean_t exclusive;$/;"	m	struct:amqp_queue_declare_t_
+expiration	./amqp_framing.h	/^  amqp_bytes_t expiration;$/;"	m	struct:amqp_basic_properties_t_
+f32	./amqp.h	/^    float f32;                \/**< float type AMQP_FIELD_KIND_F32 *\/$/;"	m	union:amqp_field_value_t_::__anon5
+f64	./amqp.h	/^    double f64;               \/**< double type AMQP_FIELD_KIND_F64 *\/$/;"	m	union:amqp_field_value_t_::__anon5
+face_detect_interval	./main.c	/^unsigned int face_detect_interval = 10;$/;"	v
+face_detect_number	./main.c	/^int face_detect_number = 0;$/;"	v
+face_getpic_frame_number	./main.c	/^int face_getpic_frame_number = 0;$/;"	v
+face_getpic_number	./main.c	/^int face_getpic_number = 0;$/;"	v
+face_getpic_state	./main.c	/^int face_getpic_state = 0;$/;"	v
+facedetect_conf	./main.c	/^gboolean facedetect_conf;$/;"	v
+facedetect_mode	./main.c	/^guint facedetect_mode;$/;"	v
+factory	./mediapipe_impl.h	/^    GstRTSPMediaFactory *factory;$/;"	m	struct:_MediaSink
+fd_detect_cpu	./facedetect.c	/^int fd_detect_cpu(Mat& img, vector<Rect>& faces)$/;"	f
+fd_detect_gpu	./facedetect.c	/^int fd_detect_gpu(Mat& img, vector<Rect>& faces)$/;"	f
+fd_detect_withskin	./facedetect.c	/^int fd_detect_withskin(Mat& image, vector<Rect>& faces)$/;"	f
+fd_init	./facedetect.c	/^int fd_init(const string& cascadename)$/;"	f
+file_name	./mediapipe.c	/^    gchar               file_name[128];$/;"	m	struct:_StringContainer	file:
+filename	./main.c	/^    gchar      filename[128];$/;"	m	struct:_RawFrameProbeData	file:
+find_frame_by_ts	./mediapipe.c	/^find_frame_by_ts(GList *frames, GstClockTime *ts)$/;"	f	file:
+firstByteMark	./cJSON.c	/^static const unsigned char firstByteMark[7] = { 0x00, 0x00, 0xC0, 0xE0, 0xF0, 0xF8, 0xFC };$/;"	v	file:
+first_queued_frame	./amqp_private.h	/^  amqp_link_t *first_queued_frame;$/;"	m	struct:amqp_connection_state_t_
+flag	./main.c	/^int flag;  \/\/indicate if face recognise data avaliable$/;"	m	struct:_Rect_Facedetect_Jpeg	file:
+flags	./mediapipe.h	/^	gint				            flags;$/;"	m	struct:_3a_Config
+format	./mediapipe_impl.h	/^    GstVideoFormat  format;$/;"	m	struct:_MediaSource
+fps_d	./mediapipe_impl.h	/^    guint           fps_d;$/;"	m	struct:_MediaSource
+fps_n	./mediapipe_impl.h	/^    guint           fps_n;$/;"	m	struct:_MediaSource
+frame_max	./amqp_framing.h	/^  uint32_t frame_max;$/;"	m	struct:amqp_connection_tune_ok_t_
+frame_max	./amqp_framing.h	/^  uint32_t frame_max;$/;"	m	struct:amqp_connection_tune_t_
+frame_max	./amqp_private.h	/^  int frame_max;$/;"	m	struct:amqp_connection_state_t_
+frame_probe_id	./mediapipe_impl.h	/^    gulong          frame_probe_id;$/;"	m	struct:_MediaEncoder
+frame_rate	./main.c	/^    guint               frame_rate;$/;"	m	struct:_Src_Setting	file:
+frame_type	./amqp.h	/^  uint8_t frame_type;       \/**< frame type. The types:$/;"	m	struct:amqp_frame_t_
+frames_do_jpeg_encoding	./mediapipe.c	/^GList *frames_do_jpeg_encoding = NULL;$/;"	v
+free_fn	./cJSON.h	/^      void (*free_fn)(void *ptr);$/;"	m	struct:cJSON_Hooks
+free_post_link_info	./mediapipe.c	/^free_post_link_info (PostLinkInfo *info)$/;"	f	file:
+gen_src	./mediapipe_impl.h	/^    GstElement      *gen_src;$/;"	m	struct:_MediaSource
+generate_gammatable	./main.c	/^generate_gammatable(double *lut,    double fgamma)$/;"	f	file:
+get_current_time	./mediapipe.c	/^get_current_time(struct tm** p)$/;"	f	file:
+get_gray_from_gst	./main.c	/^static void get_gray_from_gst(int width, int height,int stride, unsigned char *src, unsigned char *dst)$/;"	f	file:
+get_sockfd	./amqp_socket.h	/^  amqp_socket_get_sockfd_fn get_sockfd;$/;"	m	struct:amqp_socket_class_t
+global	./amqp_framing.h	/^  amqp_boolean_t global;$/;"	m	struct:amqp_basic_qos_t_
+global_enable_mask	./main.c	/^gboolean global_enable_mask = FALSE;$/;"	v
+global_enable_osd	./main.c	/^gboolean global_enable_osd = FALSE;$/;"	v
+global_enable_wireframe	./main.c	/^gboolean global_enable_wireframe = FALSE;$/;"	v
+global_flip_mode	./main.c	/^GstVideoPreprocFlipMode global_flip_mode = GST_VIDEO_PREPROC_FLIP_INVALID;$/;"	v
+global_v4l2src_color_effect	./main.c	/^int global_v4l2src_color_effect = 0;$/;"	v
+gop_M	./main.c	/^    guint    gop_M;$/;"	m	struct:_Video_Channel_Config	file:
+gop_M	./mediapipe_impl.h	/^    guint           gop_M; \/\/ default 30$/;"	m	struct:_MediaEncoder
+gop_N	./main.c	/^    guint    gop_N;$/;"	m	struct:_Video_Channel_Config	file:
+gop_N	./mediapipe_impl.h	/^    guint           gop_N; \/\/ default 0$/;"	m	struct:_MediaEncoder
+h264_frame_callback	./main.c	/^h264_frame_callback (GstBuffer *encode_buf, gpointer user_data, VideoChannelIndex channel)$/;"	f	file:
+handle_keyboard	./main.c	/^handle_keyboard (GIOChannel *source, GIOCondition cond, gpointer data)$/;"	f	file:
+handle_keyboard	./utest/simplecodec/simplecodec.c	/^handle_keyboard (GIOChannel *source, GIOCondition cond, gpointer data)$/;"	f	file:
+hdr_darkpixels_value	./main.c	/^guint hdr_darkpixels_value;$/;"	v
+hdrtable_id	./main.c	/^unsigned int hdrtable_id = 1;$/;"	v
+hdrtable_rgb_id	./main.c	/^unsigned int hdrtable_rgb_id = 1;$/;"	v
+header_buffer	./amqp_private.h	/^  char header_buffer[HEADER_SIZE + 1];$/;"	m	struct:amqp_connection_state_t_
+headers	./amqp_framing.h	/^  amqp_table_t headers;$/;"	m	struct:amqp_basic_properties_t_
+heartbeat	./amqp_framing.h	/^  uint16_t heartbeat;$/;"	m	struct:amqp_connection_tune_ok_t_
+heartbeat	./amqp_framing.h	/^  uint16_t heartbeat;$/;"	m	struct:amqp_connection_tune_t_
+heartbeat	./amqp_private.h	/^  int heartbeat;$/;"	m	struct:amqp_connection_state_t_
+height	./main.c	/^int height;$/;"	m	struct:_Rect_Facedetect_Jpeg	file:
+height	./mediapipe.c	/^    guint               height;$/;"	m	struct:_ResolutionPack	file:
+height	./mediapipe_impl.h	/^    guint           height;$/;"	m	struct:_MediaSource
+height	./utest/simplepipe/simplepipe.c	/^    guint               height;$/;"	m	struct:_MyChannelInfo	file:
+host	./amqp.h	/^  char *host;                 \/**< the hostname of the broker *\/$/;"	m	struct:amqp_connection_info
+host_ip	./main.c	/^    gchar    host_ip[128];$/;"	m	struct:_Video_Channel_Config	file:
+host_ip	./mediapipe_impl.h	/^    gchar           host_ip[128];$/;"	m	struct:_MediaSink
+hostname	./main.c	/^char const *hostname;$/;"	v
+i16	./amqp.h	/^    int16_t i16;              \/**< int16_t type AMQP_FIELD_KIND_I16 *\/$/;"	m	union:amqp_field_value_t_::__anon5
+i32	./amqp.h	/^    int32_t i32;              \/**< int32_t type AMQP_FIELD_KIND_I32 *\/$/;"	m	union:amqp_field_value_t_::__anon5
+i64	./amqp.h	/^    int64_t i64;              \/**< int64_t type AMQP_FIELD_KIND_I64 *\/$/;"	m	union:amqp_field_value_t_::__anon5
+i8	./amqp.h	/^    int8_t i8;                \/**< int8_t type AMQP_FIELD_KIND_I8 *\/$/;"	m	union:amqp_field_value_t_::__anon5
+id	./amqp.h	/^  amqp_method_number_t id;      \/**< the method id number *\/$/;"	m	struct:amqp_method_t_
+if_empty	./amqp_framing.h	/^  amqp_boolean_t if_empty;$/;"	m	struct:amqp_queue_delete_t_
+if_unused	./amqp_framing.h	/^  amqp_boolean_t if_unused;$/;"	m	struct:amqp_exchange_delete_t_
+if_unused	./amqp_framing.h	/^  amqp_boolean_t if_unused;$/;"	m	struct:amqp_queue_delete_t_
+image_copy	./mediapipe.c	/^static gboolean image_copy(guchar *dst, guint dst_stride, guchar *src, guint w, guint h, guint src_stride)$/;"	f	file:
+immediate	./amqp_framing.h	/^  amqp_boolean_t immediate;$/;"	m	struct:amqp_basic_publish_t_
+inbound_buffer	./amqp_private.h	/^  amqp_bytes_t inbound_buffer;$/;"	m	struct:amqp_connection_state_t_
+inbound_offset	./amqp_private.h	/^  size_t inbound_offset;$/;"	m	struct:amqp_connection_state_t_
+init_config	./main.c	/^init_config()$/;"	f	file:
+init_qos	./main.c	/^init_qos(){$/;"	f	file:
+init_reconfig_3a	./main.c	/^gboolean init_reconfig_3a(int argc, char *argv[])$/;"	f
+initial_osd_cfg	./mediapipe.c	/^GstVideoPreprocOsdCfg initial_osd_cfg = {{16,   16,   BIG_FONT_WIDTH * 8,  BIG_FONT_HEIGHT}, 0, {COLOR_KEY_Y, 0, 0}, TRUE};$/;"	v
+initial_osd_cfg_small	./mediapipe.c	/^GstVideoPreprocOsdCfg initial_osd_cfg_small = {{16,   16,   SMALL_FONT_WIDTH * 8,  SMALL_FONT_HEIGHT}, 0, {COLOR_KEY_Y, 0, 0}, TRUE};$/;"	v
+insist	./amqp_framing.h	/^  amqp_boolean_t insist;$/;"	m	struct:amqp_connection_open_t_
+internal	./amqp_framing.h	/^  amqp_boolean_t internal;$/;"	m	struct:amqp_exchange_declare_t_
+iov_base	./amqp_socket.h	/^  char FAR *iov_base;$/;"	m	struct:iovec
+iov_len	./amqp_socket.h	/^  u_long iov_len;$/;"	m	struct:iovec
+iovec	./amqp_socket.h	/^struct iovec {$/;"	s
+jpeg_callback	./mediapipe_impl.h	/^    VideoFrameCallback          jpeg_callback;$/;"	m	struct:_MediaPreProc
+jpeg_capture_flag	./main.c	/^    gint           jpeg_capture_flag;$/;"	m	struct:_JpgEnc_Misc_Config	file:
+jpeg_crop_enable	./main.c	/^    gboolean jpeg_crop_enable;$/;"	m	struct:_JpgEnc_Misc_Config	file:
+jpeg_crop_height	./main.c	/^    gint    jpeg_crop_height;$/;"	m	struct:_JpgEnc_Misc_Config	file:
+jpeg_crop_ox	./main.c	/^    gint    jpeg_crop_ox;$/;"	m	struct:_JpgEnc_Misc_Config	file:
+jpeg_crop_oy	./main.c	/^    gint    jpeg_crop_oy;$/;"	m	struct:_JpgEnc_Misc_Config	file:
+jpeg_crop_width	./main.c	/^    gint    jpeg_crop_width;$/;"	m	struct:_JpgEnc_Misc_Config	file:
+jpeg_enc	./mediapipe.c	/^jpeg_enc(MediaPipeImpl *impl, GstBuffer *buf)$/;"	f	file:
+jpeg_frame_probe_id	./mediapipe_impl.h	/^    gulong                      jpeg_frame_probe_id;$/;"	m	struct:_MediaPreProc
+jpeg_frames	./mediapipe.c	/^GList *jpeg_frames = NULL;$/;"	v
+jpeg_inited	./mediapipe.c	/^static gboolean jpeg_inited = FALSE;$/;"	v	file:
+jpeg_inited	./utest/simplepipe/simplepipe.c	/^static gboolean jpeg_inited = FALSE;$/;"	v	file:
+jpeg_keyboard_flag	./main.c	/^    gint           jpeg_keyboard_flag;$/;"	m	struct:_JpgEnc_Misc_Config	file:
+jpeg_lock	./mediapipe.c	/^GMutex jpeg_lock;$/;"	v
+jpeg_queue	./mediapipe_impl.h	/^    GstElement      *jpeg_queue;$/;"	m	struct:_VideoChannel
+jpeg_sink	./mediapipe_impl.h	/^    MediaSink       jpeg_sink;$/;"	m	struct:_VideoChannel
+jpeg_user_data	./mediapipe_impl.h	/^    gpointer                    jpeg_user_data;$/;"	m	struct:_MediaPreProc
+jpg_interval	./main.c	/^    gint           jpg_interval;$/;"	m	struct:_JpgEnc_Misc_Config	file:
+jpg_out_mode	./main.c	/^    JpegOutputMode jpg_out_mode;$/;"	m	struct:_JpgEnc_Misc_Config	file:
+jpgenc_misc_config	./main.c	/^JpgEnc_Misc_Config     jpgenc_misc_config;$/;"	v
+jpgenc_misc_config2	./main.c	/^JpgEnc_Misc_Config     jpgenc_misc_config2;$/;"	v
+key	./amqp.h	/^  amqp_bytes_t key;           \/**< the table entry key. Its a null-terminated UTF-8 string,$/;"	m	struct:amqp_table_entry_t_
+keyframe_period_global	./utest/simplecodec/simplecodec.c	/^guint keyframe_period_global = 17; $/;"	v
+kind	./amqp.h	/^  uint8_t kind;             \/**< the type of the entry \/sa amqp_field_value_kind_t *\/$/;"	m	struct:amqp_field_value_t_
+klass	./amqp_socket.h	/^  const struct amqp_socket_class_t *klass;$/;"	m	struct:amqp_socket_t_	typeref:struct:amqp_socket_t_::amqp_socket_class_t
+known_hosts	./amqp_framing.h	/^  amqp_bytes_t known_hosts;$/;"	m	struct:amqp_connection_open_ok_t_
+large_blocks	./amqp.h	/^  amqp_pool_blocklist_t large_blocks; \/**< allocations larger than the pagesize *\/$/;"	m	struct:amqp_pool_t_
+last_queued_frame	./amqp_private.h	/^  amqp_link_t *last_queued_frame;$/;"	m	struct:amqp_connection_state_t_
+len	./amqp.h	/^  size_t len;   \/**< length of the buffer in bytes *\/$/;"	m	struct:amqp_bytes_t_
+librabbitmq_amqp_hostcheck_h	./amqp_hostcheck.h	3;"	d
+librabbitmq_amqp_private_h	./amqp_private.h	3;"	d
+librabbitmq_examples_utils_h	./utils.h	3;"	d
+library_error	./amqp.h	/^  int library_error;                    \/**< in case of AMQP_RESPONSE_LIBRARY_EXCEPTION this$/;"	m	struct:amqp_rpc_reply_t_
+link_element	./mediapipe.c	/^link_element (GstElement *src, GstElement *sink)$/;"	f	file:
+load_watcher_queue_overrun_cb	./mediapipe.c	/^load_watcher_queue_overrun_cb(gpointer q, gpointer data)$/;"	f	file:
+locale	./amqp_framing.h	/^  amqp_bytes_t locale;$/;"	m	struct:amqp_connection_start_ok_t_
+locales	./amqp_framing.h	/^  amqp_bytes_t locales;$/;"	m	struct:amqp_connection_start_t_
+location	./main.c	/^    gchar               location[LOCATION_STR_LEN];$/;"	m	struct:_Src_Setting	file:
+location	./mediapipe_impl.h	/^        gchar       *location;$/;"	m	union:_MediaSink::__anon2
+location	./mediapipe_impl.h	/^    gchar           *location;$/;"	m	struct:_MediaSource
+lock	./main.c	/^	GMutex  		lock;$/;"	m	struct:_JpgEnc_Misc_Config	file:
+lock	./mediapipe.h	/^   GMutex lock;$/;"	m	struct:__anon11
+luma_gain	./main.c	/^    guint                       luma_gain; \/*percentage of original luminance*\/$/;"	m	struct:_Video_Impl_Config	file:
+luma_gain	./mediapipe_impl.h	/^    guint                  luma_gain;\/\/percentage of original luminance of each pixel$/;"	m	struct:_MediaPreProc
+lumagain_threshold_value	./main.c	/^guint lumagain_threshold_value;$/;"	v
+main	./main.c	/^int main (int argc,  char *agrv[])$/;"	f
+main	./utest/facedetect/fd.c	/^int main(int argc, char **argv)$/;"	f
+main	./utest/simplecodec/simplecodec.c	/^int main (int   argc, char *argv[])$/;"	f
+main	./utest/simplepipe/simplepipe.c	/^int main (int   argc, char *argv[])$/;"	f
+main_1080p_jpeg_probe_callback	./mediapipe.c	/^main_1080p_jpeg_probe_callback ($/;"	f	file:
+main_1080p_jpeg_probe_callback_old	./mediapipe.c	/^main_1080p_jpeg_probe_callback_old ($/;"	f	file:
+main_bus_watch	./mediapipe_impl.h	/^    guint           main_bus_watch;$/;"	m	struct:__anon3
+main_encoder_src_pad_linked_callback	./mediapipe.c	/^main_encoder_src_pad_linked_callback(GstPad *pad, GstPad *peer, gpointer data)$/;"	f	file:
+main_encoder_src_pad_unlinked_callback	./mediapipe.c	/^main_encoder_src_pad_unlinked_callback(GstPad *pad, GstPad *peer, gpointer data)$/;"	f	file:
+main_encoder_src_probe_callback	./mediapipe.c	/^main_encoder_src_probe_callback ($/;"	f	file:
+main_loop	./mediapipe_impl.h	/^    GMainLoop       *main_loop;$/;"	m	struct:__anon3
+main_message_loop	./mediapipe.c	/^main_message_loop (GstBus *bus, GstMessage * message, gpointer user_data)$/;"	f	file:
+main_msg_callback	./mediapipe_impl.h	/^    MessageCallback main_msg_callback;$/;"	m	struct:__anon3
+main_msg_user_data	./mediapipe_impl.h	/^    gpointer        main_msg_user_data;$/;"	m	struct:__anon3
+main_pipeline	./mediapipe_impl.h	/^    GstElement      *main_pipeline;$/;"	m	struct:__anon3
+main_rtsp_probe_callback	./mediapipe.c	/^main_rtsp_probe_callback ($/;"	f	file:
+main_source	./mediapipe_impl.h	/^    MediaSource     main_source;    $/;"	m	struct:__anon3
+makepath	./main.c	/^int makepath(string s,mode_t mode)$/;"	f
+malloc_fn	./cJSON.h	/^      void *(*malloc_fn)(size_t sz);$/;"	m	struct:cJSON_Hooks
+mandatory	./amqp_framing.h	/^  amqp_boolean_t mandatory;$/;"	m	struct:amqp_basic_publish_t_
+mask_cfg	./mediapipe_impl.h	/^    GstVideoPreprocMaskCfg      mask_cfg[MASK_REGION_MAX_NUM];$/;"	m	struct:_MediaPreProc
+mechanism	./amqp_framing.h	/^  amqp_bytes_t mechanism;$/;"	m	struct:amqp_connection_start_ok_t_
+mechanisms	./amqp_framing.h	/^  amqp_bytes_t mechanisms;$/;"	m	struct:amqp_connection_start_t_
+media_configure	./mediapipe.c	/^media_configure (GstRTSPMediaFactory * factory, GstRTSPMedia * media,$/;"	f	file:
+media_pipe	./mediapipe_impl.h	/^    MediaPipe                  *media_pipe;$/;"	m	struct:_DynamicChannelData
+media_pipe_create	./mediapipe.c	/^media_pipe_create (int argc,  char *agrv[])$/;"	f
+media_pipe_destroy	./mediapipe.c	/^media_pipe_destroy (MediaPipe *pipe)$/;"	f
+media_pipe_disable_video_channel	./mediapipe.c	/^media_pipe_disable_video_channel($/;"	f
+media_pipe_enable_video_channel	./mediapipe.c	/^media_pipe_enable_video_channel($/;"	f
+media_pipe_reconfig_3a	./mediapipe.c	/^media_pipe_reconfig_3a (MediaPipe *pipe)$/;"	f
+media_pipe_set_channel_encoder_bitrate	./mediapipe.c	/^media_pipe_set_channel_encoder_bitrate ($/;"	f
+media_pipe_set_channel_encoder_enable_cabac	./mediapipe.c	/^media_pipe_set_channel_encoder_enable_cabac($/;"	f
+media_pipe_set_channel_encoder_enable_dct8x8	./mediapipe.c	/^media_pipe_set_channel_encoder_enable_dct8x8($/;"	f
+media_pipe_set_channel_encoder_frame_callback	./mediapipe.c	/^media_pipe_set_channel_encoder_frame_callback (MediaPipe *pipe,$/;"	f
+media_pipe_set_channel_encoder_gop	./mediapipe.c	/^media_pipe_set_channel_encoder_gop($/;"	f
+media_pipe_set_channel_encoder_mv	./mediapipe.c	/^media_pipe_set_channel_encoder_mv (MediaPipe *pipe,$/;"	f
+media_pipe_set_channel_encoder_profile	./mediapipe.c	/^media_pipe_set_channel_encoder_profile($/;"	f
+media_pipe_set_channel_encoder_rate_control	./mediapipe.c	/^media_pipe_set_channel_encoder_rate_control ($/;"	f
+media_pipe_set_channel_encoder_toggle	./mediapipe.c	/^media_pipe_set_channel_encoder_toggle(MediaPipe *pipe,$/;"	f
+media_pipe_set_channel_key_frame	./mediapipe.c	/^media_pipe_set_channel_key_frame($/;"	f
+media_pipe_set_channel_sink_type	./mediapipe.c	/^media_pipe_set_channel_sink_type(MediaPipe *pipe,$/;"	f
+media_pipe_set_filesrc_location	./mediapipe.c	/^media_pipe_set_filesrc_location (MediaPipe *pipe, gchar *location)$/;"	f
+media_pipe_set_filesrc_type	./mediapipe.c	/^media_pipe_set_filesrc_type (MediaPipe *pipe, SrcType src_type)$/;"	f
+media_pipe_set_message_callback	./mediapipe.c	/^media_pipe_set_message_callback (MediaPipe *pipe, MessageCallback callback, gpointer user_data)$/;"	f
+media_pipe_set_src_format	./mediapipe.c	/^media_pipe_set_src_format (MediaPipe *pipe, GstVideoFormat format)$/;"	f
+media_pipe_set_src_frame_rate	./mediapipe.c	/^media_pipe_set_src_frame_rate(MediaPipe *pipe, guint frame_rate)$/;"	f
+media_pipe_set_src_frame_smart_callback	./mediapipe.c	/^media_pipe_set_src_frame_smart_callback ($/;"	f
+media_pipe_set_src_parse_3aconf_callback	./mediapipe.c	/^media_pipe_set_src_parse_3aconf_callback ($/;"	f
+media_pipe_set_src_size	./mediapipe.c	/^media_pipe_set_src_size(MediaPipe *pipe, guint width, guint height)$/;"	f
+media_pipe_set_src_smart_resolution	./mediapipe.c	/^media_pipe_set_src_smart_resolution ($/;"	f
+media_pipe_set_use_v4l2_src	./mediapipe.c	/^media_pipe_set_use_v4l2_src (MediaPipe *pipe, gboolean use_v4l2_src)$/;"	f
+media_pipe_set_v4l2_src_capture_mode	./mediapipe.c	/^media_pipe_set_v4l2_src_capture_mode (MediaPipe *pipe, guint capture_mode)$/;"	f
+media_pipe_set_v4l2_src_device	./mediapipe.c	/^media_pipe_set_v4l2_src_device (MediaPipe *pipe, gchar *v4l2_src_device)$/;"	f
+media_pipe_set_v4l2_src_enable_3a	./mediapipe.c	/^media_pipe_set_v4l2_src_enable_3a (MediaPipe *pipe, gboolean enable_3a)$/;"	f
+media_pipe_set_v4l2_src_io_mode	./mediapipe.c	/^media_pipe_set_v4l2_src_io_mode (MediaPipe *pipe, guint v4l2_src_io_mode)$/;"	f
+media_pipe_set_v4l2_src_sensor_id	./mediapipe.c	/^media_pipe_set_v4l2_src_sensor_id (MediaPipe *pipe, guint v4l2_src_sensor_id)$/;"	f
+media_pipe_set_video_preproc_frame_jpeg_callback	./mediapipe.c	/^media_pipe_set_video_preproc_frame_jpeg_callback ($/;"	f
+media_pipe_set_video_preproc_luma	./mediapipe.c	/^media_pipe_set_video_preproc_luma ($/;"	f
+media_pipe_set_video_preproc_rotation	./mediapipe.c	/^media_pipe_set_video_preproc_rotation ($/;"	f
+media_pipe_set_vpp_src_enable_autohdr	./mediapipe.c	/^media_pipe_set_vpp_src_enable_autohdr (MediaPipe *pipe, gboolean enable_autohdr)$/;"	f
+media_pipe_set_vpp_src_set_autohdrmode	./mediapipe.c	/^media_pipe_set_vpp_src_set_autohdrmode (MediaPipe *pipe, guint autohdr_mode)$/;"	f
+media_pipe_start	./mediapipe.c	/^media_pipe_start (MediaPipe *pipe, gboolean reconfig_3a)$/;"	f
+media_pipe_stop	./mediapipe.c	/^media_pipe_stop (MediaPipe *pipe)$/;"	f
+mediapipe_set_jpegenc_crop	./main.c	/^mediapipe_set_jpegenc_crop (gboolean enable, gint cropOx, gint cropOy,$/;"	f
+mediapipe_set_jpegenc_output	./main.c	/^mediapipe_set_jpegenc_output (JpegOutputMode outputmode, guint interval)$/;"	f
+mergeBoxes	./facedetect.c	/^static void mergeBoxes(Mat& img, vector<Rect> &target) {$/;"	f	file:
+message	./amqp.h	/^  amqp_message_t message;           \/**< the message *\/$/;"	m	struct:amqp_envelope_t_
+message_callback	./main.c	/^message_callback (GstMessage *mesg, gpointer user_data)$/;"	f	file:
+message_count	./amqp_framing.h	/^  uint32_t message_count;$/;"	m	struct:amqp_basic_get_ok_t_
+message_count	./amqp_framing.h	/^  uint32_t message_count;$/;"	m	struct:amqp_queue_declare_ok_t_
+message_count	./amqp_framing.h	/^  uint32_t message_count;$/;"	m	struct:amqp_queue_delete_ok_t_
+message_count	./amqp_framing.h	/^  uint32_t message_count;$/;"	m	struct:amqp_queue_purge_ok_t_
+message_id	./amqp_framing.h	/^  amqp_bytes_t message_id;$/;"	m	struct:amqp_basic_properties_t_
+method	./amqp.h	/^    amqp_method_t method;   \/**< a method, use if frame_type == AMQP_FRAME_METHOD *\/$/;"	m	union:amqp_frame_t_::__anon7
+method_id	./amqp_framing.h	/^  uint16_t method_id;$/;"	m	struct:amqp_channel_close_t_
+method_id	./amqp_framing.h	/^  uint16_t method_id;$/;"	m	struct:amqp_connection_close_t_
+most_recent_api_result	./amqp_private.h	/^  amqp_rpc_reply_t most_recent_api_result;$/;"	m	struct:amqp_connection_state_t_
+multiple	./amqp_framing.h	/^  amqp_boolean_t multiple;$/;"	m	struct:amqp_basic_ack_t_
+multiple	./amqp_framing.h	/^  amqp_boolean_t multiple;$/;"	m	struct:amqp_basic_nack_t_
+mutex	./main.c	/^    GMutex     mutex;$/;"	m	struct:_RawFrameProbeData	file:
+mv	./main.c	/^    guint    mv;$/;"	m	struct:_Video_Channel_Config	file:
+mv	./mediapipe_impl.h	/^    guint           mv;$/;"	m	struct:_MediaEncoder
+myChannelInfo	./utest/simplepipe/simplepipe.c	/^const MyChannelInfo myChannelInfo[] = $/;"	v
+my_bus_call	./utest/simplepipe/simplepipe.c	/^my_bus_call (GstBus     *bus,$/;"	f	file:
+my_probe_callback	./utest/simplepipe/simplepipe.c	/^my_probe_callback ($/;"	f	file:
+need_enable_video_impl_channel	./mediapipe.c	/^need_enable_video_impl_channel(MediaPipeImpl *impl)$/;"	f	file:
+need_resource	./mediapipe.h	/^   gint   need_resource;$/;"	m	struct:__anon11
+need_resource_urgent	./mediapipe.h	/^   gint   need_resource_urgent;$/;"	m	struct:__anon11
+next	./amqp_private.h	/^  struct amqp_link_t_ *next;$/;"	m	struct:amqp_link_t_	typeref:struct:amqp_link_t_::amqp_link_t_
+next	./amqp_private.h	/^  struct amqp_pool_table_entry_t_ *next;$/;"	m	struct:amqp_pool_table_entry_t_	typeref:struct:amqp_pool_table_entry_t_::amqp_pool_table_entry_t_
+next	./cJSON.h	/^	struct cJSON *next,*prev;	\/* next\/prev allow you to walk array\/object chains. Alternatively, use GetArraySize\/GetArrayItem\/GetObjectItem *\/$/;"	m	struct:cJSON	typeref:struct:cJSON::cJSON
+next_page	./amqp.h	/^  int next_page;      \/**< an index to the next unused page block *\/$/;"	m	struct:amqp_pool_t_
+next_recv_heartbeat	./amqp_private.h	/^  uint64_t next_recv_heartbeat;$/;"	m	struct:amqp_connection_state_t_
+next_send_heartbeat	./amqp_private.h	/^  uint64_t next_send_heartbeat;$/;"	m	struct:amqp_connection_state_t_
+no_ack	./amqp_framing.h	/^  amqp_boolean_t no_ack;$/;"	m	struct:amqp_basic_consume_t_
+no_ack	./amqp_framing.h	/^  amqp_boolean_t no_ack;$/;"	m	struct:amqp_basic_get_t_
+no_local	./amqp_framing.h	/^  amqp_boolean_t no_local;$/;"	m	struct:amqp_basic_consume_t_
+normal_resolution	./mediapipe.c	/^ResolutionPack normal_resolution[VIDEO_CHANNEL_MAX] =$/;"	v
+nowait	./amqp_framing.h	/^  amqp_boolean_t nowait;$/;"	m	struct:amqp_basic_cancel_t_
+nowait	./amqp_framing.h	/^  amqp_boolean_t nowait;$/;"	m	struct:amqp_basic_consume_t_
+nowait	./amqp_framing.h	/^  amqp_boolean_t nowait;$/;"	m	struct:amqp_confirm_select_t_
+nowait	./amqp_framing.h	/^  amqp_boolean_t nowait;$/;"	m	struct:amqp_exchange_bind_t_
+nowait	./amqp_framing.h	/^  amqp_boolean_t nowait;$/;"	m	struct:amqp_exchange_declare_t_
+nowait	./amqp_framing.h	/^  amqp_boolean_t nowait;$/;"	m	struct:amqp_exchange_delete_t_
+nowait	./amqp_framing.h	/^  amqp_boolean_t nowait;$/;"	m	struct:amqp_exchange_unbind_t_
+nowait	./amqp_framing.h	/^  amqp_boolean_t nowait;$/;"	m	struct:amqp_queue_bind_t_
+nowait	./amqp_framing.h	/^  amqp_boolean_t nowait;$/;"	m	struct:amqp_queue_declare_t_
+nowait	./amqp_framing.h	/^  amqp_boolean_t nowait;$/;"	m	struct:amqp_queue_delete_t_
+nowait	./amqp_framing.h	/^  amqp_boolean_t nowait;$/;"	m	struct:amqp_queue_purge_t_
+ns_until_next_timeout	./amqp_timer.h	/^  uint64_t ns_until_next_timeout;$/;"	m	struct:amqp_timer_t_
+num_blocks	./amqp.h	/^  int num_blocks;     \/**< Number of blocks in the block list *\/$/;"	m	struct:amqp_pool_blocklist_t_
+num_entries	./amqp.h	/^  int num_entries;                      \/**< Number of entries in the table *\/$/;"	m	struct:amqp_array_t_
+num_entries	./amqp.h	/^  int num_entries;                      \/**< length of entries array *\/$/;"	m	struct:amqp_table_t_
+open	./amqp_socket.h	/^  amqp_socket_open_fn open;$/;"	m	struct:amqp_socket_class_t
+osd_buffer	./mediapipe_impl.h	/^    GstVideoPreprocBuffer       *osd_buffer;$/;"	m	struct:_VideoChannel
+osd_callback	./mediapipe_impl.h	/^    VideoFrameCallback          osd_callback;$/;"	m	struct:_VideoChannel
+osd_cfg	./mediapipe.c	/^GstVideoPreprocOsdCfg osd_cfg[OSD_REGION_MAX_NUM] = {$/;"	v
+osd_cfg_part	./mediapipe.c	/^GstVideoPreprocOsdCfg osd_cfg_part    = {{64,   0,    64,  64}, 0, {COLOR_KEY_Y, 0, 0}, TRUE};$/;"	v
+osd_user_data	./mediapipe_impl.h	/^    gpointer                    osd_user_data;$/;"	m	struct:_VideoChannel
+osddata	./osddata.h	/^guint32 osddata[]  = {$/;"	v
+others	./mediapipe.h	/^    Cameara3a_Others		 		 others;$/;"	m	struct:_3a_Config
+out_of_band	./amqp_framing.h	/^  amqp_bytes_t out_of_band;$/;"	m	struct:amqp_channel_open_t_
+outbound_buffer	./amqp_private.h	/^  amqp_bytes_t outbound_buffer;$/;"	m	struct:amqp_connection_state_t_
+pad_name	./mediapipe.c	/^    gchar               pad_name[128];$/;"	m	struct:_StringContainer	file:
+pages	./amqp.h	/^  amqp_pool_blocklist_t pages;        \/**< blocks that are the size of pagesize *\/$/;"	m	struct:amqp_pool_t_
+pagesize	./amqp.h	/^  size_t pagesize;            \/**< the size of the page in bytes.$/;"	m	struct:amqp_pool_t_
+param_type_reserve1	./mediapipe_impl.h	/^        gulong      param_type_reserve1;$/;"	m	union:_MediaSink::__anon2
+param_type_reserve2	./mediapipe_impl.h	/^        gulong      param_type_reserve2;$/;"	m	union:_MediaSink::__anon2
+parse_3a_config_exposure	./main.c	/^parse_3a_config_exposure(mxml_node_t *ep_node, Cameara3a_Exposure *ep_config)$/;"	f	file:
+parse_3a_config_others	./main.c	/^parse_3a_config_others (mxml_node_t *others_node, Cameara3a_Others *others_config)$/;"	f	file:
+parse_3a_config_picture_quality	./main.c	/^parse_3a_config_picture_quality (mxml_node_t *pq_node, Cameara3a_PicQuality *pq_config)$/;"	f	file:
+parse_3a_config_white_balance	./main.c	/^parse_3a_config_white_balance(mxml_node_t *wb_node, Cameara3a_WhiteBalance *wb_config )$/;"	f	file:
+parse_3aconf_callback	./main.c	/^parse_3aconf_callback (Config3A *config_camera)$/;"	f	file:
+parse_3aconf_callback	./mediapipe_impl.h	/^    Parse3AConfCallback         parse_3aconf_callback;$/;"	m	struct:_MediaPreProc
+parse_3aconf_user_data	./mediapipe_impl.h	/^    gpointer                    parse_3aconf_user_data;$/;"	m	struct:_MediaPreProc
+parse_array	./cJSON.c	/^static const char *parse_array(cJSON *item,const char *value)$/;"	f	file:
+parse_config	./main.c	/^parse_config()$/;"	f
+parse_hex4	./cJSON.c	/^static unsigned parse_hex4(const char *str)$/;"	f	file:
+parse_number	./cJSON.c	/^static const char *parse_number(cJSON *item,const char *num)$/;"	f	file:
+parse_object	./cJSON.c	/^static const char *parse_object(cJSON *item,const char *value)$/;"	f	file:
+parse_string	./cJSON.c	/^static const char *parse_string(cJSON *item,const char *str)$/;"	f	file:
+parse_value	./cJSON.c	/^static const char *parse_value(cJSON *item,const char *value)$/;"	f	file:
+passive	./amqp_framing.h	/^  amqp_boolean_t passive;$/;"	m	struct:amqp_access_request_t_
+passive	./amqp_framing.h	/^  amqp_boolean_t passive;$/;"	m	struct:amqp_exchange_declare_t_
+passive	./amqp_framing.h	/^  amqp_boolean_t passive;$/;"	m	struct:amqp_queue_declare_t_
+password	./amqp.h	/^  char *password;             \/**< the password to authenticate with the broker, default on most brokers is 'guest' *\/$/;"	m	struct:amqp_connection_info
+payload	./amqp.h	/^  } payload;              \/**< the payload of the frame *\/$/;"	m	struct:amqp_frame_t_	typeref:union:amqp_frame_t_::__anon7
+person_name_c	./main.c	/^char person_name_c[255];$/;"	v
+pipe	./main.c	/^    MediaPipe *pipe;$/;"	m	struct:_RawFrameProbeData	file:
+pipe	./mediapipe_impl.h	/^    MediaPipe       pipe;$/;"	m	struct:__anon3
+pipe_running	./mediapipe.h	/^    gboolean    pipe_running; \/*!< MediaPipe running flag *\/$/;"	m	struct:_MediaPipe
+pnum	./main.c	/^int pnum;$/;"	v
+pool	./amqp.h	/^  amqp_pool_t pool;                   \/**< pool used to allocate properties *\/$/;"	m	struct:amqp_message_t_
+pool	./amqp_private.h	/^  amqp_pool_t pool;$/;"	m	struct:amqp_pool_table_entry_t_
+pool_table	./amqp_private.h	/^  amqp_pool_table_entry_t *pool_table[POOL_TABLE_SIZE];$/;"	m	struct:amqp_connection_state_t_
+port	./amqp.h	/^  int port;                   \/**< the port that the broker is listening on, default on most brokers is 5672 *\/$/;"	m	struct:amqp_connection_info
+port	./main.c	/^    gint     port;$/;"	m	struct:_Video_Channel_Config	file:
+port	./main.c	/^int port, status;$/;"	v
+port	./mediapipe_impl.h	/^    gint            port;$/;"	m	struct:_MediaSink
+post_link	./mediapipe.c	/^post_link(GstElement *src, GstPad *pad, gpointer data)$/;"	f	file:
+pq	./mediapipe.h	/^	Cameara3a_PicQuality		 	 pq;$/;"	m	struct:_3a_Config
+preBuf	./mediapipe.h	/^    GstVideoPreprocBuffer *preBuf;$/;"	m	struct:_SmartData
+prefetch_count	./amqp_framing.h	/^  uint16_t prefetch_count;$/;"	m	struct:amqp_basic_qos_t_
+prefetch_size	./amqp_framing.h	/^  uint32_t prefetch_size;$/;"	m	struct:amqp_basic_qos_t_
+prepare_osd_infos	./mediapipe.c	/^prepare_osd_infos(GstElement *elm\/* used to create vaapi image *\/)$/;"	f	file:
+preproc	./mediapipe_impl.h	/^    MediaPreProc    preproc;$/;"	m	struct:__anon3
+prev	./cJSON.h	/^	struct cJSON *next,*prev;	\/* next\/prev allow you to walk array\/object chains. Alternatively, use GetArraySize\/GetArrayItem\/GetObjectItem *\/$/;"	m	struct:cJSON	typeref:struct:cJSON::
+print_array	./cJSON.c	/^static char *print_array(cJSON *item,int depth,int fmt)$/;"	f	file:
+print_number	./cJSON.c	/^static char *print_number(cJSON *item)$/;"	f	file:
+print_object	./cJSON.c	/^static char *print_object(cJSON *item,int depth,int fmt)$/;"	f	file:
+print_string	./cJSON.c	/^static char *print_string(cJSON *item)	{return print_string_ptr(item->valuestring);}$/;"	f	file:
+print_string_ptr	./cJSON.c	/^static char *print_string_ptr(const char *str)$/;"	f	file:
+print_value	./cJSON.c	/^static char *print_value(cJSON *item,int depth,int fmt)$/;"	f	file:
+priority	./amqp_framing.h	/^  uint8_t priority;$/;"	m	struct:amqp_basic_properties_t_
+probe_id	./main.c	/^    gulong     probe_id;$/;"	m	struct:_RawFrameProbeData	file:
+profile	./main.c	/^    guint    profile;$/;"	m	struct:_Video_Channel_Config	file:
+profile	./mediapipe_impl.h	/^    guint           profile;$/;"	m	struct:_MediaEncoder
+profile_converter	./mediapipe_impl.h	/^    GstElement      *profile_converter;$/;"	m	struct:_VideoChannel
+profile_name	./mediapipe.c	/^const gchar *profile_name[3] =$/;"	v
+properties	./amqp.h	/^    } properties;           \/**< message header, a.k.a., properties,$/;"	m	union:amqp_frame_t_::__anon7	typeref:struct:amqp_frame_t_::__anon7::__anon8
+properties	./amqp.h	/^  amqp_basic_properties_t properties; \/**< message properties *\/$/;"	m	struct:amqp_message_t_
+properties_pool	./amqp_private.h	/^  amqp_pool_t properties_pool;$/;"	m	struct:amqp_connection_state_t_
+protocol_header	./amqp.h	/^    } protocol_header;    \/**< Used only when doing the initial handshake with the broker,$/;"	m	union:amqp_frame_t_::__anon7	typeref:struct:amqp_frame_t_::__anon7::__anon9
+protocol_version_major	./amqp.h	/^      uint8_t protocol_version_major;   \/**< @internal third byte of handshake *\/$/;"	m	struct:amqp_frame_t_::__anon7::__anon9
+protocol_version_minor	./amqp.h	/^      uint8_t protocol_version_minor;   \/**< @internal fourth byte of handshake *\/$/;"	m	struct:amqp_frame_t_::__anon7::__anon9
+qos	./main.c	/^Qos qos;$/;"	v
+queue	./amqp_framing.h	/^  amqp_bytes_t queue;$/;"	m	struct:amqp_basic_consume_t_
+queue	./amqp_framing.h	/^  amqp_bytes_t queue;$/;"	m	struct:amqp_basic_get_t_
+queue	./amqp_framing.h	/^  amqp_bytes_t queue;$/;"	m	struct:amqp_queue_bind_t_
+queue	./amqp_framing.h	/^  amqp_bytes_t queue;$/;"	m	struct:amqp_queue_declare_ok_t_
+queue	./amqp_framing.h	/^  amqp_bytes_t queue;$/;"	m	struct:amqp_queue_declare_t_
+queue	./amqp_framing.h	/^  amqp_bytes_t queue;$/;"	m	struct:amqp_queue_delete_t_
+queue	./amqp_framing.h	/^  amqp_bytes_t queue;$/;"	m	struct:amqp_queue_purge_t_
+queue	./amqp_framing.h	/^  amqp_bytes_t queue;$/;"	m	struct:amqp_queue_unbind_t_
+queuename_m2w	./main.c	/^char const *queuename_m2w;$/;"	v
+queuename_w2m	./main.c	/^char const *queuename_w2m;$/;"	v
+rabbitmq_init	./main.c	/^rabbitmq_init()$/;"	f	file:
+rabbitmq_listening_func	./main.c	/^rabbitmq_listening_func (gpointer data)$/;"	f
+rate_control	./main.c	/^    guint    rate_control;$/;"	m	struct:_Video_Channel_Config	file:
+rate_control	./mediapipe_impl.h	/^    guint           rate_control;$/;"	m	struct:_MediaEncoder
+rate_control	./utest/simplecodec/simplecodec.c	/^guint rate_control = 2;	\/*1:CQP, 2: CBR*\/$/;"	v
+raw	./amqp.h	/^      amqp_bytes_t raw;     \/**< amqp-encoded properties structure *\/$/;"	m	struct:amqp_frame_t_::__anon7::__anon8
+read	./amqp_framing.h	/^  amqp_boolean_t read;$/;"	m	struct:amqp_access_request_t_
+read_csv	./main.c	/^static void read_csv(const string& filename, vector<Mat>& images, vector<int>& labels, vector<string>& names, char separator = ';')$/;"	f	file:
+realm	./amqp_framing.h	/^  amqp_bytes_t realm;$/;"	m	struct:amqp_access_request_t_
+reason	./amqp_framing.h	/^  amqp_bytes_t reason;$/;"	m	struct:amqp_connection_blocked_t_
+rect_jpeg	./main.c	/^Rect_Facedetect_Jpeg rect_jpeg = {0,0,1920,1080,0};$/;"	v
+recv	./amqp_socket.h	/^  amqp_socket_recv_fn recv;$/;"	m	struct:amqp_socket_class_t
+redelivered	./amqp.h	/^  amqp_boolean_t redelivered;       \/**< flag indicating whether this message is being redelivered *\/$/;"	m	struct:amqp_envelope_t_
+redelivered	./amqp_framing.h	/^  amqp_boolean_t redelivered;$/;"	m	struct:amqp_basic_deliver_t_
+redelivered	./amqp_framing.h	/^  amqp_boolean_t redelivered;$/;"	m	struct:amqp_basic_get_ok_t_
+reply	./amqp.h	/^  amqp_method_t reply;                  \/**< in case of AMQP_RESPONSE_SERVER_EXCEPTION this$/;"	m	struct:amqp_rpc_reply_t_
+reply_code	./amqp_framing.h	/^  uint16_t reply_code;$/;"	m	struct:amqp_basic_return_t_
+reply_code	./amqp_framing.h	/^  uint16_t reply_code;$/;"	m	struct:amqp_channel_close_t_
+reply_code	./amqp_framing.h	/^  uint16_t reply_code;$/;"	m	struct:amqp_connection_close_t_
+reply_text	./amqp_framing.h	/^  amqp_bytes_t reply_text;$/;"	m	struct:amqp_basic_return_t_
+reply_text	./amqp_framing.h	/^  amqp_bytes_t reply_text;$/;"	m	struct:amqp_channel_close_t_
+reply_text	./amqp_framing.h	/^  amqp_bytes_t reply_text;$/;"	m	struct:amqp_connection_close_t_
+reply_to	./amqp_framing.h	/^  amqp_bytes_t reply_to;$/;"	m	struct:amqp_basic_properties_t_
+reply_type	./amqp.h	/^  amqp_response_type_enum reply_type;   \/**< the reply type:$/;"	m	struct:amqp_rpc_reply_t_
+requeue	./amqp_framing.h	/^  amqp_boolean_t requeue;$/;"	m	struct:amqp_basic_nack_t_
+requeue	./amqp_framing.h	/^  amqp_boolean_t requeue;$/;"	m	struct:amqp_basic_recover_async_t_
+requeue	./amqp_framing.h	/^  amqp_boolean_t requeue;$/;"	m	struct:amqp_basic_recover_t_
+requeue	./amqp_framing.h	/^  amqp_boolean_t requeue;$/;"	m	struct:amqp_basic_reject_t_
+reserve	./main.c	/^    guint reserve;$/;"	m	struct:_WireFrameData	file:
+reset_3a_config	./main.c	/^reset_3a_config (Config3A *config_3a)$/;"	f	file:
+reset_3a_config_exposure	./main.c	/^reset_3a_config_exposure (Cameara3a_Exposure *ep_config)$/;"	f	file:
+reset_3a_config_others	./main.c	/^reset_3a_config_others (Cameara3a_Others *others_config)$/;"	f	file:
+reset_3a_config_picture_quality	./main.c	/^reset_3a_config_picture_quality (Cameara3a_PicQuality *pq_config)$/;"	f	file:
+reset_3a_config_white_balance	./main.c	/^reset_3a_config_white_balance (Cameara3a_WhiteBalance *wb_config)$/;"	f	file:
+reset_hdr_rgb_table	./main.c	/^static void reset_hdr_rgb_table(guchar flag)$/;"	f	file:
+reset_hdr_table	./main.c	/^static void reset_hdr_table(guchar flag)$/;"	f	file:
+response	./amqp_framing.h	/^  amqp_bytes_t response;$/;"	m	struct:amqp_connection_secure_ok_t_
+response	./amqp_framing.h	/^  amqp_bytes_t response;$/;"	m	struct:amqp_connection_start_ok_t_
+rotate_mode	./mediapipe_impl.h	/^    GstVideoPreprocRotateMode   rotate_mode;$/;"	m	struct:_MediaPreProc
+rotate_resolution	./mediapipe.c	/^ResolutionPack rotate_resolution[VIDEO_CHANNEL_MAX] =$/;"	v
+rotation	./main.c	/^    GstVideoPreprocRotateMode   rotation;$/;"	m	struct:_Video_Impl_Config	file:
+routing_key	./amqp.h	/^  amqp_bytes_t routing_key;         \/**< the routing key this message was published with *\/$/;"	m	struct:amqp_envelope_t_
+routing_key	./amqp_framing.h	/^  amqp_bytes_t routing_key;$/;"	m	struct:amqp_basic_deliver_t_
+routing_key	./amqp_framing.h	/^  amqp_bytes_t routing_key;$/;"	m	struct:amqp_basic_get_ok_t_
+routing_key	./amqp_framing.h	/^  amqp_bytes_t routing_key;$/;"	m	struct:amqp_basic_publish_t_
+routing_key	./amqp_framing.h	/^  amqp_bytes_t routing_key;$/;"	m	struct:amqp_basic_return_t_
+routing_key	./amqp_framing.h	/^  amqp_bytes_t routing_key;$/;"	m	struct:amqp_exchange_bind_t_
+routing_key	./amqp_framing.h	/^  amqp_bytes_t routing_key;$/;"	m	struct:amqp_exchange_unbind_t_
+routing_key	./amqp_framing.h	/^  amqp_bytes_t routing_key;$/;"	m	struct:amqp_queue_bind_t_
+routing_key	./amqp_framing.h	/^  amqp_bytes_t routing_key;$/;"	m	struct:amqp_queue_unbind_t_
+rows_eq	./utils.c	/^static int rows_eq(int *a, int *b)$/;"	f	file:
+rtsp_server	./mediapipe_impl.h	/^    GstRTSPServer	*rtsp_server;$/;"	m	struct:__anon3
+rtsp_server_create	./mediapipe.c	/^rtsp_server_create (MediaPipeImpl *impl, VideoChannelIndex channel_num)$/;"	f	file:
+rtsp_src	./mediapipe_impl.h	/^    GstElement	        *rtsp_src;$/;"	m	struct:_MediaSink
+run_time_in_sec	./main.c	/^    guint               run_time_in_sec;$/;"	m	struct:_Src_Setting	file:
+run_timer_func	./main.c	/^run_timer_func (gpointer data)$/;"	f
+sample_masks	./mediapipe.c	/^GstVideoPreprocMaskCfg sample_masks[MASK_REGION_MAX_NUM] = {$/;"	v
+sample_wire_frames	./mediapipe.c	/^GstVideoPreprocWireFrame sample_wire_frames[WIRE_FRAME_REGION_MAX_NUM] = {$/;"	v
+send	./amqp_socket.h	/^  amqp_socket_send_fn send;$/;"	m	struct:amqp_socket_class_t
+server	./mediapipe_impl.h	/^    GstRTSPServer	*server;$/;"	m	struct:_MediaSink
+server_properties	./amqp_framing.h	/^  amqp_table_t server_properties;$/;"	m	struct:amqp_connection_start_t_
+server_properties	./amqp_private.h	/^  amqp_table_t server_properties;$/;"	m	struct:amqp_connection_state_t_
+signal	./mediapipe_impl.h	/^    gulong signal;$/;"	m	struct:__anon4
+sink	./mediapipe_impl.h	/^    GstElement *sink;$/;"	m	struct:__anon4
+sink	./mediapipe_impl.h	/^    MediaSink       sink;$/;"	m	struct:_VideoChannel
+sink_type	./main.c	/^    MediaSinkType sink_type;$/;"	m	struct:_Video_Channel_Config	file:
+size	./mediapipe.h	/^    guint       size; \/*!< the size of MediaPipe private context *\/$/;"	m	struct:_MediaPipe
+skindetect	./facedetect.c	/^static void skindetect(Mat& img, vector<Rect>& boxes)$/;"	f	file:
+skip	./cJSON.c	/^static const char *skip(const char *in) {while (in && *in && (unsigned char)*in<=32) in++; return in;}$/;"	f	file:
+smart_1080p_queue	./mediapipe_impl.h	/^    GList                       *smart_1080p_queue;             \/\/ contain SmartFrameData *$/;"	m	struct:_MediaPreProc
+smart_analyze_callback	./mediapipe_impl.h	/^    SmartFrameCallback          smart_analyze_callback;$/;"	m	struct:_MediaPreProc
+smart_control	./main.c	/^gboolean smart_control = FALSE;$/;"	v
+smart_factor	./main.c	/^gfloat smart_factor = 0.25;$/;"	v
+smart_frame_1080p_probe_id	./mediapipe_impl.h	/^    gulong                      smart_frame_1080p_probe_id;$/;"	m	struct:_MediaPreProc
+smart_frame_smart_probe_id	./mediapipe_impl.h	/^    gulong                      smart_frame_smart_probe_id;$/;"	m	struct:_MediaPreProc
+smart_lock	./mediapipe_impl.h	/^    GMutex                      smart_lock;$/;"	m	struct:_MediaPreProc
+smart_queue	./mediapipe_impl.h	/^    GList                       *smart_queue;                   \/\/ contain SmartData *$/;"	m	struct:_MediaPreProc
+smart_resolution	./main.c	/^    SmartResolution     smart_resolution;$/;"	m	struct:_Src_Setting	file:
+smart_resolution	./mediapipe_impl.h	/^    SmartResolution             smart_resolution;$/;"	m	struct:_MediaPreProc
+smart_user_data	./mediapipe_impl.h	/^    gpointer                    smart_user_data;$/;"	m	struct:_MediaPreProc
+sock_inbound_buffer	./amqp_private.h	/^  amqp_bytes_t sock_inbound_buffer;$/;"	m	struct:amqp_connection_state_t_
+sock_inbound_limit	./amqp_private.h	/^  size_t sock_inbound_limit;$/;"	m	struct:amqp_connection_state_t_
+sock_inbound_offset	./amqp_private.h	/^  size_t sock_inbound_offset;$/;"	m	struct:amqp_connection_state_t_
+socket	./amqp_private.h	/^  amqp_socket_t *socket;$/;"	m	struct:amqp_connection_state_t_
+socket	./main.c	/^amqp_socket_t *socket = NULL;$/;"	v
+source	./amqp_framing.h	/^  amqp_bytes_t source;$/;"	m	struct:amqp_exchange_bind_t_
+source	./amqp_framing.h	/^  amqp_bytes_t source;$/;"	m	struct:amqp_exchange_unbind_t_
+source_chosen	./utest/simplecodec/simplecodec.c	/^guint source_chosen = 1; \/*0: VIDEOTESTSRC, 1: V4L2SRC*\/$/;"	v
+source_id	./mediapipe_impl.h	/^    gint		source_id;$/;"	m	struct:_MediaSink
+src	./mediapipe_impl.h	/^    GstElement *src;$/;"	m	struct:__anon4
+src_bus_watch	./mediapipe_impl.h	/^    guint           src_bus_watch;$/;"	m	struct:__anon3
+src_fakesink	./mediapipe_impl.h	/^    MediaSink       src_fakesink[VIDEO_CHANNEL_MAX];$/;"	m	struct:__anon3
+src_filter	./mediapipe_impl.h	/^    GstElement      *src_filter;$/;"	m	struct:_MediaSource
+src_message_loop	./mediapipe.c	/^src_message_loop (GstBus *bus, GstMessage * message, gpointer user_data)$/;"	f	file:
+src_msg_callback	./mediapipe_impl.h	/^    MessageCallback src_msg_callback;$/;"	m	struct:__anon3
+src_msg_user_data	./mediapipe_impl.h	/^    gpointer        src_msg_user_data;$/;"	m	struct:__anon3
+src_name	./main.c	/^const gchar *src_name[SRC_NUM] = {$/;"	v
+src_pad_name	./utest/simplepipe/simplepipe.c	/^    gchar              src_pad_name[128];$/;"	m	struct:_MyChannelInfo	file:
+src_pipeline	./mediapipe_impl.h	/^    GstElement      *src_pipeline;$/;"	m	struct:__anon3
+src_preproc	./mediapipe_impl.h	/^    MediaPreProc    src_preproc;$/;"	m	struct:__anon3
+src_preproc_1080p_probe_callback	./mediapipe.c	/^src_preproc_1080p_probe_callback ($/;"	f	file:
+src_preproc_hdr_probe_callback	./mediapipe.c	/^src_preproc_hdr_probe_callback ($/;"	f	file:
+src_preproc_luma_gain_probe_callback	./mediapipe.c	/^src_preproc_luma_gain_probe_callback ($/;"	f	file:
+src_preproc_pad_linked_callback	./mediapipe.c	/^src_preproc_pad_linked_callback(GstPad *pad, GstPad *peer, gpointer data)$/;"	f	file:
+src_preproc_pad_linked_callback2	./mediapipe.c	/^src_preproc_pad_linked_callback2(GstPad *pad, GstPad *peer, gpointer data)$/;"	f	file:
+src_preproc_pad_linked_callback3	./mediapipe.c	/^src_preproc_pad_linked_callback3(GstPad *pad, GstPad *peer, gpointer data)$/;"	f	file:
+src_preproc_pad_unlinked_callback	./mediapipe.c	/^src_preproc_pad_unlinked_callback(GstPad *pad, GstPad *peer, gpointer data)$/;"	f	file:
+src_preproc_smart_probe_callback	./mediapipe.c	/^src_preproc_smart_probe_callback ($/;"	f	file:
+src_queue	./mediapipe_impl.h	/^    GstElement      *src_queue;$/;"	m	struct:_MediaSource
+src_queue	./mediapipe_impl.h	/^    GstElement      *src_queue[VIDEO_CHANNEL_MAX];$/;"	m	struct:__anon3
+src_region	./main.c	/^GstVideoPreprocRegion src_region[OSD_REGION_MAX_NUM] = {$/;"	v
+src_setting	./main.c	/^Src_Setting src_setting = {(SrcType)0};$/;"	v
+src_source	./mediapipe_impl.h	/^    MediaSource     src_source;$/;"	m	struct:__anon3
+src_tee	./mediapipe_impl.h	/^    GstElement      *src_tee;$/;"	m	struct:_MediaSource
+src_type	./main.c	/^    SrcType             src_type;$/;"	m	struct:_Src_Setting	file:
+src_type	./mediapipe_impl.h	/^    SrcType         src_type;$/;"	m	struct:_MediaSource
+ssize_t	./amqp.h	/^typedef _W64 int ssize_t;$/;"	t
+ssize_t	./amqp.h	/^typedef __int64 ssize_t;$/;"	t
+ssl	./amqp.h	/^  amqp_boolean_t ssl;$/;"	m	struct:amqp_connection_info
+state	./amqp_private.h	/^  amqp_connection_state_enum state;$/;"	m	struct:amqp_connection_state_t_
+status	./main.c	/^int port, status;$/;"	v
+std	./facedetect.c	/^using namespace std;$/;"	v
+std	./main.c	/^using namespace std;$/;"	v
+std	./utest/facedetect/fd.c	/^using namespace std;$/;"	v
+string	./cJSON.h	/^	char *string;				\/* The item's name string, if this item is the child of, or is in the list of subitems of an object. *\/$/;"	m	struct:cJSON
+suffix_object	./cJSON.c	/^static void suffix_object(cJSON *prev,cJSON *item) {prev->next=item;item->prev=prev;}$/;"	f	file:
+table	./amqp.h	/^    amqp_table_t table;       \/**< amqp_table_t type AMQP_FIELD_KIND_TABLE *\/$/;"	m	union:amqp_field_value_t_::__anon5
+target_size	./amqp_private.h	/^  size_t target_size;$/;"	m	struct:amqp_connection_state_t_
+tempString	./mediapipe.c	/^const StringContainer tempString[VIDEO_CHANNEL_MAX] =$/;"	v
+testOSDdata_h	./osddata.h	2;"	d
+test_toggle_channel	./main.c	/^gboolean test_toggle_channel = FALSE;$/;"	v
+ticket	./amqp_framing.h	/^  uint16_t ticket;$/;"	m	struct:amqp_access_request_ok_t_
+ticket	./amqp_framing.h	/^  uint16_t ticket;$/;"	m	struct:amqp_basic_consume_t_
+ticket	./amqp_framing.h	/^  uint16_t ticket;$/;"	m	struct:amqp_basic_get_t_
+ticket	./amqp_framing.h	/^  uint16_t ticket;$/;"	m	struct:amqp_basic_publish_t_
+ticket	./amqp_framing.h	/^  uint16_t ticket;$/;"	m	struct:amqp_exchange_bind_t_
+ticket	./amqp_framing.h	/^  uint16_t ticket;$/;"	m	struct:amqp_exchange_declare_t_
+ticket	./amqp_framing.h	/^  uint16_t ticket;$/;"	m	struct:amqp_exchange_delete_t_
+ticket	./amqp_framing.h	/^  uint16_t ticket;$/;"	m	struct:amqp_exchange_unbind_t_
+ticket	./amqp_framing.h	/^  uint16_t ticket;$/;"	m	struct:amqp_queue_bind_t_
+ticket	./amqp_framing.h	/^  uint16_t ticket;$/;"	m	struct:amqp_queue_declare_t_
+ticket	./amqp_framing.h	/^  uint16_t ticket;$/;"	m	struct:amqp_queue_delete_t_
+ticket	./amqp_framing.h	/^  uint16_t ticket;$/;"	m	struct:amqp_queue_purge_t_
+ticket	./amqp_framing.h	/^  uint16_t ticket;$/;"	m	struct:amqp_queue_unbind_t_
+time_slot_e	./mediapipe.c	/^}time_slot_e;$/;"	t	typeref:enum:__anon1	file:
+timeout_timestamp	./amqp_timer.h	/^  uint64_t timeout_timestamp;$/;"	m	struct:amqp_timer_t_
+timestamp	./amqp_framing.h	/^  uint64_t timestamp;$/;"	m	struct:amqp_basic_properties_t_
+timestamp	./mediapipe_impl.h	/^    GstClockTime        timestamp;$/;"	m	struct:_MediaSink
+transport_high	./amqp.h	/^      uint8_t transport_high;           \/**< @internal first byte of handshake *\/$/;"	m	struct:amqp_frame_t_::__anon7::__anon9
+transport_low	./amqp.h	/^      uint8_t transport_low;            \/**< @internal second byte of handshake *\/$/;"	m	struct:amqp_frame_t_::__anon7::__anon9
+ts	./main.c	/^    GstClockTime ts;$/;"	m	struct:_WireFrameData	file:
+tv	./amqp_timer.h	/^  struct timeval tv;$/;"	m	struct:amqp_timer_t_	typeref:struct:amqp_timer_t_::timeval
+type	./amqp_framing.h	/^  amqp_bytes_t type;$/;"	m	struct:amqp_basic_properties_t_
+type	./amqp_framing.h	/^  amqp_bytes_t type;$/;"	m	struct:amqp_exchange_declare_t_
+type	./cJSON.h	/^	int type;					\/* The type of the item, as above. *\/$/;"	m	struct:cJSON
+type	./mediapipe_impl.h	/^    MediaSinkType   type;$/;"	m	struct:_MediaSink
+u	./mediapipe_impl.h	/^    }u;$/;"	m	struct:_MediaSink	typeref:union:_MediaSink::__anon2
+u16	./amqp.h	/^    uint16_t u16;             \/**< uint16_t type AMQP_FIELD_KIND_U16 *\/$/;"	m	union:amqp_field_value_t_::__anon5
+u32	./amqp.h	/^    uint32_t u32;             \/**< uint32_t type AMQP_FIELD_KIND_U32 *\/$/;"	m	union:amqp_field_value_t_::__anon5
+u64	./amqp.h	/^    uint64_t u64;             \/**< uint64_t type AMQP_FIELD_KIND_U64, AMQP_FIELD_KIND_TIMESTAMP *\/$/;"	m	union:amqp_field_value_t_::__anon5
+u8	./amqp.h	/^    uint8_t u8;               \/**< uint8_t type AMQP_FIELD_KIND_U8 *\/$/;"	m	union:amqp_field_value_t_::__anon5
+update_osd_cfg_big	./mediapipe.c	/^GstVideoPreprocOsdCfg update_osd_cfg_big[TIME_SLOT_NUM] = {$/;"	v
+update_osd_cfg_small	./mediapipe.c	/^GstVideoPreprocOsdCfg update_osd_cfg_small[TIME_SLOT_NUM] = {$/;"	v
+usage_help	./utest/simplecodec/simplecodec.c	/^void usage_help(void)$/;"	f
+use_v4l2_src	./main.c	/^    gboolean            use_v4l2_src;$/;"	m	struct:_Src_Setting	file:
+use_v4l2_src	./mediapipe_impl.h	/^    gboolean        use_v4l2_src;$/;"	m	struct:_MediaSource
+user	./amqp.h	/^  char *user;                 \/**< the username to authenticate with the broker, default on most broker is 'guest' *\/$/;"	m	struct:amqp_connection_info
+user_data	./mediapipe_impl.h	/^    gpointer        user_data;$/;"	m	struct:_MediaEncoder
+user_id	./amqp_framing.h	/^  amqp_bytes_t user_id;$/;"	m	struct:amqp_basic_properties_t_
+v4l2_capture_mode	./mediapipe_impl.h	/^    guint           v4l2_capture_mode;$/;"	m	struct:_MediaSource
+v4l2_device	./main.c	/^    gchar               v4l2_device[DEVICE_STR_LEN];$/;"	m	struct:_Src_Setting	file:
+v4l2_enable_3a	./mediapipe_impl.h	/^    gboolean        v4l2_enable_3a;$/;"	m	struct:_MediaSource
+v4l2_io_mode	./main.c	/^    guint               v4l2_io_mode;$/;"	m	struct:_Src_Setting	file:
+v4l2_sensor_id	./main.c	/^    guint               v4l2_sensor_id;$/;"	m	struct:_Src_Setting	file:
+v4l2_src_device	./mediapipe_impl.h	/^    gchar           *v4l2_src_device;$/;"	m	struct:_MediaSource
+v4l2_src_io_mode	./mediapipe_impl.h	/^    guint           v4l2_src_io_mode;$/;"	m	struct:_MediaSource
+v4l2_src_sensor_id	./mediapipe_impl.h	/^    guint           v4l2_src_sensor_id;$/;"	m	struct:_MediaSource
+val_awb_b	./mediapipe.h	/^	gdouble		val_awb_b;	$/;"	m	struct:_Cameara3a_WhiteBalance
+val_awb_cct_max	./mediapipe.h	/^	guint	 	val_awb_cct_max;$/;"	m	struct:_Cameara3a_WhiteBalance
+val_awb_cct_min	./mediapipe.h	/^	guint 		val_awb_cct_min;$/;"	m	struct:_Cameara3a_WhiteBalance
+val_awb_gb	./mediapipe.h	/^	gdouble		val_awb_gb;	$/;"	m	struct:_Cameara3a_WhiteBalance
+val_awb_gr	./mediapipe.h	/^	gdouble		val_awb_gr;	$/;"	m	struct:_Cameara3a_WhiteBalance
+val_awb_r	./mediapipe.h	/^	gdouble		val_awb_r;	$/;"	m	struct:_Cameara3a_WhiteBalance
+val_awb_speed	./mediapipe.h	/^	gdouble		val_awb_speed;$/;"	m	struct:_Cameara3a_WhiteBalance
+val_ep_flicker	./mediapipe.h	/^	gint		val_ep_flicker;	$/;"	m	struct:_Cameara3a_Exposure
+val_ep_manual_analoggain	./mediapipe.h	/^	gdouble		val_ep_manual_analoggain;$/;"	m	struct:_Cameara3a_Exposure
+val_ep_manual_time	./mediapipe.h	/^	gint64		val_ep_manual_time;		$/;"	m	struct:_Cameara3a_Exposure
+val_ep_max_analoggain	./mediapipe.h	/^	gdouble		val_ep_max_analoggain;	$/;"	m	struct:_Cameara3a_Exposure
+val_ep_mode	./mediapipe.h	/^	gint		val_ep_mode;$/;"	m	struct:_Cameara3a_Exposure
+val_ep_offset	./mediapipe.h	/^	gdouble		val_ep_offset;$/;"	m	struct:_Cameara3a_Exposure
+val_ep_speed	./mediapipe.h	/^	gdouble		val_ep_speed;$/;"	m	struct:_Cameara3a_Exposure
+val_ep_timerange_max	./mediapipe.h	/^	gint64	 	val_ep_timerange_max;	$/;"	m	struct:_Cameara3a_Exposure
+val_ep_timerange_min	./mediapipe.h	/^	gint64 		val_ep_timerange_min;$/;"	m	struct:_Cameara3a_Exposure
+val_ep_window	./mediapipe.h	/^	XCam3AWindow	val_ep_window;	$/;"	m	struct:_Cameara3a_Exposure
+val_gm_gbce	./mediapipe.h	/^	gboolean	val_gm_gbce;$/;"	m	struct:_Cameara3a_Others
+val_gm_table_b	./mediapipe.h	/^	double		val_gm_table_b[GAMMATABLESIZE];	$/;"	m	struct:_Cameara3a_Others
+val_gm_table_g	./mediapipe.h	/^	double		val_gm_table_g[GAMMATABLESIZE];$/;"	m	struct:_Cameara3a_Others
+val_gm_table_r	./mediapipe.h	/^	double		val_gm_table_r[GAMMATABLESIZE];$/;"	m	struct:_Cameara3a_Others
+val_meter_mode	./mediapipe.h	/^	gint		val_meter_mode;	$/;"	m	struct:_Cameara3a_Exposure
+val_night_mode	./mediapipe.h	/^    gboolean    val_night_mode;$/;"	m	struct:_Cameara3a_Others
+val_noise_reduction_level	./mediapipe.h	/^	guint8      val_noise_reduction_level;$/;"	m	struct:_Cameara3a_PicQuality
+val_pq_brightness	./mediapipe.h	/^	guint8		val_pq_brightness;$/;"	m	struct:_Cameara3a_PicQuality
+val_pq_contrast	./mediapipe.h	/^	guint8		val_pq_contrast;$/;"	m	struct:_Cameara3a_PicQuality
+val_pq_hue	./mediapipe.h	/^	guint8		val_pq_hue;$/;"	m	struct:_Cameara3a_PicQuality
+val_pq_saturation	./mediapipe.h	/^	guint8		val_pq_saturation;	$/;"	m	struct:_Cameara3a_PicQuality
+val_pq_sharpness	./mediapipe.h	/^	guint8		val_pq_sharpness;$/;"	m	struct:_Cameara3a_PicQuality
+val_tnr_level	./mediapipe.h	/^    guint8      val_tnr_level;$/;"	m	struct:_Cameara3a_PicQuality
+val_wb_mode	./mediapipe.h	/^	gint		val_wb_mode;$/;"	m	struct:_Cameara3a_WhiteBalance
+value	./amqp.h	/^  amqp_field_value_t value;   \/**< the table entry values *\/$/;"	m	struct:amqp_table_entry_t_
+value	./amqp.h	/^  uint32_t value;     \/**< the value before the decimal point is applied *\/$/;"	m	struct:amqp_decimal_t_
+value	./amqp.h	/^  } value;              \/**< a union of the value *\/$/;"	m	struct:amqp_field_value_t_	typeref:union:amqp_field_value_t_::__anon5
+valuedouble	./cJSON.h	/^	double valuedouble;			\/* The item's number, if type==cJSON_Number *\/$/;"	m	struct:cJSON
+valueint	./cJSON.h	/^	int valueint;				\/* The item's number, if type==cJSON_Number *\/$/;"	m	struct:cJSON
+valuestring	./cJSON.h	/^	char *valuestring;			\/* The item's string, if type==cJSON_String *\/$/;"	m	struct:cJSON
+version_major	./amqp_framing.h	/^  uint8_t version_major;$/;"	m	struct:amqp_connection_start_t_
+version_minor	./amqp_framing.h	/^  uint8_t version_minor;$/;"	m	struct:amqp_connection_start_t_
+vhost	./amqp.h	/^  char *vhost;                \/**< the virtual host on the broker to connect to, a good default is "\/" *\/$/;"	m	struct:amqp_connection_info
+video_frame_bright_callback	./main.c	/^video_frame_bright_callback ($/;"	f	file:
+video_frame_jpeg_callback	./main.c	/^video_frame_jpeg_callback (GstVideoPreprocBuffer *video_buf, gpointer user_data, VideoChannelIndex channel)$/;"	f	file:
+video_frame_smart_callback	./main.c	/^video_frame_smart_callback ($/;"	f	file:
+videorate	./mediapipe_impl.h	/^    GstElement      *videorate;$/;"	m	struct:_VideoChannel
+videorate_filter	./mediapipe_impl.h	/^    GstElement      *videorate_filter;$/;"	m	struct:_VideoChannel
+virtual_host	./amqp_framing.h	/^  amqp_bytes_t virtual_host;$/;"	m	struct:amqp_connection_open_t_
+vpp_autohdr_mode	./mediapipe_impl.h	/^    GstVideoPreprocAutoHDRMode vpp_autohdr_mode;$/;"	m	struct:_MediaPreProc
+vpp_enable_autohdr	./mediapipe_impl.h	/^    gboolean        vpp_enable_autohdr;$/;"	m	struct:_MediaPreProc
+warning_level	./main.c	/^unsigned int warning_level = 3;$/;"	v
+wb	./mediapipe.h	/^    Cameara3a_WhiteBalance		 	 wb;$/;"	m	struct:_3a_Config
+width	./main.c	/^int width;$/;"	m	struct:_Rect_Facedetect_Jpeg	file:
+width	./mediapipe.c	/^    guint               width;$/;"	m	struct:_ResolutionPack	file:
+width	./mediapipe_impl.h	/^    guint           width;$/;"	m	struct:_MediaSource
+width	./utest/simplepipe/simplepipe.c	/^    guint               width;$/;"	m	struct:_MyChannelInfo	file:
+wire_frames	./main.c	/^    GstVideoPreprocWireFrame *wire_frames;$/;"	m	struct:_WireFrameData	file:
+wire_frames	./utest/simplepipe/simplepipe.c	/^const GstVideoPreprocWireFrame wire_frames[PREPARED_WIRE_FRME_NUM] = {$/;"	v
+write	./amqp_framing.h	/^  amqp_boolean_t write;$/;"	m	struct:amqp_access_request_t_
+writev	./amqp_socket.h	/^  amqp_socket_writev_fn writev;$/;"	m	struct:amqp_socket_class_t
+x	./main.c	/^int x;$/;"	m	struct:_Rect_Facedetect_Jpeg	file:
+y	./main.c	/^int y;$/;"	m	struct:_Rect_Facedetect_Jpeg	file:

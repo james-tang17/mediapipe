@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<conf3a>
+	<!-- white balance -->
+    <white-balance enable = "1">
+		<mode> 0 </mode>			<!-- -1: unset, 0: auto, 1: mannual, 2: daylith, 3: sunset, 4: cloudy, 5: tungsten, 6: fluorescent, 7: warm_fluorescent, 8: shadow, 9: warm_incandescent  -->
+		<speed> 1.0 </speed>		<!-- range (0.0, 1.0], default 1.0 -->
+		<color-temperature cct_min="0" cct_max="0" />  <!-- cct range [0, 10000] default: min=0, max=0; -->
+		<manual-gain  gr="0.0" r="0.0" gb="0.0" b="0.0" />
+	</white-balance>
+	
+	<!-- exposure -->
+    <exposure enable="1">
+		<mode> 0 </mode>						<!-- -1: unset, 0: auto, 1: manual -->
+		<meter-mode> 0 </meter-mode> 						<!-- 0: auto, 1: spot, 2: center -->
+		<window startx="0" starty="0" endx="1000" endy="1000" weight="10" />  <!-- enable only when meter-mode=1 -->
+		<ev-shift> 0.0 </ev-shift>	<!-- -4.0 < @ev_offset < 4.0; default 0.0 -->
+		<speed> 1.0 </speed>								<!-- range (0.0, 1.0), default 1.0 -->
+		<flicker-mode> 0 </flicker-mode>		<!-- 0: auto, 1: 50hz, 2: 60hz, 3: off -->
+		
+		<manual-exposure-time> 0 </manual-exposure-time>	<!-- < @time_in_us < 1000000/fps; default 0, disable -->
+		<manual-analog-gain> 0.0 </manual-analog-gain>			<!-- multiplier, suggested @gain value, 1.0 <= @gain <= 40.0; default 0.0, disable -->
+		
+		<max-analog-gain> 0.0 </max-analog-gain>  <!-- range [1.0, 40.0], default 0.0, disable -->
+		<exposure-time-range  min_time_us="0" max_time_us="0" /> <!-- timerange (0, 1000000/fps]; default 0, disable -->
+	</exposure>	
+	
+	<!-- manual picture quality -->
+    <!-- value range [0, 255]; default 128 -->
+	<manual-pq enable="1">
+        <noise-reduction> 128 </noise-reduction>    <!-- bnr and ynr -->
+        <temporal-noise-reduction> 128 </temporal-noise-reduction>  <!-- tnr -->
+		<brightness> 128 </brightness> 				<!-- 0 <= @value <= 255, xcam convert to -1.0 ~ 1.0  -->
+		<contrast> 128 </contrast>
+		<hue> 128 </hue>
+		<saturation> 128 </saturation>
+		<sharpness> 128 </sharpness>
+	</manual-pq>
+	
+	<!-- others -->
+	<others enable="1">
+		<gamma-table fgamma_r="0.0"  fgamma_g="0.0" fgamma_b="0.0" /> 	<!-- 1/r, suggest r>=0.5, r<=2.5; default 0.0, disable -->
+		<gbce> 0 </gbce> 				<!-- 0: diable, 1: enable -->
+		<night-mode> 0 </night-mode> 	<!-- 0: diable, 1: enable -->
+	</others>
+</conf3a>

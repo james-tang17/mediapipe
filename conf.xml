@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<pipeline>
+    <src>1</src>                      <!-- 0: use videotestsrc, 1: use v4l2src, 2: use filesrc -->
+
+    <!-- filesrc property settings, valid ONLY if filesrc enabled -->
+    <location>fhd.264</location>
+
+    <!-- v4l2src property settings, valid ONLY if v4l2src enabled -->
+    <!-- sensor id num -->
+    <v4l2src-sensor-id>3</v4l2src-sensor-id>
+    <v4l2src-color-effect>0</v4l2src-color-effect>
+
+    <!-- device num -->
+    <v4l2src-device>/dev/video3</v4l2src-device>
+
+    <!-- v4l2src io-mode
+        2: mmap                 - GST_V4L2_IO_MMAP
+        4: dmabuf               - GST_V4L2_IO_DMABUF
+        others: unsupported
+    -->
+    <v4l2src-io-mode>4</v4l2src-io-mode>
+    <enable-3a>1</enable-3a>					<!-- 0:disable 3A for v4l2src, 1: enable -->
+    <capture-mode>1</capture-mode>				<!-- 0:still, 1:video, 2:preview -->
+    <frame-rate>25</frame-rate>                                 <!-- video framerate in fps -->
+    <run-time>0</run-time>                                    <!-- video running time in second, 0: endless running -->
+    <jpeg-crop>0</jpeg-crop>                                    <!-- 0: disable test of jpep crop, 1: enable test of jpeg crop -->
+    <jpeg-crop-offset-x>10</jpeg-crop-offset-x>                 <!-- 0: x offset of crop region -->
+    <jpeg-crop-offset-y>10</jpeg-crop-offset-y>                 <!-- 0: y offset of crop retion -->
+    <jpeg-crop-width>352</jpeg-crop-width>                      <!-- widht of crop region -->
+    <jpeg-crop-height>288</jpeg-crop-height>                    <!-- height of crop region -->
+
+    <smart-factor>0.25</smart-factor>  <!-- scaledown factor for smart channel. valid range: [0.1, 1.0], < 0 to use smart-resolution -->
+
+    <!-- resolution of smart channel:
+        0: 176_100      - 176 x 100
+        1: 352_198      - 352 x 198
+        2: 480_270      - 480 x 270
+        3: 352_200      - 352 x 200
+        4: 480_272      - 480 x 272
+        5: cif          - 352 x 288
+        6: d1           - 704 x 576
+        -->
+    <smart-resolution>0</smart-resolution>
+    <enable-facedetect>0</enable-facedetect>    <!-- 0:disable facedetect, 1:enable facedetect -->
+    <facedetect-conf>0</facedetect-conf>  <!-- 0:haar 1:lpb  -->
+    <facedetect-interval>10</facedetect-interval>  <!-- frame interval between 2 detection  -->
+    <facedetect-mode>1</facedetect-mode>
+    <enable-getfacepic>0</enable-getfacepic>    <!-- 0:disable getfacepic, 1:enable getfacepic -->
+    <enable-facerecognise>0</enable-facerecognise> <!-- 0:disable facerecognise, 1:enable facerecognise -->
+    <enable-lumagain-threshold>0</enable-lumagain-threshold> <!-- 0:disable lumagain_threshold, 1:enable lumagain_threshold -->
+    <lumagain-threshold-value>100</lumagain-threshold-value> <!-- lumagain-threshold-value -->
+    <enable-bright-compensation>0</enable-bright-compensation>                       <!-- 0:disable bright.  1:enable-bright -->
+    <enable-autohdr>0</enable-autohdr>                       <!-- 0:disable autohdr.  1:enable-autohdr -->
+    <autohdr-mode>0</autohdr-mode>            <!-- 0:disable. 1:auto mode. 2:drak mode. 3.mid mode. 4.white mode -->
+    <enable-hdr-custom>0</enable-hdr-custom>  <!-- 0:disable hdr-custom.  1:enable hdr-custom -->
+    <enable-hdr-custom-rgb>0</enable-hdr-custom-rgb>  <!-- 0:disable hdr-custom-rgb.  1:enable hdr-custom-rgb -->
+    <hdr-custom-table>2</hdr-custom-table>
+    <hdr-custom-rgb-table>2</hdr-custom-rgb-table>
+    <rotation>1</rotation>                    <!-- 1: don't rotate 2: 90-degree 3: 180-degree 4:270-degree   -->
+    <flip>0</flip>                            <!-- 0: don't flip   1: flip horizontal  2: flip vertically  -->
+    <enable-mask>0</enable-mask>              <!-- 0: disable masking sample code,   1: enable masking sample code -->
+    <enable-wireframe>0</enable-wireframe>    <!-- 0: disable wireframe sample code, 1: enable wireframe sample code-->
+    <test-osd>1</test-osd>                    <!-- 0: disable osd sample code, 1: enable osd sample code-->
+    <test-toggle-channel>0</test-toggle-channel>  <!-- 0: disable testing toggle channel, 1: enable testing toggle channel-->
+    <luma-gain>100</luma-gain>                <!-- percent unit. 50:half luminance, 200: double luminance -->
+    <jpeg-out-mode>0</jpeg-out-mode>          <!-- 0: save jpeg into output buffer, 1: save jpeg into files  -->
+    <jpeg-interval>1</jpeg-interval>          <!-- 1: do jpeg encode every frame, 2: do jpeg encode every 2 frames  -->
+    <enable-qos>1</enable-qos>                <!-- 0: don't throttle jpeg encoding 1: throttle jpeg encoding when pipeline queue is full,   -->
+    <warning-level>3</warning-level>          <!-- once the load-watcher queue or encode queue have warning-level buffers queued, qos starts to work -->
+    <smart-control>0</smart-control>          <!-- 0: always push 1080p buffer regardless the result of smart analysis -->
+                                              <!-- 1: the result of smart analysis determine whether to push a 1080p buffer -->
+    <dvs-offset-x>0</dvs-offset-x>            <!-- set video global offset for x axis, >0: move right, ==0: no offset, <0: move left -->
+    <dvs-offset-y>0</dvs-offset-y>            <!-- set video global offset for y axis  >0: move down, ==0: no offset,  <0: move up   -->
+    <channel id="0" enable="1">             <!-- channel_0 1080p-->
+        <!-- encoder properties
+                rate-control    - rate control mode (1: cqp, 2: cbr, 4:vbr, 5:vbr_constrained)
+                bitrate         - desired bitrate in kbps, 0: auto
+                enable-cabac    - 0: disable CABAC mode, 1: enable CABAC mode
+                mv              - 0: none 1: 16x16 MV 2: 4x4 MV
+                gop-m           - frames between two I-frames
+                gop-n           - B frames between two P-frames (0 - 10), 0: no B frames
+                profile         - max accepted profile 0:baseline 1:main 2:high
+        -->
+        <encoder enable="1" rate-control="2" bitrate="0" enable-cabac="1" enable-dct8x8="0" mv="1" gop-m="30" gop-n="0" profile="2" />
+        <sink-type>4</sink-type>            <!-- 0: use FAKE_SINK 1: use FILE_SINK 2: use tcpclientsink, 3: use vaapisink for localpreview, 4: use rtsp,  others: TODO (V4L2, UDP...)  -->
+        <host-ip>10.239.37.8</host-ip>      <!-- host ip for tcpclientsink   -->
+        <port>3000</port>                   <!-- port for tcpclientsink  -->
+    </channel>
+
+    <channel id="1" enable="1">             <!-- channel_1 jpeg-->
+    </channel>
+
+    <channel id="2" enable="0">             <!-- channel_2 720p-->
+        <encoder enable="1" rate-control="2" bitrate="0" enable-cabac="1" enable-dct8x8="0" mv="1" gop-m="30" gop-n="0" profile="2" />
+        <sink-type>1</sink-type>
+        <host-ip>10.239.37.8</host-ip>      <!-- host ip for tcpclientsink   -->
+        <port>3000</port>                   <!-- port for tcpclientsink  -->
+    </channel>
+
+    <channel id="3" enable="0">             <!-- channel_3 D1-->
+        <encoder enable="1" rate-control="2" bitrate="0" enable-cabac="1" enable-dct8x8="0" mv="1" gop-m="30" gop-n="0" profile="2" />
+        <sink-type>0</sink-type>
+        <host-ip>10.239.37.8</host-ip>      <!-- host ip for tcpclientsink   -->
+        <port>3001</port>                   <!-- port for tcpclientsink  -->
+    </channel>
+
+    <channel id="4" enable="0">             <!-- channel_4 CIF-->
+        <encoder enable="1" rate-control="2" bitrate="0" enable-cabac="1" enable-dct8x8="0" mv="1" gop-m="30" gop-n="0" profile="2" />
+        <sink-type>0</sink-type>
+        <host-ip>10.239.37.8</host-ip>      <!-- host ip for tcpclientsink   -->
+        <port>3002</port>                   <!-- port for tcpclientsink  -->
+    </channel>
+
+    <channel id="5" enable="0">             <!-- channel_5 480x270-->
+        <encoder enable="1" rate-control="2" bitrate="0" enable-cabac="1" enable-dct8x8="0" mv="1" gop-m="30" gop-n="0" profile="2" />
+        <sink-type>1</sink-type>
+        <host-ip>10.239.37.8</host-ip>      <!-- host ip for tcpclientsink   -->
+        <port>3000</port>                   <!-- port for tcpclientsink  -->
+    </channel>
+
+    <channel id="6" enable="0">             <!-- channel_6 352x198-->
+        <encoder enable="1" rate-control="2" bitrate="0" enable-cabac="1" enable-dct8x8="0" mv="1" gop-m="30" gop-n="0" profile="2" />
+        <sink-type>1</sink-type>
+        <host-ip>10.239.37.8</host-ip>      <!-- host ip for tcpclientsink   -->
+        <port>3000</port>                   <!-- port for tcpclientsink  -->
+    </channel>
+
+    <channel id="7" enable="0">             <!-- channel_7 480x272-->
+        <encoder enable="1" rate-control="2" bitrate="0" enable-cabac="1" enable-dct8x8="0" mv="1" gop-m="30" gop-n="0" profile="2" />
+        <sink-type>1</sink-type>
+        <host-ip>10.239.37.8</host-ip>      <!-- host ip for tcpclientsink   -->
+        <port>3000</port>                   <!-- port for tcpclientsink  -->
+    </channel>
+
+    <channel id="8" enable="0">             <!-- channel_8 352x200-->
+        <encoder enable="1" rate-control="2" bitrate="0" enable-cabac="1" enable-dct8x8="0" mv="1" gop-m="30" gop-n="0" profile="2" />
+        <sink-type>1</sink-type>
+        <host-ip>10.239.37.8</host-ip>      <!-- host ip for tcpclientsink   -->
+        <port>3000</port>                   <!-- port for tcpclientsink  -->
+    </channel>
+
+    <!-- smart channel, set node smart-resolution to specify resolution-->
+    <channel id="9" enable="0">
+        <encoder enable="0" rate-control="2" bitrate="0" enable-cabac="1" enable-dct8x8="0" mv="0" gop-m="30" gop-n="0" profile="2" />
+        <sink-type>0</sink-type>
+    </channel>
+</pipeline>

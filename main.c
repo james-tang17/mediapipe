@@ -3216,9 +3216,8 @@ handle_keyboard (GIOChannel *source, GIOCondition cond, gpointer data)
          //0 : to capture 1080p raw data after preprocessing but before 264 encoding
          g_free(capture_raw_frame (pipe, 1));
       }  else if (str[0] == 'q') {
-         //jpgenc_misc_config.jpeg_keyboard_flag = 1;
-	     media_pipe_set_src_frame_rate(pipe, 10);
-         printf("set frame rate to 10\n");
+         jpgenc_misc_config.jpeg_keyboard_flag = 1;
+         printf("keyboard to save jpeg file.\n");
       }  else if (str[0] == 'a') {
          dump_smart_analysis_raw_data = 1;
       }  else if (str[0] == '3') {

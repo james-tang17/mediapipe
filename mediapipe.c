@@ -69,7 +69,6 @@
 #define MEDIA_PIPE_TCP_SINK_NAME        "tcpclientsink"
 #define MEDIA_PIPE_KMS_SINK_NAME        "vaapisink"
 #define MEDIA_PIPE_APP_SRC_NAME     "appsrc"
-#define MEDIA_PIPE_VIDEORATE_NAME  "videorate"
 
 
 #define QUEUE_PLUGIN_NAME     "queue"
@@ -1872,7 +1871,6 @@ enable_video_channel(MediaPipe *pipe, VideoChannelIndex channel_num)
     VideoChannel *channel;
     gboolean h264_enable;
     GstPad *pad;
-	GstCaps *caps;
 
     if(pipe == NULL)
     {
@@ -1959,18 +1957,6 @@ enable_video_channel(MediaPipe *pipe, VideoChannelIndex channel_num)
         */
         if(h264_enable)
         {
-			channel->videorate = create_element (MEDIA_PIPE_VIDEORATE_NAME, NULL);
-			g_return_val_if_fail (channel->videorate, FALSE);
-
-			channel->videorate_filter = create_element (MEDIA_PIPE_CAPSFILTER_NAME, NULL);
-			g_return_val_if_fail (channel->videorate_filter, FALSE);
-
-	        caps = gst_caps_new_simple ("video/x-raw",
-                "framerate", GST_TYPE_FRACTION, impl->main_source.fps_n, impl->main_source.fps_d,
-                NULL);
-    		g_object_set (G_OBJECT (channel->videorate_filter), "caps", caps, NULL);
-    		gst_caps_unref (caps);
- 
             if(!channel->encoder.element)
             {
                 channel->encoder.element = create_element (MEDIA_PIPE_ENCODER_NAME, NULL);
@@ -2065,16 +2051,12 @@ enable_video_channel(MediaPipe *pipe, VideoChannelIndex channel_num)
             gst_bin_add_many (
                 GST_BIN (impl->main_pipeline),
                 channel->encoder_queue,
-                channel->videorate,
-                channel->videorate_filter,
                 channel->encoder.element,
                 channel->profile_converter,
                 channel->sink.element,
                 NULL);
 
             gst_element_sync_state_with_parent(channel->encoder.element);
-            gst_element_sync_state_with_parent(channel->videorate);
-            gst_element_sync_state_with_parent(channel->videorate_filter);
             gst_element_sync_state_with_parent(channel->encoder_queue);
             gst_element_sync_state_with_parent(channel->profile_converter);
             gst_element_sync_state_with_parent(channel->sink.element);
@@ -2083,9 +2065,7 @@ enable_video_channel(MediaPipe *pipe, VideoChannelIndex channel_num)
                                tempString[channel_num].pad_name,
                                channel->encoder_queue,
                                NULL);
-            link_element(channel->encoder_queue, channel->videorate);
-            link_element(channel->videorate, channel->videorate_filter);
-            link_element(channel->videorate_filter, channel->encoder.element);
+            link_element(channel->encoder_queue, channel->encoder.element);
             link_element(channel->encoder.element, channel->profile_converter);
             link_element(channel->profile_converter, channel->sink.element);
         }
@@ -3144,13 +3124,12 @@ media_pipe_set_src_frame_rate(MediaPipe *pipe, guint frame_rate)
 
     impl = IMPL_CAST(pipe);
 
-#if 0
     if(pipe->pipe_running)
     {
         LOG_ERROR("Pipeline is running, not support setting frame rate dynamically");
         return FALSE;
     }
-#endif
+
     impl->src_source.fps_n = frame_rate;
     impl->main_source.fps_n = frame_rate;
 

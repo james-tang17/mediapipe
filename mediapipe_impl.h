@@ -141,8 +141,6 @@ typedef struct _VideoChannel
     gboolean        channel_on;
     GstElement      *encoder_queue;
     GstElement      *jpeg_queue;
-    GstElement      *videorate;
-    GstElement      *videorate_filter;
     MediaEncoder    encoder;
     GstElement      *profile_converter;
 

@@ -23,7 +23,7 @@ JPEG_LIB=$(shell pkg-config libjpeg_interface --libs)
 JPEG_CFLAGS=$(shell pkg-config libjpeg_interface --cflags)
 
 # opecv API
-OPENCV_LIB=-lopencv_calib3d -lopencv_core -lopencv_features2d -lopencv_flann -lopencv_highgui -lopencv_imgproc -lopencv_ml -lopencv_objdetect -lopencv_photo -lopencv_stitching -lopencv_superres -lopencv_imgcodecs
+OPENCV_LIB=-lopencv_calib3d -lopencv_core -lopencv_features2d -lopencv_flann -lopencv_highgui -lopencv_imgproc -lopencv_ml -lopencv_objdetect -lopencv_photo -lopencv_stitching -lopencv_superres -lopencv_imgcodecs -lopencv_videostab -lopencv_video
 
 #rabbitmq API
 RABBITMQ_LIB=-lrabbitmq -lm
@@ -33,10 +33,13 @@ RABBITMQ_LIB=-lrabbitmq -lm
 CFLAGS+=$(GST_VIDEO_CFLAGS) $(GST_CFLAGS) $(GST_VAAPI_CFLAGS) $(MXML_CFLAGS) $(JPEG_CFLAGS) $(GST_APP_CFLAGS) -I.  -g -DDEBUG -Wall -fpermissive -std=gnu++11
 LDFLAGS+=$(GST_VIDEO_LIB) $(GST_LIB) $(GST_VAAPI_LIB) $(MXML_LIB) $(JPEG_LIB) $(GST_APP_LIB) $(OPENCV_LIB) $(RABBITMQ_LIB)
 
-CFLAGS += `pkg-config --cflags xcam`
+CFLAGS += `pkg-config --cflags xcam_core`
 LDFLAGS += '-lgstxcaminterface'  # /usr/lib/libgstxcaminterface.so
 
-SOURCES= mediapipe.c main.c facedetect.c utils.c cJSON.c
+CFLAGS += -fopenmp
+LDFLAGS += -fopenmp
+
+SOURCES= mediapipe.c main.c facedetect.c utils.c cJSON.c videostab.c
 OBJECTS=$(SOURCES:.c=.o)
 BIN=mediapipe
 
@@ -50,6 +53,3 @@ $(BIN) : $(OBJECTS)
 
 clean:
 	rm -f $(OBJECTS) $(BIN)
-
-install:
-	cp mediapipe /usr/bin/

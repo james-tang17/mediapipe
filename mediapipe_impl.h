@@ -43,6 +43,12 @@ typedef struct _MediaSource{
     gboolean        v4l2_enable_3a;
     guint           v4l2_capture_mode;
     
+    ImageProcessorType image_processor;
+    AnalyzerType    analyzer;
+    guint           cl_hdr_mode;
+    guint           cl_denoise_mode;
+    guint           cl_gamma_mode;
+
     GstElement      *gen_src;
 
     GstElement      *src_filter;
@@ -107,7 +113,12 @@ typedef struct _MediaEncoder{
     gpointer        user_data;
 }MediaEncoder;
 
-
+typedef struct _MediaVideorate {
+    GstElement      *element;
+    GstElement      *capsfilter;
+    guint           fps_n;
+    guint           fps_d;
+}MediaVideorate;
 
 typedef struct _MediaSink{
     MediaSinkType   type;
@@ -142,6 +153,7 @@ typedef struct _VideoChannel
     GstElement      *encoder_queue;
     GstElement      *jpeg_queue;
     MediaEncoder    encoder;
+    MediaVideorate  videorate;
     GstElement      *profile_converter;
 
     gboolean                    enable_osd;

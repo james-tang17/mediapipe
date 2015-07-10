@@ -49,12 +49,14 @@
     <enable-facerecognise>0</enable-facerecognise> <!-- 0:disable facerecognise, 1:enable facerecognise -->
     <enable-lumagain-threshold>0</enable-lumagain-threshold> <!-- 0:disable lumagain_threshold, 1:enable lumagain_threshold -->
     <lumagain-threshold-value>100</lumagain-threshold-value> <!-- lumagain-threshold-value -->
+    <enable-bright-compensation>0</enable-bright-compensation>                       <!-- 0:disable bright.  1:enable-bright -->
     <enable-autohdr>0</enable-autohdr>                       <!-- 0:disable autohdr.  1:enable-autohdr -->
     <autohdr-mode>1</autohdr-mode>            <!-- 0:disable. 1:auto mode.  2:drak mode. 3:mid mode. 4.white mode -->
     <enable-hdr-custom>0</enable-hdr-custom>  <!-- 0:disable hdr-custom.  1:enable hdr-custom -->
     <enable-hdr-custom-rgb>0</enable-hdr-custom-rgb>  <!-- 0:disable hdr-custom-rgb.  1:enable hdr-custom-rgb -->
     <hdr-custom-table>2</hdr-custom-table>
     <hdr-custom-rgb-table>2</hdr-custom-rgb-table>
+	<autohdr-cl-mode>0</autohdr-cl-mode>            <!-- 0:disable. 1:LAB mode. 2:RGB mode-->
     <rotation>1</rotation>                    <!-- 1: don't rotate 2: 90-degree 3: 180-degree 4:270-degree   -->
     <flip>0</flip>                            <!-- 0: don't flip   1: flip horizontal  2: flip vertically  -->
     <enable-mask>0</enable-mask>              <!-- 0: disable masking sample code,   1: enable masking sample code -->
@@ -70,6 +72,9 @@
                                               <!-- 1: the result of smart analysis determine whether to push a 1080p buffer -->
     <dvs-offset-x>0</dvs-offset-x>            <!-- set video global offset for x axis, >0: move right, ==0: no offset, <0: move left -->
     <dvs-offset-y>0</dvs-offset-y>            <!-- set video global offset for y axis  >0: move down, ==0: no offset,  <0: move up   -->
+	<xcam-mode>0</xcam-mode>            	  <!-- 0: ISP mode. 1: CL mode. -->
+	<denoise-mode>0</denoise-mode>        	  <!-- 0: disable denoise. 1: simple mode. 2: bilateral mode.-->
+	<enable-dvs>0</enable-dvs>        		  <!-- 0: disable dvs. 1: enable dvs. -->
     <channel id="0" enable="1">             <!-- channel_0 1080p-->
         <!-- encoder properties
                 rate-control    - rate control mode (1: cqp, 2: cbr, 4:vbr, 5:vbr_constrained)
@@ -82,8 +87,8 @@
         -->
         <encoder enable="0" rate-control="2" bitrate="0" enable-cabac="1" enable-dct8x8="0" mv="1" gop-m="30" gop-n="0" profile="2" />
         <sink-type>4</sink-type>            <!-- 0: use FAKE_SINK 1: use FILE_SINK 2: use tcpclientsink, 3: use vaapisink for localpreview, 4: use rtsp,  others: TODO (V4L2, UDP...)  -->
-        <host-ip>10.239.37.8</host-ip>      <!-- host ip for tcpclientsink   -->
-        <port>3000</port>                   <!-- port for tcpclientsink  -->
+        <host-ip>127.0.0.1</host-ip>      <!-- host ip for tcpclientsink   -->
+        <port>5004</port>                   <!-- port for tcpclientsink  -->
     </channel>
 
     <channel id="1" enable="1">             <!-- channel_1 jpeg-->

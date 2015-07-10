@@ -163,6 +163,22 @@ typedef enum _SmartResolution
     SMART_RES_D1
 }SmartResolution;
 
+typedef enum {
+    ISP_IMAGE_PROCESSOR = 0,
+    CL_IMAGE_PROCESSOR,
+} ImageProcessorType;
+
+typedef enum {
+    SIMPLE_ANALYZER = 0,
+    AIQ_ANALYZER,
+} AnalyzerType;
+
+typedef enum {
+    CL_HDR = 0,
+    CL_DENOISE,
+    CL_GAMMA,
+} CLFeature;
+
 typedef struct{
    GMutex lock;
    gint   need_resource;
@@ -233,7 +249,10 @@ typedef struct _Cameara3a_Exposure
 	gint		val_meter_mode;	
 
 	//expusre window
-	XCam3AWindow	val_ep_window;	
+        XCam3AWindow    val_ep_window[XCAM_AE_MAX_METERING_WINDOW_COUNT];
+
+    //expusre window count
+        guint           val_ep_window_count;
 
 	//exposure offset
 	gdouble		val_ep_offset;
@@ -503,6 +522,21 @@ media_pipe_set_src_format (MediaPipe *pipe, GstVideoFormat format);
  */
 gboolean
 media_pipe_set_src_frame_rate(MediaPipe *pipe, guint frame_rate);
+
+/*!
+ * Set frame rate for encoder of one channel. It could be different source frame rate.
+ * Higher or lower are both accepted. Once lower, will drop frames. Once Higer, duplicates frames.
+ * Meanwhile the timestamps of each frames will be updated for the new frame rate.
+ * It will be the same as source frame rate by default.
+ *
+ * @param[in] pipe MediaPipe context
+ * @param[in] channel video channel number 
+ * @param[in] frame_rate	numerator of the frame rate, denominator is always 1	 
+ * 
+ * @return FALSE if pipe is NULL. 
+ */
+gboolean
+media_pipe_set_encoder_frame_rate(MediaPipe *pipe, VideoChannelIndex channel, guint frame_rate);
 
 /*!
  * Choose a resolution for all video flows to do the the smart video analystic. 
@@ -900,5 +934,11 @@ media_pipe_start (MediaPipe *pipe, gboolean reconfig_3a);
  */
 void
 media_pipe_stop (MediaPipe *pipe);
+
+gboolean
+media_pipe_set_src_image_processor (MediaPipe *pipe, guint image_processor);
+
+gboolean
+media_pipe_set_cl_feature (MediaPipe *pipe, CLFeature feature, int mode);
 
 #endif //MEDIA_PIPE_H

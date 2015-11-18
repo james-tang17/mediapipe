@@ -165,9 +165,11 @@ typedef struct _Src_Setting
     SmartResolution     smart_resolution;
     gchar               v4l2_device[DEVICE_STR_LEN];
     guint               image_processor;
+    guint               analyzer;
     guint               cl_hdr_mode;
     guint               cl_denoise_mode;
     guint               cl_gamma_mode;
+    gboolean            enable_dpc;
 }Src_Setting;
 
 typedef struct _Video_Channel_Config
@@ -788,6 +790,18 @@ rabbitmq_listening_func (gpointer data)
 							goto end;
 						}
 					}
+                                        else if(strcmp(ppara->valuestring, "enable_dpc") == 0)
+                                        {
+                                            cJSON *pval = cJSON_GetObjectItem ( json, "val" );
+                                            if(pval)
+                                            {
+                                                gboolean enable_dpc= pval->valueint;
+                                                media_pipe_set_cl_feature(pipe, CL_DPC, enable_dpc);
+                                                LOG_DEBUG ("set dpc enable = %d", enable_dpc);
+                                                sprintf(retbuff, "set dpc enable = %d", enable_dpc);
+                                                goto end;
+                                            }
+                                        }
 					else if (strcmp(ppara->valuestring, "enable_dvs") == 0)
 					{
 					    cJSON *pval = cJSON_GetObjectItem ( json, "val" );
@@ -1891,6 +1905,7 @@ parse_config()
             LOG_DEBUG("enable 3A: %d", src_setting.enable_3a);
 
         }else
+#if 0
         if(strcmp(name, "capture-mode") == 0)
         {
             src_setting.capture_mode = atoi(node->child->value.text.string);
@@ -1898,6 +1913,7 @@ parse_config()
             LOG_DEBUG("capture-mode %d", src_setting.capture_mode);
 
         }else
+#endif
         if(strcmp(name, "frame-rate") == 0)
         {
             src_setting.frame_rate = atoi(node->child->value.text.string);
@@ -2130,6 +2146,11 @@ parse_config()
             src_setting.image_processor = atoi(node->child->value.text.string);
             LOG_DEBUG("\t xcam image processor: %s", src_setting.image_processor?"CL":"ISP");
         }else
+        if (strcmp(name, "analyzer") == 0)
+        {
+            src_setting.analyzer = atoi(node->child->value.text.string);
+            LOG_DEBUG("\t xcam analyzer: %d", src_setting.analyzer);
+        }else
         if (strcmp(name, "autohdr-cl-mode") == 0)
         {
             src_setting.cl_hdr_mode = atoi(node->child->value.text.string);
@@ -2142,8 +2163,13 @@ parse_config()
         }else
         if (strcmp(name, "gamma-mode") == 0)
         {
-            src_setting.image_processor = atoi(node->child->value.text.string);
+            src_setting.cl_gamma_mode = atoi(node->child->value.text.string);
             LOG_DEBUG("\t xcam cl gamma mode: %d", src_setting.cl_gamma_mode);
+        }else
+        if (strcmp(name, "enable-dpc") == 0)
+        {
+            src_setting.enable_dpc = atoi(node->child->value.text.string);
+            LOG_DEBUG("\t xcam cl dpc mode: %d", src_setting.enable_dpc);
         }else
         if(strcmp(name, "channel") == 0)
         {
@@ -2455,7 +2481,7 @@ int main (int argc,  char *agrv[])
         goto end;
     }
 
-    result = media_pipe_set_src_image_processor (media_pipe, src_setting.image_processor);
+    result = media_pipe_set_src_image_processor (media_pipe, src_setting.image_processor, src_setting.analyzer);
     if(!result)
     {
         LOG_ERROR("Set image processor Fail");
@@ -2465,6 +2491,7 @@ int main (int argc,  char *agrv[])
     media_pipe_set_cl_feature (media_pipe, CL_HDR, src_setting.cl_hdr_mode);
     media_pipe_set_cl_feature (media_pipe, CL_DENOISE, src_setting.cl_denoise_mode);
     media_pipe_set_cl_feature (media_pipe, CL_GAMMA, src_setting.cl_gamma_mode);
+    media_pipe_set_cl_feature (media_pipe, CL_DPC, src_setting.enable_dpc);
 
     result = media_pipe_set_src_size (media_pipe, 1920, 1080);
     if(!result)
@@ -2790,6 +2817,7 @@ reset_3a_config_picture_quality (Cameara3a_PicQuality *pq_config)
     memset (pq_config, 0, sizeof (*pq_config));
     pq_config->val_noise_reduction_level = 128;
     pq_config->val_tnr_level = 128;
+    pq_config->val_tnr_mode = 0;
     pq_config->val_pq_brightness = 128;
     pq_config->val_pq_contrast = 128;
     pq_config->val_pq_hue = 128;
@@ -3054,6 +3082,11 @@ parse_3a_config_others (mxml_node_t *others_node, Cameara3a_Others *others_confi
             others_config->val_night_mode = (atoi(node->child->value.text.string) > 0) ? TRUE:FALSE;
             LOG_DEBUG("\tparsing night mode (%d)", others_config->val_night_mode);
         }
+        if(strcmp(name, "analyze-interval") == 0)
+        {
+            others_config->val_analyze_interval = atoi(node->child->value.text.string);
+            LOG_DEBUG("\tparsing analyze interval (%d)", others_config->val_analyze_interval);
+        }
     }
     return TRUE;
 }
@@ -3081,6 +3114,11 @@ parse_3a_config_picture_quality (mxml_node_t *pq_node, Cameara3a_PicQuality *pq_
         {
             pq_config->val_tnr_level = atoi(node->child->value.text.string);
             LOG_DEBUG("\tparsing temporal noise reduction level (%d)", pq_config->val_tnr_level );
+        } else
+        if (strcmp(name, "tnr-mode") == 0)
+        {
+            pq_config->val_tnr_mode = atoi(node->child->value.text.string);
+            LOG_DEBUG("\tparsing temporal noise reduction mode (%d)", pq_config->val_tnr_mode );
         } else
         if (strcmp(name, "brightness") == 0)
         {

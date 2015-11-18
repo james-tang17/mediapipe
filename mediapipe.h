@@ -171,12 +171,15 @@ typedef enum {
 typedef enum {
     SIMPLE_ANALYZER = 0,
     AIQ_ANALYZER,
+    DYNAMIC_ANALYZER,
+    HYBRID_ANALYZER,
 } AnalyzerType;
 
 typedef enum {
     CL_HDR = 0,
     CL_DENOISE,
     CL_GAMMA,
+    CL_DPC,
 } CLFeature;
 
 typedef struct{
@@ -282,6 +285,7 @@ typedef struct _Cameara3a_PicQuality
 {
 	guint8      val_noise_reduction_level;
     guint8      val_tnr_level;
+    guint8      val_tnr_mode;
 	guint8		val_pq_brightness;
 	guint8		val_pq_contrast;
 	guint8		val_pq_hue;
@@ -302,6 +306,7 @@ typedef struct _Cameara3a_Others
 	//gbce
 	gboolean	val_gm_gbce;
     gboolean    val_night_mode;
+	guint32		val_analyze_interval;
 }Cameara3a_Others;
 
 typedef struct _3a_Config
@@ -538,6 +543,8 @@ media_pipe_set_src_frame_rate(MediaPipe *pipe, guint frame_rate);
 gboolean
 media_pipe_set_encoder_frame_rate(MediaPipe *pipe, VideoChannelIndex channel, guint frame_rate);
 
+gboolean
+media_pipe_set_src_image_processor (MediaPipe *pipe, guint processor, guint analyzer);
 /*!
  * Choose a resolution for all video flows to do the the smart video analystic. 
  * For performance issue, we only support analystic for smaller resolution below D1 

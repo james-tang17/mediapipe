@@ -1846,6 +1846,8 @@ enable_video_channel(MediaPipe *pipe, VideoChannelIndex channel_num)
 
            queue_name = g_strdup_printf("%s-encode-queue", channel_name[channel_num]);
            channel->encoder_queue = create_element (QUEUE_PLUGIN_NAME, queue_name);
+           g_object_set (G_OBJECT (channel->encoder_queue), "max-size-buffers", 10, "max-size-time",				
+			           		(guint64) 0, "max-size-bytes", 0, "leaky", 1, NULL);
            g_free(queue_name);
            g_return_val_if_fail (channel->encoder_queue, FALSE);
         }
@@ -1853,6 +1855,9 @@ enable_video_channel(MediaPipe *pipe, VideoChannelIndex channel_num)
         if (!channel->videorate.element) {
             channel->videorate.element = create_element (MEDIA_PIPE_VIDEORATE_NAME, NULL);
             g_return_val_if_fail (channel->videorate.element, FALSE);
+            g_object_set (G_OBJECT (channel->videorate.element), 
+						 "skip-to-first", TRUE, 
+						 NULL);	
 
             channel->videorate.capsfilter = create_element (MEDIA_PIPE_CAPSFILTER_NAME, NULL);
             g_return_val_if_fail (channel->videorate.capsfilter, FALSE);
@@ -1923,6 +1928,10 @@ enable_video_channel(MediaPipe *pipe, VideoChannelIndex channel_num)
         */
         if(!channel->sink.element)
         {
+            channel->sink.sinkqueue = create_element (QUEUE_PLUGIN_NAME, NULL);
+            g_return_val_if_fail (channel->sink.sinkqueue, FALSE);
+            g_object_set (G_OBJECT (channel->sink.sinkqueue), "max-size-time", (guint64) 0, NULL);
+					
             switch(channel->sink.type)
             {
                 case FILE_SINK:
@@ -1976,6 +1985,7 @@ enable_video_channel(MediaPipe *pipe, VideoChannelIndex channel_num)
                 channel->videorate.capsfilter,
                 channel->encoder.element,
                 channel->profile_converter,
+                channel->sink.sinkqueue,
                 channel->sink.element,
                 NULL);
 
@@ -1984,6 +1994,7 @@ enable_video_channel(MediaPipe *pipe, VideoChannelIndex channel_num)
             gst_element_sync_state_with_parent(channel->videorate.capsfilter);
             gst_element_sync_state_with_parent(channel->encoder_queue);
             gst_element_sync_state_with_parent(channel->profile_converter);
+	    gst_element_sync_state_with_parent(channel->sink.sinkqueue);
             gst_element_sync_state_with_parent(channel->sink.element);
 
             gst_element_link_pads (impl->preproc.element,
@@ -1994,7 +2005,8 @@ enable_video_channel(MediaPipe *pipe, VideoChannelIndex channel_num)
             link_element(channel->videorate.element, channel->videorate.capsfilter);
             link_element(channel->videorate.capsfilter, channel->encoder.element);
             link_element(channel->encoder.element, channel->profile_converter);
-            link_element(channel->profile_converter, channel->sink.element);
+	    link_element(channel->profile_converter, channel->sink.sinkqueue);
+            link_element(channel->sink.sinkqueue, channel->sink.element);
         }
         else
         {
@@ -2003,12 +2015,14 @@ enable_video_channel(MediaPipe *pipe, VideoChannelIndex channel_num)
                         channel->encoder_queue,
                         channel->videorate.element,
                         channel->videorate.capsfilter,
+			channel->sink.sinkqueue,
                         channel->sink.element,
                         NULL);
 
             gst_element_sync_state_with_parent(channel->encoder_queue);
             gst_element_sync_state_with_parent(channel->videorate.element);
             gst_element_sync_state_with_parent(channel->videorate.capsfilter);
+	    gst_element_sync_state_with_parent(channel->sink.sinkqueue);
             gst_element_sync_state_with_parent(channel->sink.element);
 
             gst_element_link_pads (impl->preproc.element,
@@ -2017,7 +2031,8 @@ enable_video_channel(MediaPipe *pipe, VideoChannelIndex channel_num)
                                NULL);
             link_element(channel->encoder_queue, channel->videorate.element);
 	    link_element(channel->videorate.element, channel->videorate.capsfilter);
-            link_element(channel->videorate.capsfilter, channel->sink.element);
+            link_element(channel->videorate.capsfilter, channel->sink.sinkqueue);
+	    link_element(channel->sink.sinkqueue, channel->sink.element);
         }
     }
 
@@ -2246,8 +2261,8 @@ build_pipeline (MediaPipe *pipe)
                 "io-mode", impl->src_source.v4l2_src_io_mode,
                 "enable-3a", impl->src_source.v4l2_enable_3a,
                 "device", impl->src_source.v4l2_src_device,
-                "capture-mode", impl->src_source.v4l2_capture_mode,
-                "coloreffect", global_v4l2src_color_effect,
+                //"capture-mode", impl->src_source.v4l2_capture_mode,
+                //"coloreffect", global_v4l2src_color_effect,
                 "imageprocessor", impl->src_source.image_processor,
                 "analyzer", impl->src_source.analyzer,
                 "fpsn", impl->src_source.fps_n,
@@ -2273,9 +2288,32 @@ build_pipeline (MediaPipe *pipe)
     g_object_set (impl->src_source.src_filter, "caps", caps, NULL);
     gst_caps_unref (caps);
 
+    // Create videorate to produce a perfect stream that matches the source pad's framerate.
+	if (!impl->src_source.src_videorate.element) {
+		impl->src_source.src_videorate.element = create_element (MEDIA_PIPE_VIDEORATE_NAME, NULL);
+		g_return_val_if_fail (impl->src_source.src_videorate.element, FALSE);
+		g_object_set (G_OBJECT (impl->src_source.src_videorate.element), 
+					 "skip-to-first", TRUE, 
+					 NULL); 
+	
+		impl->src_source.src_videorate.capsfilter = create_element (MEDIA_PIPE_CAPSFILTER_NAME, NULL);
+		g_return_val_if_fail (impl->src_source.src_videorate.capsfilter, FALSE);
+	
+		if (!impl->src_source.src_videorate.fps_n) {
+			impl->src_source.src_videorate.fps_n = impl->src_source.fps_n;
+			impl->src_source.src_videorate.fps_d = impl->src_source.fps_d;
+		}
+	
+		caps = gst_caps_new_simple ("video/x-raw",
+			"framerate", GST_TYPE_FRACTION, impl->src_source.src_videorate.fps_n, impl->src_source.src_videorate.fps_d,
+			NULL);
+		g_object_set (G_OBJECT (impl->src_source.src_videorate.capsfilter), "caps", caps, NULL);
+		gst_caps_unref (caps);
+	}
+
     impl->src_source.src_queue = create_element (QUEUE_PLUGIN_NAME, "src-queue");
     g_object_set (G_OBJECT (impl->src_source.src_queue), "max-size-buffers", 10, "max-size-time",
-          (guint64) 0, "max-size-bytes", 0, "leaky", 2, NULL);
+          (guint64) 0, "max-size-bytes", 0, "leaky", 1, NULL);
 
     // Create preproc for src pipeline
     impl->src_preproc.element = create_element (MEDIA_PIPE_PREPROC_NAME, "src-preproc");
@@ -2284,8 +2322,6 @@ build_pipeline (MediaPipe *pipe)
                   "smart-resolution", impl->src_preproc.smart_resolution,
                   "test-autohdr", impl->src_preproc.vpp_enable_autohdr,
                   "need-copy", TRUE,
-                  "need-adjust-timestamp", TRUE,
-                  "capture-fps", impl->src_source.fps_n/(float)impl->src_source.fps_d,
                   NULL);
     if(enable_lumagain_threshold)
     {
@@ -2310,6 +2346,8 @@ build_pipeline (MediaPipe *pipe)
 
     // Create fakesink for src pipeline (use 1080p & smart channel only)
     impl->src_queue[VIDEO_CHANNEL_1080P] = create_element(QUEUE_PLUGIN_NAME, "src-queue-1080p");
+    g_object_set (G_OBJECT (impl->src_queue[VIDEO_CHANNEL_1080P]), "max-size-buffers", 10, "max-size-time",
+		 (guint64) 0, "max-size-bytes", 0, "leaky", 1, NULL);
     impl->src_fakesink[VIDEO_CHANNEL_1080P].element =
        create_element (MEDIA_PIPE_FAKE_SINK_NAME, "src-fakesink-1080p");
 
@@ -2330,7 +2368,6 @@ build_pipeline (MediaPipe *pipe)
                 NULL);
     }
     gst_object_unref(src_1080p_pad);
-
 
     impl->src_queue[VIDEO_CHANNEL_SMART] = create_element(QUEUE_PLUGIN_NAME, "src-queue-smart");
     g_object_set (G_OBJECT (impl->src_queue[VIDEO_CHANNEL_SMART]), "max-size-buffers", 100, "max-size-time",
@@ -2363,6 +2400,8 @@ build_pipeline (MediaPipe *pipe)
                 GST_BIN (impl->src_pipeline),
                 impl->src_source.gen_src,
                 impl->src_source.src_filter,
+                impl->src_source.src_videorate.element,   
+                impl->src_source.src_videorate.capsfilter,                 
                 impl->src_source.src_queue,
                 impl->src_preproc.element,
                 impl->src_queue[VIDEO_CHANNEL_1080P],
@@ -2432,7 +2471,9 @@ build_pipeline (MediaPipe *pipe)
        link_element(impl->src_source.gen_src, impl->src_preproc.element);
     }else {
        link_element(impl->src_source.gen_src, impl->src_source.src_filter);
-       link_element(impl->src_source.src_filter, impl->src_source.src_queue);
+       link_element(impl->src_source.src_filter, impl->src_source.src_videorate.element);
+       link_element(impl->src_source.src_videorate.element, impl->src_source.src_videorate.capsfilter);
+       link_element(impl->src_source.src_videorate.capsfilter, impl->src_source.src_queue);	   
        link_element(impl->src_source.src_queue, impl->src_preproc.element);
     }
 
@@ -2952,7 +2993,9 @@ media_pipe_reconfig_3a (MediaPipe *pipe)
 
         if(config_camera.flags & CONFIGFLAG_3A_PICQUALITY) {
             ret = xcam_interface->set_noise_reduction_level(xcam, config_camera.pq.val_noise_reduction_level);
-            ret = xcam_interface->set_temporal_noise_reduction_level(xcam, config_camera.pq.val_tnr_level);
+            ret = xcam_interface->set_temporal_noise_reduction_level(xcam,
+                              config_camera.pq.val_tnr_level,
+                              config_camera.pq.val_tnr_mode);
             ret = xcam_interface->set_manual_brightness(xcam, config_camera.pq.val_pq_brightness);
             ret = xcam_interface->set_manual_contrast(xcam, config_camera.pq.val_pq_contrast);
             ret = xcam_interface->set_manual_hue(xcam, config_camera.pq.val_pq_hue);
@@ -2967,6 +3010,7 @@ media_pipe_reconfig_3a (MediaPipe *pipe)
                 ret = xcam_interface->set_gamma_table(xcam, NULL, NULL, NULL);
             ret = xcam_interface->set_gbce(xcam, config_camera.others.val_gm_gbce);
             ret = xcam_interface->set_night_mode(xcam, config_camera.others.val_night_mode);
+            ret = xcam_interface->set_3a_interval(xcam, config_camera.others.val_analyze_interval);
         }
         //TODO: more settings
 
@@ -2980,6 +3024,7 @@ media_pipe_reconfig_3a (MediaPipe *pipe)
         ret = xcam_interface->set_hdr_mode(xcam, impl->src_source.cl_hdr_mode);
         ret = xcam_interface->set_denoise_mode(xcam, impl->src_source.cl_denoise_mode);
         ret = xcam_interface->set_gamma_mode(xcam, impl->src_source.cl_gamma_mode);
+        ret = xcam_interface->set_dpc_mode(xcam, impl->src_source.enable_dpc);
     }
 
     //FIXME:
@@ -3066,6 +3111,19 @@ media_pipe_set_src_frame_rate(MediaPipe *pipe, guint frame_rate)
     impl->src_source.fps_d = 1;
     impl->main_source.fps_d= 1;
 
+	//reset caps of src_videorate on the fly
+    impl->src_source.src_videorate.fps_n = frame_rate;
+    impl->src_source.src_videorate.fps_d = 1;
+    
+    if (impl->src_source.src_videorate.capsfilter) {
+        GstCaps *caps;
+        caps = gst_caps_new_simple ("video/x-raw",
+                "framerate", GST_TYPE_FRACTION, frame_rate, 1,
+                NULL);
+        g_object_set (G_OBJECT (impl->src_source.src_videorate.capsfilter), "caps", caps, NULL);
+        gst_caps_unref (caps);
+    }	
+
     return TRUE;
 }
 
@@ -3108,7 +3166,7 @@ media_pipe_set_encoder_frame_rate(MediaPipe *pipe, VideoChannelIndex channel_num
 }
 
 gboolean
-media_pipe_set_src_image_processor (MediaPipe *pipe, guint image_processor)
+media_pipe_set_src_image_processor (MediaPipe *pipe, guint processor, guint analyzer)
 {
     MediaPipeImpl *impl;
 
@@ -3119,20 +3177,17 @@ media_pipe_set_src_image_processor (MediaPipe *pipe, guint image_processor)
 
     impl = IMPL_CAST(pipe);
 
-#if 0    
-    if (image_processor) {
-        impl->src_source.image_processor =  CL_IMAGE_PROCESSOR;
-        impl->src_source.analyzer = SIMPLE_ANALYZER;
+    if (impl->src_source.image_processor == ISP_IMAGE_PROCESSOR) {
+        if (analyzer != AIQ_ANALYZER && analyzer != HYBRID_ANALYZER) {
+            LOG_WARNING ("analyzer is not in the range for ISP processor");
+            impl->src_source.analyzer = AIQ_ANALYZER;
+        } else {
+            impl->src_source.analyzer = (AnalyzerType)analyzer;
+        }
+        return TRUE;
+    } else {
+        return FALSE;
     }
-    else {
-        impl->src_source.image_processor =  ISP_IMAGE_PROCESSOR;
-        impl->src_source.analyzer = AIQ_ANALYZER;
-    }
-#else
-    // force to ISP+AIQ until CL pipeline gets stable
-    impl->src_source.image_processor =  ISP_IMAGE_PROCESSOR;
-    impl->src_source.analyzer = AIQ_ANALYZER;
-#endif
 }
 
 gboolean
@@ -3851,13 +3906,16 @@ media_pipe_set_cl_feature (MediaPipe *pipe, CLFeature feature, int mode)
         case CL_GAMMA:
             impl->src_source.cl_gamma_mode = mode;
             break;
+        case CL_DPC:
+            impl->src_source.enable_dpc = mode;
+            break;
         default:
             LOG_ERROR("%s Unsupported CL feature\n", __func__);
-           break;
+            break;
         }
         return TRUE;
     }
-    
+
     /**/
     v4l2src = impl->src_source.gen_src;
     {
@@ -3884,7 +3942,7 @@ media_pipe_set_cl_feature (MediaPipe *pipe, CLFeature feature, int mode)
         LOG_ERROR("Failed to get xcam interface.");
         return FALSE;
     }
-      
+
     switch (feature) {
     case CL_HDR:
         ret = xcam_interface->set_hdr_mode(xcam, mode);
@@ -3894,6 +3952,9 @@ media_pipe_set_cl_feature (MediaPipe *pipe, CLFeature feature, int mode)
         break;
     case CL_GAMMA:
         ret = xcam_interface->set_gamma_mode(xcam, mode);
+        break;
+    case CL_DPC:
+        ret = xcam_interface->set_dpc_mode(xcam, mode);
         break;
     default:
         LOG_ERROR("%s Unsupported CL feature\n", __func__);

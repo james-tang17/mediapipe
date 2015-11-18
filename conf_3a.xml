@@ -12,7 +12,7 @@
 	<!-- exposure -->
     <exposure enable="1">
 		<mode> 0 </mode>						<!-- -1: unset, 0: auto, 1: manual -->
-		<meter-mode> 3 </meter-mode> 						<!-- 0: auto, 1: spot, 2: center, 3: wighted window -->
+		<meter-mode> 0 </meter-mode> 						<!-- 0: auto, 1: spot, 2: center, 3: wighted window -->
 		<meter-window-count> 6 </meter-window-count> 						<!-- 1 <= @value <= XCAM_AE_MAX_METERING_WINDOW_COUNT -->
                 <window startx0="160" starty0="140" endx0="480" endy0="420" weight0="15" startx1="160" starty1="700" endx1="480" endy1="980" weight1="0" startx2="800" starty2="140" endx2="1120" endy2="420" weight2="0" startx3="800" starty3="700" endx3="1120" endy3="980" weight3="0" startx4="1440" starty4="140" endx4="1760" endy4="420" weight4="0" startx5="1440" starty5="700" endx5="1760" endy5="980" weight5="12"/>  <!-- enable only when meter-mode=1 or 3 -->		<ev-shift> 0.0 </ev-shift>	<!-- -4.0 < @ev_offset < 4.0; default 0.0 -->
 		<ev-shift> 0.0 </ev-shift>	<!-- -4.0 < @ev_offset < 4.0; default 0.0 -->
@@ -31,6 +31,7 @@
 	<manual-pq enable="1">
         <noise-reduction> 128 </noise-reduction>    <!-- bnr and ynr -->
         <temporal-noise-reduction> 128 </temporal-noise-reduction>  <!-- tnr -->
+        <tnr-mode> 0 </tnr-mode>      <!-- tnr mode: 0, disable. 1: RGB tnr. 2: YUV tnr. mode can overlap -->
 		<brightness> 128 </brightness> 				<!-- 0 <= @value <= 255, xcam convert to -1.0 ~ 1.0  -->
 		<contrast> 128 </contrast>
 		<hue> 128 </hue>
@@ -43,5 +44,6 @@
 		<gamma-table fgamma_r="0.0"  fgamma_g="0.0" fgamma_b="0.0" /> 	<!-- 1/r, suggest r>=0.5, r<=2.5; default 0.0, disable -->
 		<gbce> 0 </gbce> 				<!-- 0: diable, 1: enable -->
 		<night-mode> 0 </night-mode> 	<!-- 0: diable, 1: enable -->
+		<analyze-interval> 1 </analyze-interval> <!-- 3a analyzer interval -->
 	</others>
 </conf3a>

@@ -48,6 +48,9 @@
 #endif
 
 
+#define AVAILABLE_FRAME_RATE_1 25
+#define AVAILABLE_FRAME_RATE_2 30
+#define AVAILABLE_FRAME_RATE_3 60
 #define MEDIA_VIDEO_DEFAULT_SENSOR_ID 0
 #define MEDIA_VIDEO_DEFAULT_WIDTH  1920
 #define MEDIA_VIDEO_DEFAULT_HEIGHT 1080
@@ -58,7 +61,7 @@
 
 
 #define MEDIA_PIPE_TEST_SOURCE_NAME      "videotestsrc"
-#define MEDIA_PIPE_V4L2_SOURCE_NAME      "v4l2src"
+#define MEDIA_PIPE_V4L2_SOURCE_NAME      "xcamsrc"
 
 #define MEDIA_PIPE_CAPSFILTER_NAME  "capsfilter"
 #define MEDIA_PIPE_POSTPROC_NAME    "vaapipostproc"
@@ -69,12 +72,14 @@
 #define MEDIA_PIPE_TCP_SINK_NAME        "tcpclientsink"
 #define MEDIA_PIPE_KMS_SINK_NAME        "vaapisink"
 #define MEDIA_PIPE_APP_SRC_NAME     "appsrc"
+#define MEDIA_PIPE_VIDEORATE_NAME  "videorate"
 
 
 #define QUEUE_PLUGIN_NAME     "queue"
 #define MP4MUX_PLUGIN_NAME     "mp4mux"
 #define TEE_PLUGIN_NAME     "tee"
 
+static gboolean local_preview = FALSE;
 static gboolean jpeg_inited = FALSE;
 extern gfloat   smart_factor;
 extern int      global_v4l2src_color_effect;
@@ -89,7 +94,6 @@ extern gboolean enable_hdr_custom;
 extern gboolean enable_hdr_custom_rgb;
 extern unsigned int hdrtable_id;
 extern unsigned int hdrtable_rgb_id;
-extern Qos qos;
 extern unsigned warning_level;
 extern gboolean enable_facedetect;
 extern gboolean facedetect_conf;
@@ -97,6 +101,10 @@ extern gboolean global_enable_osd;
 extern gboolean global_enable_mask;
 extern GstVideoPreprocFlipMode global_flip_mode;
 extern gboolean global_enable_wireframe;
+extern gfloat rot_00;
+extern gfloat rot_01;
+extern gfloat rot_10;
+extern gfloat rot_11;
 extern gint dvs_offset_x;
 extern gint dvs_offset_y;
 GstVideoPreprocWireFrame cv_wire_frames[WIRE_FRAME_REGION_MAX_NUM] = {
@@ -109,9 +117,9 @@ GstVideoPreprocWireFrame cv_wire_frames[WIRE_FRAME_REGION_MAX_NUM] = {
 };
 
 GstVideoPreprocWireFrame sample_wire_frames[WIRE_FRAME_REGION_MAX_NUM] = {
-      {{500, 260,  210,  190}, {0, 0,  255}, 4, TRUE },
+      {{500, 260,  210,  190}, {0, 0,  255}, 6, TRUE },
       {{4,   2,    16,   18},  {88, 122, 33},  6, FALSE },
-      {{250, 200,  800,  500}, {56, 78,  93},  2, FALSE },
+      {{250, 200,  800,  500}, {56, 78,  93},  6, FALSE },
       {{100, 160,  200,  100}, {18, 12,  213}, 4, FALSE },
       {{320, 100,  60,   70},  {96, 98,  193}, 2, FALSE },
       {{10,  20,   190,  280}, {122,244, 55},  2, FALSE },
@@ -205,6 +213,22 @@ static void _smart_meta_osd_info_free(GstVideoPreprocOsdInfo *info);
 static void _smart_meta_wf_info_free(GstVideoPreprocWireFrameInfo *info);
 static void _smart_meta_mask_info_free(GstVideoPreprocMaskInfo *info);
 
+static void
+prepare_dvs_info(gpointer q, gpointer dvs_info, GstBuffer *buf, gpointer data)
+{
+   //should align the dvs info to the right frame according to buffer timestamp 
+   GST_DEBUG("buffer = %p, ts= %" GST_TIME_FORMAT "\n", buf, GST_TIME_ARGS(GST_BUFFER_TIMESTAMP(buf)));
+
+   GstVaapiDvsInfo *info = (GstVaapiDvsInfo *)dvs_info;
+   info->need_dvs = FALSE;
+   info->rot_00 = rot_00;
+   info->rot_01 = rot_01;
+   info->rot_10 = rot_10;
+   info->rot_11 = rot_11;
+   info->offset_x = dvs_offset_x;
+   info->offset_y = dvs_offset_y;
+   return;
+}
 
 /* ---------------------tool functions---------------------------------*/
 
@@ -230,7 +254,7 @@ main_rtsp_probe_callback (
 
     GST_BUFFER_PTS (buf) = channel->sink.timestamp;
     GST_BUFFER_DURATION (buf) =
-	    gst_util_uint64_scale_int (1, GST_SECOND, impl->main_source.fps_n);
+	    gst_util_uint64_scale_int (1, GST_SECOND, channel->videorate.fps_n);
     channel->sink.timestamp += GST_BUFFER_DURATION (buf);
 
     g_signal_emit_by_name (channel->sink.rtsp_src, "push-buffer", buf, &ret);
@@ -247,6 +271,7 @@ media_configure (GstRTSPMediaFactory * factory, GstRTSPMedia * media,
 		    gpointer user_data)
 {
     GstElement            *pipeline, *appsrc;
+    GstElement            *srcqueue, *codecqueue;
     DynamicChannelData    *dynamic_data = (DynamicChannelData *)user_data;
     MediaPipeImpl         *impl = IMPL_CAST (dynamic_data->media_pipe);
     VideoChannelIndex     channel_num = dynamic_data->channel_num;
@@ -271,7 +296,7 @@ media_configure (GstRTSPMediaFactory * factory, GstRTSPMedia * media,
                 "format", G_TYPE_STRING, gst_video_format_to_string(impl->main_source.format),
                 "width", G_TYPE_INT, normal_resolution[channel_num].width,
                 "height", G_TYPE_INT, normal_resolution[channel_num].height,
-                "framerate", GST_TYPE_FRACTION, impl->main_source.fps_n, impl->main_source.fps_d,
+                "framerate", GST_TYPE_FRACTION, channel->videorate.fps_n, channel->videorate.fps_d,
                 "interlace-mode", G_TYPE_STRING, "progressive",
                 NULL);
     }else
@@ -281,7 +306,7 @@ media_configure (GstRTSPMediaFactory * factory, GstRTSPMedia * media,
                 "format", G_TYPE_STRING, gst_video_format_to_string(impl->main_source.format),
                 "width", G_TYPE_INT, rotate_resolution[channel_num].width,
                 "height", G_TYPE_INT, rotate_resolution[channel_num].height,
-                "framerate", GST_TYPE_FRACTION, impl->main_source.fps_n, impl->main_source.fps_d,
+                "framerate", GST_TYPE_FRACTION, channel->videorate.fps_n, channel->videorate.fps_d,
                 "interlace-mode", G_TYPE_STRING, "progressive",
                 NULL);
     }
@@ -291,6 +316,11 @@ media_configure (GstRTSPMediaFactory * factory, GstRTSPMedia * media,
     g_object_set (G_OBJECT (appsrc),
 	         "stream-type", 0,
 	         "format", GST_FORMAT_TIME, NULL);
+
+    /*srcqueue*/
+    srcqueue = gst_bin_get_by_name(GST_BIN(pipeline), "srcqueue");
+    g_object_set (G_OBJECT (srcqueue), "max-size-buffers", 200, "max-size-time",
+			                       (guint64) 0, "max-size-bytes", 0, "leaky", 1, NULL);	
 
     /* vaapiencode_h264 */
     channel->encoder.element = gst_bin_get_by_name(GST_BIN(pipeline), "rtsp_enc");
@@ -311,6 +341,11 @@ media_configure (GstRTSPMediaFactory * factory, GstRTSPMedia * media,
 					NULL);
     g_object_set (channel->profile_converter, "caps", caps, NULL);
     gst_caps_unref (caps);
+
+    /*codecqueue*/
+    codecqueue = gst_bin_get_by_name(GST_BIN(pipeline), "codecqueue");
+    g_object_set (G_OBJECT (codecqueue), "max-size-buffers", 200, "max-size-time",
+		                   (guint64) 0, "max-size-bytes", 0, "leaky", 1, NULL);	
 
     /* reset the timestamp */
     channel->sink.timestamp = 0;
@@ -349,7 +384,7 @@ rtsp_server_create (MediaPipeImpl *impl, VideoChannelIndex channel_num)
     factory = gst_rtsp_media_factory_new ();
     channel->sink.factory = factory;
     gst_rtsp_media_factory_set_launch (factory,
-        "appsrc name=src ! vaapiencode_h264 name=rtsp_enc ! capsfilter name=rtsp_profile ! rtph264pay name=pay0 pt=96");
+    	"appsrc name=src ! queue name=srcqueue ! vaapiencode_h264 name=rtsp_enc ! capsfilter name=rtsp_profile ! queue name=codecqueue ! rtph264pay name=pay0 pt=96");
 
 #if 1
     /* support multiple client connections */
@@ -1257,7 +1292,7 @@ src_preproc_smart_probe_callback (
           if (osd_infos || wf_infos || mask_infos || dvs_info.offset_x != 0 || dvs_info.offset_y != 0) {
              data_1080p->buf = gst_buffer_make_writable(data_1080p->buf);
              //this function will create an GstVaapiOsdMeta object to hold osd_infos, and bind this object to GstBuffer
-             gst_buffer_add_vaapi_smart_meta(buf, osd_infos, wf_infos, mask_infos, need_jpeg_encode, &dvs_info);
+             gst_buffer_add_vaapi_smart_meta(data_1080p->buf, osd_infos, wf_infos, mask_infos, need_jpeg_encode, &dvs_info);
 
              GstVaapiSmartMeta *smart_meta = gst_buffer_get_vaapi_smart_meta(data_1080p->buf);
              GST_DEBUG("mediapipe, cnt=%u, smart_meta=%p, osd_infos_len=%u, wf_infos_lens=%u, mask_infos_lens=%u, need_jpeg_encode=%d, gst_buffer = %p, ts= %" GST_TIME_FORMAT "\n",
@@ -1296,38 +1331,6 @@ src_preproc_smart_probe_callback (
 
 
 static void
-src_preproc_pad_linked_callback(GstPad *pad, GstPad *peer, gpointer data)
-{
-    MediaPipeImpl *impl;
-
-    if(data == NULL)
-    {
-        return;
-    }
-
-
-    impl = IMPL_CAST (data);
-
-    GstPad *src_1080p_pad = gst_element_get_static_pad(
-                                    impl->src_preproc.element,
-                                    tempString[VIDEO_CHANNEL_1080P].pad_name);
-    if(pad == src_1080p_pad)
-    {
-        if(impl->src_preproc.smart_frame_1080p_probe_id == 0)
-        {
-            impl->src_preproc.smart_frame_1080p_probe_id =
-                gst_pad_add_probe (
-                        pad,
-                        GST_PAD_PROBE_TYPE_BUFFER,
-                        (GstPadProbeCallback)src_preproc_1080p_probe_callback,
-                        data,
-                        NULL);
-        }
-    }
-    gst_object_unref(src_1080p_pad);
-}
-
-static void
 src_preproc_pad_linked_callback2(GstPad *pad, GstPad *peer, gpointer data)
 {
     if(data == NULL)
@@ -1355,33 +1358,6 @@ src_preproc_pad_linked_callback3(GstPad *pad, GstPad *peer, gpointer data)
                 (GstPadProbeCallback)src_preproc_hdr_probe_callback,
                 data,
                 NULL);
-}
-
-static void
-src_preproc_pad_unlinked_callback(GstPad *pad, GstPad *peer, gpointer data)
-{
-    MediaPipeImpl *impl;
-
-    if(data == NULL)
-    {
-        return;
-    }
-
-    impl = IMPL_CAST (data);
-
-    GstPad *src_1080p_pad = gst_element_get_static_pad(
-                                    impl->src_preproc.element,
-                                    tempString[VIDEO_CHANNEL_1080P].pad_name);
-    if(pad == src_1080p_pad)
-    {
-        if(impl->src_preproc.smart_frame_1080p_probe_id)
-        {
-            gst_pad_remove_probe(pad, impl->src_preproc.smart_frame_1080p_probe_id);
-            impl->src_preproc.smart_frame_1080p_probe_id = 0;
-        }
-    }
-
-    gst_object_unref(src_1080p_pad);
 }
 
 /* ------------------------main pipeline functions------------------------- */
@@ -1440,6 +1416,24 @@ find_frame_by_ts(GList *frames, GstClockTime *ts)
    return NULL;
 }
 
+static void
+do_qos(MediaPipeImpl *impl)
+{
+   int i;
+   unsigned int level = 0;
+   for(i=0;i<VIDEO_CHANNEL_MAX;i++)
+   {
+      if(impl->channel[i].encoder_queue)
+      {
+         g_object_get(G_OBJECT(impl->channel[i].encoder_queue), "current-level-buffers", &level, NULL);
+         while(level > 0) {
+            usleep(500000);
+            g_object_get(G_OBJECT(impl->channel[i].encoder_queue), "current-level-buffers", &level, NULL);
+         }
+      }
+   }
+}
+
 static gboolean
 jpeg_enc(MediaPipeImpl *impl, GstBuffer *buf)
 {
@@ -1452,26 +1446,8 @@ jpeg_enc(MediaPipeImpl *impl, GstBuffer *buf)
       jpeg_inited = TRUE;
    }
 
-   g_mutex_lock(&qos.lock);
-   if (qos.need_resource_urgent > 0) {
-      need_sleep_urgent = TRUE;
-      qos.need_resource_urgent = 0;
-   }
-
-   if (qos.need_resource > 0) {
-      need_sleep = TRUE;
-      qos.need_resource = 0;
-   }
-   g_mutex_unlock(&qos.lock);
-
    if (enable_qos) {
-      if (need_sleep_urgent) {
-         //LOG_DEBUG("need resource urgently, sleep 1 s to throttle jpeg encoding");
-         usleep(1000000);
-      } else if(need_sleep){
-         //LOG_DEBUG("need resource, sleep 500 ms to throttle jpeg encoding");
-         usleep(500000);
-      }
+      do_qos(impl);
    }
 
    preBuf = gst_video_preproc_buffer_get_from_gst_buffer(
@@ -1514,6 +1490,8 @@ main_1080p_jpeg_probe_callback (
     oldest_ts = GST_BUFFER_TIMESTAMP((GstBuffer *)jpeg_frames->data);
 
     GList *l = frames_do_jpeg_encoding;
+    GList *buffers = NULL;
+    
     while(l) {
        GList *next = l->next;
        GstClockTime *ts = (GstClockTime *)l->data;
@@ -1523,13 +1501,23 @@ main_1080p_jpeg_probe_callback (
        } else {
           GstBuffer *buf_to_encode = find_frame_by_ts(jpeg_frames, ts);
           if (buf_to_encode) {
-             jpeg_enc(impl, buf_to_encode);
-             jpeg_frames = g_list_remove(jpeg_frames, buf_to_encode);
-             gst_buffer_unref(buf_to_encode);
              frames_do_jpeg_encoding = g_list_remove(frames_do_jpeg_encoding, ts);
-             g_free(ts);
+             buffers                 = g_list_append(buffers, buf_to_encode);
+             jpeg_frames             = g_list_remove(jpeg_frames, buf_to_encode);
           }
        }
+       l = next;
+    }
+
+    g_mutex_unlock(&jpeg_lock);
+
+    l = buffers;
+    while(l) {
+       GList *next = l->next;
+       buf  = (GstBuffer *)l->data;
+       jpeg_enc(impl, buf);
+       g_list_remove(l, buf);
+       gst_buffer_unref(buf);
        l = next;
     }
 
@@ -1538,93 +1526,7 @@ main_1080p_jpeg_probe_callback (
        jpeg_frames = g_list_remove(jpeg_frames, oldest_buf);
        gst_buffer_unref(oldest_buf);
     }
-    g_mutex_unlock(&jpeg_lock);
     return GST_PAD_PROBE_OK;
-}
-
-static GstPadProbeReturn
-main_1080p_jpeg_probe_callback_old (
-                        GstPad *pad,
-                        GstPadProbeInfo *info,
-                        gpointer user_data)
-{
-    MediaPipeImpl *impl = (MediaPipeImpl *)user_data;
-    GstBuffer *buf;
-    GstVideoPreprocBuffer *preBuf;
-    gboolean need_sleep_urgent = FALSE;
-    gboolean need_sleep = FALSE;
-
-    if (!jpeg_inited) {
-       jpeg_init(USE_OPENCL);
-       jpeg_inited = TRUE;
-    }
-
-    buf = (GstBuffer *)(info->data);
-
-    if(buf == NULL || !GST_IS_BUFFER(buf))
-    {
-        return GST_PAD_PROBE_OK;
-    }
-
-    g_mutex_lock(&qos.lock);
-    if (qos.need_resource_urgent > 0) {
-       need_sleep_urgent = TRUE;
-       qos.need_resource_urgent = 0;
-    }
-
-    if (qos.need_resource > 0) {
-       need_sleep = TRUE;
-       qos.need_resource = 0;
-    }
-    g_mutex_unlock(&qos.lock);
-
-    if (enable_qos) {
-       if (need_sleep_urgent) {
-          //LOG_DEBUG("need resource urgently, sleep 1 s to throttle jpeg encoding");
-          usleep(1000000);
-       } else if(need_sleep){
-          //LOG_DEBUG("need resource, sleep 500 ms to throttle jpeg encoding");
-          usleep(500000);
-       }
-    }
-
-    preBuf = gst_video_preproc_buffer_get_from_gst_buffer(
-                    GST_VIDEO_PREPROC(impl->preproc.element),
-                    buf);
-
-
-    // only 1080p channel has been probed
-    if (impl->preproc.jpeg_callback)
-        (impl->preproc.jpeg_callback) (
-                                preBuf,
-                                impl->preproc.jpeg_user_data,
-                                VIDEO_CHANNEL_1080P);
-
-    gst_video_preproc_destroy_buffer(
-                    GST_VIDEO_PREPROC(impl->preproc.element),
-                    preBuf);
-
-    return GST_PAD_PROBE_OK;
-}
-
-static void
-load_watcher_queue_overrun_cb(gpointer q, gpointer data)
-{
-   Qos *qos = (Qos *)data;
-
-   g_mutex_lock(&qos->lock);
-   qos->need_resource_urgent ++;
-   g_mutex_unlock(&qos->lock);
-}
-
-static void
-encode_queue_overrun_cb(gpointer q, gpointer data)
-{
-   Qos *qos = (Qos *)data;
-
-   g_mutex_lock(&qos->lock);
-   qos->need_resource ++;
-   g_mutex_unlock(&qos->lock);
 }
 
 static GstPadProbeReturn
@@ -1871,6 +1773,7 @@ enable_video_channel(MediaPipe *pipe, VideoChannelIndex channel_num)
     VideoChannel *channel;
     gboolean h264_enable;
     GstPad *pad;
+	GstCaps *caps;
 
     if(pipe == NULL)
     {
@@ -1943,13 +1846,34 @@ enable_video_channel(MediaPipe *pipe, VideoChannelIndex channel_num)
 
            queue_name = g_strdup_printf("%s-encode-queue", channel_name[channel_num]);
            channel->encoder_queue = create_element (QUEUE_PLUGIN_NAME, queue_name);
+           g_object_set (G_OBJECT (channel->encoder_queue), "max-size-buffers", 10, "max-size-time",				
+			           		(guint64) 0, "max-size-bytes", 0, "leaky", 1, NULL);
            g_free(queue_name);
            g_return_val_if_fail (channel->encoder_queue, FALSE);
-           g_object_set (G_OBJECT (channel->encoder_queue), "max-size-buffers", warning_level, "max-size-time",
-                           (guint64) 0, "max-size-bytes", 0, NULL);
-           g_signal_connect(G_OBJECT(channel->encoder_queue), "overrun", G_CALLBACK(encode_queue_overrun_cb), &qos);
         }
 
+        if (!channel->videorate.element) {
+            channel->videorate.element = create_element (MEDIA_PIPE_VIDEORATE_NAME, NULL);
+            g_return_val_if_fail (channel->videorate.element, FALSE);
+            g_object_set (G_OBJECT (channel->videorate.element), 
+						 "skip-to-first", TRUE, 
+						 NULL);	
+
+            channel->videorate.capsfilter = create_element (MEDIA_PIPE_CAPSFILTER_NAME, NULL);
+            g_return_val_if_fail (channel->videorate.capsfilter, FALSE);
+
+            if (!channel->videorate.fps_n) {
+                channel->videorate.fps_n = impl->main_source.fps_n;
+                channel->videorate.fps_d = impl->main_source.fps_d;
+            }
+
+            caps = gst_caps_new_simple ("video/x-raw",
+                "framerate", GST_TYPE_FRACTION, channel->videorate.fps_n, channel->videorate.fps_d,
+                NULL);
+            g_object_set (G_OBJECT (channel->videorate.capsfilter), "caps", caps, NULL);
+            gst_caps_unref (caps);
+        }
+ 
         h264_enable = channel->encoder.enable && (channel->sink.type != RTSP_SINK);
 
         /*
@@ -2004,6 +1928,10 @@ enable_video_channel(MediaPipe *pipe, VideoChannelIndex channel_num)
         */
         if(!channel->sink.element)
         {
+            channel->sink.sinkqueue = create_element (QUEUE_PLUGIN_NAME, NULL);
+            g_return_val_if_fail (channel->sink.sinkqueue, FALSE);
+            g_object_set (G_OBJECT (channel->sink.sinkqueue), "max-size-time", (guint64) 0, NULL);
+					
             switch(channel->sink.type)
             {
                 case FILE_SINK:
@@ -2021,9 +1949,11 @@ enable_video_channel(MediaPipe *pipe, VideoChannelIndex channel_num)
                     g_object_set (G_OBJECT (channel->sink.element), "host", channel->sink.host_ip, "port", channel->sink.port, "blocksize", 1024000, NULL);
                     break;
                 case KMS_SINK:
+                    local_preview = TRUE;
                     channel->sink.element = create_element (MEDIA_PIPE_KMS_SINK_NAME, NULL);
                     g_return_val_if_fail (channel->sink.element, FALSE);
                     g_object_set (G_OBJECT (channel->sink.element), "display", 4, "async", FALSE, "sync", FALSE, NULL);
+                    g_signal_connect (channel->sink.element, "prepare-dvs-info", G_CALLBACK(prepare_dvs_info), NULL);
                     break;
                 case RTSP_SINK:
                     channel->sink.element = create_element (MEDIA_PIPE_FAKE_SINK_NAME, NULL);
@@ -2051,40 +1981,58 @@ enable_video_channel(MediaPipe *pipe, VideoChannelIndex channel_num)
             gst_bin_add_many (
                 GST_BIN (impl->main_pipeline),
                 channel->encoder_queue,
+                channel->videorate.element,
+                channel->videorate.capsfilter,
                 channel->encoder.element,
                 channel->profile_converter,
+                channel->sink.sinkqueue,
                 channel->sink.element,
                 NULL);
 
             gst_element_sync_state_with_parent(channel->encoder.element);
+            gst_element_sync_state_with_parent(channel->videorate.element);
+            gst_element_sync_state_with_parent(channel->videorate.capsfilter);
             gst_element_sync_state_with_parent(channel->encoder_queue);
             gst_element_sync_state_with_parent(channel->profile_converter);
+	    gst_element_sync_state_with_parent(channel->sink.sinkqueue);
             gst_element_sync_state_with_parent(channel->sink.element);
 
             gst_element_link_pads (impl->preproc.element,
                                tempString[channel_num].pad_name,
                                channel->encoder_queue,
                                NULL);
-            link_element(channel->encoder_queue, channel->encoder.element);
+            link_element(channel->encoder_queue, channel->videorate.element);
+            link_element(channel->videorate.element, channel->videorate.capsfilter);
+            link_element(channel->videorate.capsfilter, channel->encoder.element);
             link_element(channel->encoder.element, channel->profile_converter);
-            link_element(channel->profile_converter, channel->sink.element);
+	    link_element(channel->profile_converter, channel->sink.sinkqueue);
+            link_element(channel->sink.sinkqueue, channel->sink.element);
         }
         else
         {
             gst_bin_add_many (
                         GST_BIN (impl->main_pipeline),
                         channel->encoder_queue,
+                        channel->videorate.element,
+                        channel->videorate.capsfilter,
+			channel->sink.sinkqueue,
                         channel->sink.element,
                         NULL);
 
             gst_element_sync_state_with_parent(channel->encoder_queue);
+            gst_element_sync_state_with_parent(channel->videorate.element);
+            gst_element_sync_state_with_parent(channel->videorate.capsfilter);
+	    gst_element_sync_state_with_parent(channel->sink.sinkqueue);
             gst_element_sync_state_with_parent(channel->sink.element);
 
             gst_element_link_pads (impl->preproc.element,
                                tempString[channel_num].pad_name,
                                channel->encoder_queue,
                                NULL);
-            link_element(channel->encoder_queue, channel->sink.element);
+            link_element(channel->encoder_queue, channel->videorate.element);
+	    link_element(channel->videorate.element, channel->videorate.capsfilter);
+            link_element(channel->videorate.capsfilter, channel->sink.sinkqueue);
+	    link_element(channel->sink.sinkqueue, channel->sink.element);
         }
     }
 
@@ -2130,22 +2078,6 @@ enable_video_impl_preproc(MediaPipe *pipe)
     }
 
     /*
-    *   Set smart_resolution property for preproc
-    */
-    g_object_set (impl->preproc.element,
-                  "smart-resolution", impl->preproc.smart_resolution,
-                  NULL);
-
-    /*
-    *   Set Rotation parameter for preproc
-    */
-    LOG_DEBUG ("******Set rotation to %d ", impl->preproc.rotate_mode);
-    if(!gst_video_preproc_set_rotate(GST_VIDEO_PREPROC(impl->preproc.element),impl->preproc.rotate_mode))
-    {
-        LOG_WARNING ("Set rotation for preproc FAIL!");
-    }
-
-    /*
     *   Set flip parameter for preproc
     */
     LOG_DEBUG ("******Set flip to %d ", global_flip_mode);
@@ -2180,6 +2112,19 @@ enable_video_impl_preproc(MediaPipe *pipe)
             enable_video_channel(pipe,(VideoChannelIndex)i);
         }
 
+    }
+
+    /*
+    *   Set Rotation parameter for preproc
+    */
+    if (local_preview) {
+       LOG_DEBUG ("******Don't support rotate in local preview mode");
+    }else{
+       LOG_DEBUG ("******Set rotation to %d ", impl->preproc.rotate_mode);
+       if(!gst_video_preproc_set_rotate(GST_VIDEO_PREPROC(impl->preproc.element),impl->preproc.rotate_mode))
+       {
+          LOG_WARNING ("Set rotation for preproc FAIL!");
+       }
     }
 
     return TRUE;
@@ -2309,15 +2254,19 @@ build_pipeline (MediaPipe *pipe)
           break;
        case SRC_TYPE_V4L2:
           LOG_DEBUG("***Using v4l2src***");
-          impl->src_source.gen_src = create_element (MEDIA_PIPE_V4L2_SOURCE_NAME, "v4l2-src");
+          impl->src_source.gen_src = create_element (MEDIA_PIPE_V4L2_SOURCE_NAME, "xcam-src");
 
           g_object_set (impl->src_source.gen_src,
                 "sensor-id", impl->src_source.v4l2_src_sensor_id,
                 "io-mode", impl->src_source.v4l2_src_io_mode,
                 "enable-3a", impl->src_source.v4l2_enable_3a,
                 "device", impl->src_source.v4l2_src_device,
-                "capture-mode", impl->src_source.v4l2_capture_mode,
-                "coloreffect", global_v4l2src_color_effect,
+                //"capture-mode", impl->src_source.v4l2_capture_mode,
+                //"coloreffect", global_v4l2src_color_effect,
+                "imageprocessor", impl->src_source.image_processor,
+                "analyzer", impl->src_source.analyzer,
+                "fpsn", impl->src_source.fps_n,
+                "fpsd", impl->src_source.fps_d,
                 NULL);
           break;
        case SRC_TYPE_FILE:
@@ -2339,14 +2288,32 @@ build_pipeline (MediaPipe *pipe)
     g_object_set (impl->src_source.src_filter, "caps", caps, NULL);
     gst_caps_unref (caps);
 
+    // Create videorate to produce a perfect stream that matches the source pad's framerate.
+	if (!impl->src_source.src_videorate.element) {
+		impl->src_source.src_videorate.element = create_element (MEDIA_PIPE_VIDEORATE_NAME, NULL);
+		g_return_val_if_fail (impl->src_source.src_videorate.element, FALSE);
+		g_object_set (G_OBJECT (impl->src_source.src_videorate.element), 
+					 "skip-to-first", TRUE, 
+					 NULL); 
+	
+		impl->src_source.src_videorate.capsfilter = create_element (MEDIA_PIPE_CAPSFILTER_NAME, NULL);
+		g_return_val_if_fail (impl->src_source.src_videorate.capsfilter, FALSE);
+	
+		if (!impl->src_source.src_videorate.fps_n) {
+			impl->src_source.src_videorate.fps_n = impl->src_source.fps_n;
+			impl->src_source.src_videorate.fps_d = impl->src_source.fps_d;
+		}
+	
+		caps = gst_caps_new_simple ("video/x-raw",
+			"framerate", GST_TYPE_FRACTION, impl->src_source.src_videorate.fps_n, impl->src_source.src_videorate.fps_d,
+			NULL);
+		g_object_set (G_OBJECT (impl->src_source.src_videorate.capsfilter), "caps", caps, NULL);
+		gst_caps_unref (caps);
+	}
+
     impl->src_source.src_queue = create_element (QUEUE_PLUGIN_NAME, "src-queue");
     g_object_set (G_OBJECT (impl->src_source.src_queue), "max-size-buffers", 10, "max-size-time",
-          (guint64) 0, "max-size-bytes", 0, "leaky", 2, NULL);
-    GstElement *load_watcher = create_element (QUEUE_PLUGIN_NAME, "load-watcher-queue");
-    g_signal_connect(G_OBJECT(load_watcher), "overrun", G_CALLBACK(load_watcher_queue_overrun_cb), &qos);
-    g_object_set (G_OBJECT (load_watcher), "max-size-buffers", warning_level, "max-size-time",
-          (guint64) 0, "max-size-bytes", 0, NULL);
-
+          (guint64) 0, "max-size-bytes", 0, "leaky", 1, NULL);
 
     // Create preproc for src pipeline
     impl->src_preproc.element = create_element (MEDIA_PIPE_PREPROC_NAME, "src-preproc");
@@ -2355,8 +2322,6 @@ build_pipeline (MediaPipe *pipe)
                   "smart-resolution", impl->src_preproc.smart_resolution,
                   "test-autohdr", impl->src_preproc.vpp_enable_autohdr,
                   "need-copy", TRUE,
-                  "need-adjust-timestamp", TRUE,
-                  "capture-fps", impl->src_source.fps_n/(float)impl->src_source.fps_d,
                   NULL);
     if(enable_lumagain_threshold)
     {
@@ -2370,23 +2335,39 @@ build_pipeline (MediaPipe *pipe)
         gst_object_unref(src_preproc_pad);
     }
 
-        GstPad *src_preproc_pad = gst_element_get_static_pad(
-                                        impl->src_preproc.element,
-                                        "src");
-        g_signal_connect (src_preproc_pad,
-                          "linked",
-                          G_CALLBACK (src_preproc_pad_linked_callback3),
-                          pipe);
-        gst_object_unref(src_preproc_pad);
+    GstPad *src_preproc_pad = gst_element_get_static_pad(
+          impl->src_preproc.element,
+          "src");
+    g_signal_connect (src_preproc_pad,
+          "linked",
+          G_CALLBACK (src_preproc_pad_linked_callback3),
+          pipe);
+    gst_object_unref(src_preproc_pad);
 
     // Create fakesink for src pipeline (use 1080p & smart channel only)
     impl->src_queue[VIDEO_CHANNEL_1080P] = create_element(QUEUE_PLUGIN_NAME, "src-queue-1080p");
+    g_object_set (G_OBJECT (impl->src_queue[VIDEO_CHANNEL_1080P]), "max-size-buffers", 10, "max-size-time",
+		 (guint64) 0, "max-size-bytes", 0, "leaky", 1, NULL);
     impl->src_fakesink[VIDEO_CHANNEL_1080P].element =
-                            create_element (MEDIA_PIPE_FAKE_SINK_NAME, "src-fakesink-1080p");
+       create_element (MEDIA_PIPE_FAKE_SINK_NAME, "src-fakesink-1080p");
 
     g_object_set (impl->src_fakesink[VIDEO_CHANNEL_1080P].element,
-                  "async", FALSE,
-                  NULL);
+          "async", FALSE,
+          NULL);
+
+    GstPad *src_1080p_pad = gst_element_get_static_pad(
+          impl->src_queue[VIDEO_CHANNEL_1080P], "src");
+    if(impl->src_preproc.smart_frame_1080p_probe_id == 0)
+    {
+       impl->src_preproc.smart_frame_1080p_probe_id =
+          gst_pad_add_probe (
+                src_1080p_pad,
+                GST_PAD_PROBE_TYPE_BUFFER,
+                (GstPadProbeCallback)src_preproc_1080p_probe_callback,
+                impl,
+                NULL);
+    }
+    gst_object_unref(src_1080p_pad);
 
     impl->src_queue[VIDEO_CHANNEL_SMART] = create_element(QUEUE_PLUGIN_NAME, "src-queue-smart");
     g_object_set (G_OBJECT (impl->src_queue[VIDEO_CHANNEL_SMART]), "max-size-buffers", 100, "max-size-time",
@@ -2414,39 +2395,14 @@ build_pipeline (MediaPipe *pipe)
                   NULL);
 
     // register probe callbacks for src pipeline
-    GstPad *src_1080p_pad = gst_element_get_static_pad(
-                                    impl->src_preproc.element,
-                                    "src");
-    g_signal_connect (src_1080p_pad,
-                      "linked",
-                      G_CALLBACK (src_preproc_pad_linked_callback),
-                      pipe);
-
-    g_signal_connect (src_1080p_pad,
-                      "unlinked",
-                      G_CALLBACK (src_preproc_pad_unlinked_callback),
-                      pipe);
-    gst_object_unref(src_1080p_pad);
-
-    GstPad *src_smart_pad = gst_element_get_static_pad(
-                                    impl->src_preproc.element,
-                                    tempString[VIDEO_CHANNEL_SMART].pad_name);
-    g_signal_connect (src_smart_pad,
-                      "linked",
-                      G_CALLBACK (src_preproc_pad_linked_callback),
-                      pipe);
-    g_signal_connect (src_smart_pad,
-                      "unlinked",
-                      G_CALLBACK (src_preproc_pad_unlinked_callback),
-                      pipe);
-    gst_object_unref(src_smart_pad);
 
     gst_bin_add_many (
                 GST_BIN (impl->src_pipeline),
                 impl->src_source.gen_src,
                 impl->src_source.src_filter,
+                impl->src_source.src_videorate.element,   
+                impl->src_source.src_videorate.capsfilter,                 
                 impl->src_source.src_queue,
-                load_watcher,
                 impl->src_preproc.element,
                 impl->src_queue[VIDEO_CHANNEL_1080P],
                 impl->src_fakesink[VIDEO_CHANNEL_1080P].element,
@@ -2466,6 +2422,7 @@ build_pipeline (MediaPipe *pipe)
                   "block", TRUE,
                   "is-live", TRUE,
                   "max-bytes", 10000000ULL, //10M
+                  "format", GST_FORMAT_TIME, // For videorate element, non-time format segment event fails it
                   NULL);
     /*
     ** Because there's no format converter (postproc) in main pipeline:
@@ -2514,9 +2471,10 @@ build_pipeline (MediaPipe *pipe)
        link_element(impl->src_source.gen_src, impl->src_preproc.element);
     }else {
        link_element(impl->src_source.gen_src, impl->src_source.src_filter);
-       link_element(impl->src_source.src_filter, impl->src_source.src_queue);
-       link_element(impl->src_source.src_queue, load_watcher);
-       link_element(load_watcher, impl->src_preproc.element);
+       link_element(impl->src_source.src_filter, impl->src_source.src_videorate.element);
+       link_element(impl->src_source.src_videorate.element, impl->src_source.src_videorate.capsfilter);
+       link_element(impl->src_source.src_videorate.capsfilter, impl->src_source.src_queue);	   
+       link_element(impl->src_source.src_queue, impl->src_preproc.element);
     }
 
     gst_element_link_pads (impl->src_preproc.element,
@@ -2975,7 +2933,7 @@ media_pipe_reconfig_3a (MediaPipe *pipe)
         GstElementFactory *factory = gst_element_get_factory (v4l2src);
         const gchar *pluginname = gst_plugin_feature_get_name(GST_PLUGIN_FEATURE(factory));
 
-        if(strcmp(pluginname,"v4l2src")!=0)
+        if(strcmp(pluginname,"xcamsrc")!=0)
         {
             LOG_DEBUG("The '%s' element is a member of the category %s.\n"
                 "Description: %s\n",
@@ -3017,8 +2975,13 @@ media_pipe_reconfig_3a (MediaPipe *pipe)
         if(config_camera.flags & CONFIGFLAG_3A_EXPOSURE) {
             ret = xcam_interface->set_exposure_mode(xcam, (XCamAeMode)(config_camera.ep.val_ep_mode));
             ret = xcam_interface->set_ae_metering_mode(xcam, (XCamAeMeteringMode)(config_camera.ep.val_meter_mode));
-            if (config_camera.ep.val_meter_mode == XCAM_AE_METERING_MODE_SPOT)
-                ret = xcam_interface->set_exposure_window(xcam, &config_camera.ep.val_ep_window);
+            if (config_camera.ep.val_meter_mode == XCAM_AE_METERING_MODE_SPOT) {
+                ret = xcam_interface->set_exposure_window(xcam, &config_camera.ep.val_ep_window[0], 1);
+            }
+            else if (config_camera.ep.val_meter_mode == XCAM_AE_METERING_MODE_WEIGHTED_WINDOW) {
+                ret = xcam_interface->set_exposure_window(xcam, &config_camera.ep.val_ep_window[0], config_camera.ep.val_ep_window_count);
+            }
+
             ret = xcam_interface->set_exposure_value_offset(xcam, config_camera.ep.val_ep_offset);
             ret = xcam_interface->set_ae_speed(xcam, config_camera.ep.val_ep_speed);
             ret = xcam_interface->set_exposure_flicker_mode(xcam, (XCamFlickerMode)(config_camera.ep.val_ep_flicker));
@@ -3030,7 +2993,9 @@ media_pipe_reconfig_3a (MediaPipe *pipe)
 
         if(config_camera.flags & CONFIGFLAG_3A_PICQUALITY) {
             ret = xcam_interface->set_noise_reduction_level(xcam, config_camera.pq.val_noise_reduction_level);
-            ret = xcam_interface->set_temporal_noise_reduction_level(xcam, config_camera.pq.val_tnr_level);
+            ret = xcam_interface->set_temporal_noise_reduction_level(xcam,
+                              config_camera.pq.val_tnr_level,
+                              config_camera.pq.val_tnr_mode);
             ret = xcam_interface->set_manual_brightness(xcam, config_camera.pq.val_pq_brightness);
             ret = xcam_interface->set_manual_contrast(xcam, config_camera.pq.val_pq_contrast);
             ret = xcam_interface->set_manual_hue(xcam, config_camera.pq.val_pq_hue);
@@ -3045,6 +3010,7 @@ media_pipe_reconfig_3a (MediaPipe *pipe)
                 ret = xcam_interface->set_gamma_table(xcam, NULL, NULL, NULL);
             ret = xcam_interface->set_gbce(xcam, config_camera.others.val_gm_gbce);
             ret = xcam_interface->set_night_mode(xcam, config_camera.others.val_night_mode);
+            ret = xcam_interface->set_3a_interval(xcam, config_camera.others.val_analyze_interval);
         }
         //TODO: more settings
 
@@ -3052,6 +3018,13 @@ media_pipe_reconfig_3a (MediaPipe *pipe)
 	xcam_interface->get_max_analog_gain(xcam);
 	xcam_interface->get_current_analog_gain(xcam);
 	xcam_interface->get_current_exposure_time(xcam);
+    }
+
+    if (impl->src_source.image_processor == CL_IMAGE_PROCESSOR) {
+        ret = xcam_interface->set_hdr_mode(xcam, impl->src_source.cl_hdr_mode);
+        ret = xcam_interface->set_denoise_mode(xcam, impl->src_source.cl_denoise_mode);
+        ret = xcam_interface->set_gamma_mode(xcam, impl->src_source.cl_gamma_mode);
+        ret = xcam_interface->set_dpc_mode(xcam, impl->src_source.enable_dpc);
     }
 
     //FIXME:
@@ -3130,13 +3103,91 @@ media_pipe_set_src_frame_rate(MediaPipe *pipe, guint frame_rate)
         return FALSE;
     }
 
+    if (frame_rate != AVAILABLE_FRAME_RATE_1 && frame_rate != AVAILABLE_FRAME_RATE_2 && frame_rate != AVAILABLE_FRAME_RATE_3)
+       frame_rate = AVAILABLE_FRAME_RATE_1;
     impl->src_source.fps_n = frame_rate;
     impl->main_source.fps_n = frame_rate;
 
     impl->src_source.fps_d = 1;
     impl->main_source.fps_d= 1;
 
+	//reset caps of src_videorate on the fly
+    impl->src_source.src_videorate.fps_n = frame_rate;
+    impl->src_source.src_videorate.fps_d = 1;
+    
+    if (impl->src_source.src_videorate.capsfilter) {
+        GstCaps *caps;
+        caps = gst_caps_new_simple ("video/x-raw",
+                "framerate", GST_TYPE_FRACTION, frame_rate, 1,
+                NULL);
+        g_object_set (G_OBJECT (impl->src_source.src_videorate.capsfilter), "caps", caps, NULL);
+        gst_caps_unref (caps);
+    }	
+
     return TRUE;
+}
+
+gboolean
+media_pipe_set_encoder_frame_rate(MediaPipe *pipe, VideoChannelIndex channel_num, guint frame_rate)
+{
+    MediaPipeImpl *impl;
+    VideoChannel *channel;
+    GstCaps *caps;
+
+    if(pipe == NULL)
+    {
+        return FALSE;
+    }
+
+    if (frame_rate <=0 || frame_rate >= 255) {
+	/*
+	 * TODO: Due to MaxMBPS, there is LIMIT 255. But it's for 1080P.
+	 * to be more accurate, need calculate different limits for other resolution.
+	 */
+	LOG_ERROR ("Invalid frame rate!\n");
+	return FALSE;
+    }
+
+    impl = IMPL_CAST(pipe);
+    channel = &impl->channel[channel_num];
+
+    channel->videorate.fps_n = frame_rate;
+    channel->videorate.fps_d = 1;
+    
+    if (channel->videorate.capsfilter) {
+        caps = gst_caps_new_simple ("video/x-raw",
+                "framerate", GST_TYPE_FRACTION, frame_rate, 1,
+                NULL);
+        g_object_set (G_OBJECT (channel->videorate.capsfilter), "caps", caps, NULL);
+        gst_caps_unref (caps);
+    }
+
+    return TRUE;
+}
+
+gboolean
+media_pipe_set_src_image_processor (MediaPipe *pipe, guint processor, guint analyzer)
+{
+    MediaPipeImpl *impl;
+
+    if(pipe == NULL)
+    {
+        return FALSE;
+    }
+
+    impl = IMPL_CAST(pipe);
+
+    if (impl->src_source.image_processor == ISP_IMAGE_PROCESSOR) {
+        if (analyzer != AIQ_ANALYZER && analyzer != HYBRID_ANALYZER) {
+            LOG_WARNING ("analyzer is not in the range for ISP processor");
+            impl->src_source.analyzer = AIQ_ANALYZER;
+        } else {
+            impl->src_source.analyzer = (AnalyzerType)analyzer;
+        }
+        return TRUE;
+    } else {
+        return FALSE;
+    }
 }
 
 gboolean
@@ -3161,52 +3212,62 @@ media_pipe_set_src_smart_resolution (
 
     impl->src_preproc.smart_resolution = resolution;
 
-    switch(resolution)
+    if (smart_factor > 0)
     {
-        case SMART_RES_176_100:
-            normal_resolution[VIDEO_CHANNEL_SMART].width =    176;
-            normal_resolution[VIDEO_CHANNEL_SMART].height =   100;
-            rotate_resolution[VIDEO_CHANNEL_SMART].width =    100;
-            rotate_resolution[VIDEO_CHANNEL_SMART].height =   176;
-            break;
-        case SMART_RES_352_198:
-            normal_resolution[VIDEO_CHANNEL_SMART].width =    352;
-            normal_resolution[VIDEO_CHANNEL_SMART].height =   198;
-            rotate_resolution[VIDEO_CHANNEL_SMART].width =    198;
-            rotate_resolution[VIDEO_CHANNEL_SMART].height =   352;
-            break;
-        case SMART_RES_480_270:
-            normal_resolution[VIDEO_CHANNEL_SMART].width =    480;
-            normal_resolution[VIDEO_CHANNEL_SMART].height =   270;
-            rotate_resolution[VIDEO_CHANNEL_SMART].width =    270;
-            rotate_resolution[VIDEO_CHANNEL_SMART].height =   480;
-            break;
-        case SMART_RES_352_200:
-            normal_resolution[VIDEO_CHANNEL_SMART].width =    352;
-            normal_resolution[VIDEO_CHANNEL_SMART].height =   200;
-            rotate_resolution[VIDEO_CHANNEL_SMART].width =    200;
-            rotate_resolution[VIDEO_CHANNEL_SMART].height =   352;
-            break;
-        case SMART_RES_480_272:
-            normal_resolution[VIDEO_CHANNEL_SMART].width =    480;
-            normal_resolution[VIDEO_CHANNEL_SMART].height =   272;
-            rotate_resolution[VIDEO_CHANNEL_SMART].width =    272;
-            rotate_resolution[VIDEO_CHANNEL_SMART].height =   480;
-            break;
-        case SMART_RES_CIF:
-            normal_resolution[VIDEO_CHANNEL_SMART].width =    352;
-            normal_resolution[VIDEO_CHANNEL_SMART].height =   288;
-            rotate_resolution[VIDEO_CHANNEL_SMART].width =    288;
-            rotate_resolution[VIDEO_CHANNEL_SMART].height =   352;
-            break;
-        case SMART_RES_D1:
-            normal_resolution[VIDEO_CHANNEL_SMART].width =    704;
-            normal_resolution[VIDEO_CHANNEL_SMART].height =   576;
-            rotate_resolution[VIDEO_CHANNEL_SMART].width =    576;
-            rotate_resolution[VIDEO_CHANNEL_SMART].height =   704;
-            break;
-        default:
-            break;
+       normal_resolution[VIDEO_CHANNEL_SMART].width =    smart_factor * 1920;
+       normal_resolution[VIDEO_CHANNEL_SMART].height =   smart_factor * 1080;
+       rotate_resolution[VIDEO_CHANNEL_SMART].width =    smart_factor * 1080;
+       rotate_resolution[VIDEO_CHANNEL_SMART].height =   smart_factor * 1920;
+    }
+    else
+    {
+       switch(resolution)
+       {
+          case SMART_RES_176_100:
+             normal_resolution[VIDEO_CHANNEL_SMART].width =    176;
+             normal_resolution[VIDEO_CHANNEL_SMART].height =   100;
+             rotate_resolution[VIDEO_CHANNEL_SMART].width =    100;
+             rotate_resolution[VIDEO_CHANNEL_SMART].height =   176;
+             break;
+          case SMART_RES_352_198:
+             normal_resolution[VIDEO_CHANNEL_SMART].width =    352;
+             normal_resolution[VIDEO_CHANNEL_SMART].height =   198;
+             rotate_resolution[VIDEO_CHANNEL_SMART].width =    198;
+             rotate_resolution[VIDEO_CHANNEL_SMART].height =   352;
+             break;
+          case SMART_RES_480_270:
+             normal_resolution[VIDEO_CHANNEL_SMART].width =    480;
+             normal_resolution[VIDEO_CHANNEL_SMART].height =   270;
+             rotate_resolution[VIDEO_CHANNEL_SMART].width =    270;
+             rotate_resolution[VIDEO_CHANNEL_SMART].height =   480;
+             break;
+          case SMART_RES_352_200:
+             normal_resolution[VIDEO_CHANNEL_SMART].width =    352;
+             normal_resolution[VIDEO_CHANNEL_SMART].height =   200;
+             rotate_resolution[VIDEO_CHANNEL_SMART].width =    200;
+             rotate_resolution[VIDEO_CHANNEL_SMART].height =   352;
+             break;
+          case SMART_RES_480_272:
+             normal_resolution[VIDEO_CHANNEL_SMART].width =    480;
+             normal_resolution[VIDEO_CHANNEL_SMART].height =   272;
+             rotate_resolution[VIDEO_CHANNEL_SMART].width =    272;
+             rotate_resolution[VIDEO_CHANNEL_SMART].height =   480;
+             break;
+          case SMART_RES_CIF:
+             normal_resolution[VIDEO_CHANNEL_SMART].width =    352;
+             normal_resolution[VIDEO_CHANNEL_SMART].height =   288;
+             rotate_resolution[VIDEO_CHANNEL_SMART].width =    288;
+             rotate_resolution[VIDEO_CHANNEL_SMART].height =   352;
+             break;
+          case SMART_RES_D1:
+             normal_resolution[VIDEO_CHANNEL_SMART].width =    704;
+             normal_resolution[VIDEO_CHANNEL_SMART].height =   576;
+             rotate_resolution[VIDEO_CHANNEL_SMART].width =    576;
+             rotate_resolution[VIDEO_CHANNEL_SMART].height =   704;
+             break;
+          default:
+             break;
+       }
     }
 
     return TRUE;
@@ -3813,4 +3874,92 @@ _smart_meta_osd_info_free(GstVideoPreprocOsdInfo *info)
          gst_vaapi_object_unref(info->image);
       g_free(info);
    }
+}
+
+gboolean
+media_pipe_set_cl_feature (MediaPipe *pipe, CLFeature feature, int mode)
+{
+    MediaPipeImpl           *impl;
+    GstElement              *v4l2src;
+    GstXCam3A               *xcam;
+    GstXCam3AInterface      *xcam_interface;
+    gboolean ret = TRUE;
+
+    if(pipe == NULL)
+    {
+        LOG_ERROR("Invalid mediapipe.");
+        return FALSE;
+    }
+
+    impl = IMPL_CAST(pipe);
+
+    if(!impl->pipe.pipe_running)
+    {
+        LOG_DEBUG("Save cl feature settings before pipe running");
+        switch (feature) {
+        case CL_HDR:
+            impl->src_source.cl_hdr_mode = mode;
+            break;
+        case CL_DENOISE:
+            impl->src_source.cl_denoise_mode = mode;
+            break;
+        case CL_GAMMA:
+            impl->src_source.cl_gamma_mode = mode;
+            break;
+        case CL_DPC:
+            impl->src_source.enable_dpc = mode;
+            break;
+        default:
+            LOG_ERROR("%s Unsupported CL feature\n", __func__);
+            break;
+        }
+        return TRUE;
+    }
+
+    /**/
+    v4l2src = impl->src_source.gen_src;
+    {
+        GstElementFactory *factory = gst_element_get_factory (v4l2src);
+        const gchar *pluginname = gst_plugin_feature_get_name(GST_PLUGIN_FEATURE(factory));
+    
+        if(strcmp(pluginname,"xcamsrc")!=0)
+        {
+           LOG_DEBUG("The '%s' element is a member of the category %s.\n"
+                     "Description: %s\n",
+                     pluginname,
+                     gst_element_factory_get_klass(factory),
+                     gst_element_factory_get_description(factory));
+       
+           LOG_ERROR("Cannot reconfig 3a settings while it isn't a v4l2src.");
+           return FALSE;
+        }
+    }
+
+    xcam = GST_XCAM_3A (v4l2src);
+    xcam_interface = GST_XCAM_3A_GET_INTERFACE (xcam);
+    if(xcam_interface == NULL)
+    {
+        LOG_ERROR("Failed to get xcam interface.");
+        return FALSE;
+    }
+
+    switch (feature) {
+    case CL_HDR:
+        ret = xcam_interface->set_hdr_mode(xcam, mode);
+        break;
+    case CL_DENOISE:
+        ret = xcam_interface->set_denoise_mode(xcam, mode);
+        break;
+    case CL_GAMMA:
+        ret = xcam_interface->set_gamma_mode(xcam, mode);
+        break;
+    case CL_DPC:
+        ret = xcam_interface->set_dpc_mode(xcam, mode);
+        break;
+    default:
+        LOG_ERROR("%s Unsupported CL feature\n", __func__);
+        break;
+    }
+    
+    return ret;
 }

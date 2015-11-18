@@ -26,6 +26,13 @@
 
 #include <gst/rtsp-server/rtsp-server.h>
 
+typedef struct _MediaVideorate {
+    GstElement      *element;
+    GstElement      *capsfilter;
+    guint           fps_n;
+    guint           fps_d;
+}MediaVideorate;
+
 typedef struct _MediaSource{
     guint           width;
     guint           height;
@@ -43,9 +50,17 @@ typedef struct _MediaSource{
     gboolean        v4l2_enable_3a;
     guint           v4l2_capture_mode;
     
+    ImageProcessorType image_processor;
+    AnalyzerType    analyzer;
+    guint           cl_hdr_mode;
+    guint           cl_denoise_mode;
+    guint           cl_gamma_mode;
+    gboolean        enable_dpc;
+
     GstElement      *gen_src;
 
     GstElement      *src_filter;
+    MediaVideorate   src_videorate;	
     GstElement      *src_queue;
 
     // appsrc members in main pipeline
@@ -107,8 +122,6 @@ typedef struct _MediaEncoder{
     gpointer        user_data;
 }MediaEncoder;
 
-
-
 typedef struct _MediaSink{
     MediaSinkType   type;
 
@@ -120,6 +133,9 @@ typedef struct _MediaSink{
     }u;
 
     GstElement      *element;
+    
+    GstElement      *sinkqueue;
+	
     //for tcpclientsink
     gchar           host_ip[128];
     gint            port;
@@ -142,6 +158,7 @@ typedef struct _VideoChannel
     GstElement      *encoder_queue;
     GstElement      *jpeg_queue;
     MediaEncoder    encoder;
+    MediaVideorate  videorate;
     GstElement      *profile_converter;
 
     gboolean                    enable_osd;

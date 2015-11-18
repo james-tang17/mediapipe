@@ -1,11 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <pipeline>
-    <!-- This config file consists of two parts:
-         1. Global settings
-         2. Per channel settings 
-    -->
-
-    <!-- Start of global settings -->
     <src>1</src>                      <!-- 0: use videotestsrc, 1: use v4l2src, 2: use filesrc -->
 
     <!-- filesrc property settings, valid ONLY if filesrc enabled -->
@@ -26,7 +20,6 @@
     -->
     <v4l2src-io-mode>4</v4l2src-io-mode>
     <enable-3a>1</enable-3a>					<!-- 0:disable 3A for v4l2src, 1: enable -->
-    <capture-mode>1</capture-mode>				<!-- 0:still, 1:video, 2:preview -->
     <frame-rate>25</frame-rate>                                 <!-- video framerate in fps -->
     <run-time>0</run-time>                                    <!-- video running time in second, 0: endless running -->
     <jpeg-crop>0</jpeg-crop>                                    <!-- 0: disable test of jpep crop, 1: enable test of jpeg crop -->
@@ -47,29 +40,22 @@
         6: d1           - 704 x 576
         -->
     <smart-resolution>0</smart-resolution>
-
-    <!-- Start of face detection setting -->
     <enable-facedetect>0</enable-facedetect>    <!-- 0:disable facedetect, 1:enable facedetect -->
     <facedetect-conf>0</facedetect-conf>  <!-- 0:haar 1:lpb  -->
     <facedetect-interval>10</facedetect-interval>  <!-- frame interval between 2 detection  -->
     <facedetect-mode>1</facedetect-mode>
     <enable-getfacepic>0</enable-getfacepic>    <!-- 0:disable getfacepic, 1:enable getfacepic -->
     <enable-facerecognise>0</enable-facerecognise> <!-- 0:disable facerecognise, 1:enable facerecognise -->
-    <!-- End of face detection setting -->
-
     <enable-lumagain-threshold>0</enable-lumagain-threshold> <!-- 0:disable lumagain_threshold, 1:enable lumagain_threshold -->
     <lumagain-threshold-value>100</lumagain-threshold-value> <!-- lumagain-threshold-value -->
     <enable-bright-compensation>0</enable-bright-compensation>                       <!-- 0:disable bright.  1:enable-bright -->
-
-    <!-- Start of HDR -->
     <enable-autohdr>0</enable-autohdr>                       <!-- 0:disable autohdr.  1:enable-autohdr -->
     <autohdr-mode>0</autohdr-mode>            <!-- 0:disable. 1:auto mode. 2:drak mode. 3.mid mode. 4.white mode -->
     <enable-hdr-custom>0</enable-hdr-custom>  <!-- 0:disable hdr-custom.  1:enable hdr-custom -->
     <enable-hdr-custom-rgb>0</enable-hdr-custom-rgb>  <!-- 0:disable hdr-custom-rgb.  1:enable hdr-custom-rgb -->
-    <hdr-custom-table>2</hdr-custom-table>
+    <hdr-custom-table>8</hdr-custom-table>
     <hdr-custom-rgb-table>2</hdr-custom-rgb-table>
-    <!-- End of HDR -->
-
+	<autohdr-cl-mode>0</autohdr-cl-mode>            <!-- 0:disable. 1:LAB mode. 2:RGB mode-->
     <rotation>1</rotation>                    <!-- 1: don't rotate 2: 90-degree 3: 180-degree 4:270-degree   -->
     <flip>0</flip>                            <!-- 0: don't flip   1: flip horizontal  2: flip vertically  -->
     <enable-mask>0</enable-mask>              <!-- 0: disable masking sample code,   1: enable masking sample code -->
@@ -86,9 +72,12 @@
     <dvs-offset-x>0</dvs-offset-x>            <!-- set video global offset for x axis, >0: move right, ==0: no offset, <0: move left -->
     <dvs-offset-y>0</dvs-offset-y>            <!-- set video global offset for y axis  >0: move down, ==0: no offset,  <0: move up   -->
     <smart-bright>0</smart-bright>            <!-- 1: to override default smart analysis by auto bright adjustment, 0: use defaul smart analysis -->
-
-    <!-- End of global settings -->
-
+	<xcam-mode>0</xcam-mode>            	  <!-- 0: ISP mode. 1: CL mode. -->
+	<analyzer>1</analyzer>            	      <!-- 0: simple analyzer(CL). 1: aiq analyzer(ISP). 2: dynamic analyzer(CL) -->
+    <denoise-mode>1</denoise-mode>        	  <!-- a set of flags to descibe comibined NR. 0: disable, 1: SNR, 2: Bilateral NR, 4: YEENR, 8: BNR, 16: ANR -->
+    <enable-dpc>0</enable-dpc>                    <!-- 0: disable dpc. 1: enable dpc.-->
+	<gamma-mode>1</gamma-mode>        	      <!-- 0: disable gamma. 1: enable gamma.-->
+	<enable-dvs>0</enable-dvs>        		  <!-- 0: disable dvs. 1: enable dvs. -->
     <channel id="0" enable="1">             <!-- channel_0 1080p-->
         <!-- encoder properties
                 rate-control    - rate control mode (1: cqp, 2: cbr, 4:vbr, 5:vbr_constrained)

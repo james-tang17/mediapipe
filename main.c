@@ -60,6 +60,9 @@ public:
     int radius;
 };
 
+gboolean
+media_pipe_set_mode (MediaPipe *pipe, int value);
+
 #include <sys/time.h>
 /* FPS Calculation for DEBUG */
 #define FPS_CALCULATION(objname)                     \
@@ -121,7 +124,7 @@ parse_3aconf_callback(Config3A *config_camera);
 
 const gchar *src_name[SRC_NUM] = {
    "videotestsrc",
-   "v4l2src",
+   "xcamsrc",
    "filesrc"
 };
 
@@ -161,6 +164,12 @@ typedef struct _Src_Setting
     guint               run_time_in_sec;
     SmartResolution     smart_resolution;
     gchar               v4l2_device[DEVICE_STR_LEN];
+    guint               image_processor;
+    guint               analyzer;
+    guint               cl_hdr_mode;
+    guint               cl_denoise_mode;
+    guint               cl_gamma_mode;
+    gboolean            enable_dpc;
 }Src_Setting;
 
 typedef struct _Video_Channel_Config
@@ -224,7 +233,6 @@ int height;
 int flag;  //indicate if face recognise data avaliable
 }Rect_Facedetect_Jpeg;
 
-Qos qos;
 Src_Setting src_setting = {(SrcType)0};
 gboolean enable_facedetect;
 gboolean facedetect_conf;
@@ -239,7 +247,11 @@ guint hdr_darkpixels_value;
 gboolean enable_hdr_custom_rgb;
 GstVideoPreprocAutoHDRMode auto_hdr_mode;
 gboolean enable_bright_compensation;
-
+// global variable for libxcam CL mode, TODO: replace them with right logic when new libxcam is ready.
+int xcam_mode;
+int hdr_cl_mode;
+int denoise_mode;
+gboolean enable_dvs;
 
 Video_Impl_Config config = {(GstVideoPreprocRotateMode)0};
 JpgEnc_Misc_Config     jpgenc_misc_config;
@@ -251,6 +263,10 @@ gboolean global_enable_osd = FALSE;
 gboolean global_enable_mask = FALSE;
 gboolean global_enable_wireframe = FALSE;
 gboolean test_toggle_channel = FALSE;
+gfloat rot_00;
+gfloat rot_01;
+gfloat rot_10;
+gfloat rot_11;
 gint dvs_offset_x = 0;
 gint dvs_offset_y = 0;
 int global_v4l2src_color_effect = 0;
@@ -309,6 +325,7 @@ map <int, string> label_name;
 
 /* rabbitmq integration */
 #define MAX_MSG_LENGTH 512
+#define UI_EXPOSE_WINDOW_NUM 3
 char const *hostname;
 int port, status;
 char const *queuename_w2m;
@@ -673,6 +690,17 @@ rabbitmq_listening_func (gpointer data)
 							goto end;
 						}
 					}
+					else if(strcmp(ppara->valuestring, "enable_bright_compensation") == 0)
+					{
+						cJSON *pval = cJSON_GetObjectItem ( json, "val" );
+						if(pval)
+						{
+							enable_bright_compensation = pval->valueint;
+							LOG_DEBUG ("set bright compensation enable = %d", enable_bright_compensation);
+							sprintf(retbuff, "set bright compensation enable = %d", enable_bright_compensation);
+							goto end;
+						}
+					}
 					else if(strcmp(ppara->valuestring, "enable_3a") == 0)
 					{
 						cJSON *pval = cJSON_GetObjectItem ( json, "val" );
@@ -749,6 +777,64 @@ rabbitmq_listening_func (gpointer data)
                             sprintf(retbuff, "Reconfigure 3A for preproc SUCCEED!");
                         }
 					    goto end;
+					}
+					else if (strcmp(ppara->valuestring, "denoise_mode") == 0)
+					{
+					    cJSON *pval = cJSON_GetObjectItem ( json, "val" );
+						if(pval)
+						{
+							denoise_mode = pval->valueint;
+                            media_pipe_set_cl_feature(pipe, CL_DENOISE, denoise_mode);
+                            LOG_DEBUG ("set denoise mode = %d", denoise_mode);
+							sprintf(retbuff, "set denoise mode = %d", denoise_mode);
+							goto end;
+						}
+					}
+                                        else if(strcmp(ppara->valuestring, "enable_dpc") == 0)
+                                        {
+                                            cJSON *pval = cJSON_GetObjectItem ( json, "val" );
+                                            if(pval)
+                                            {
+                                                gboolean enable_dpc= pval->valueint;
+                                                media_pipe_set_cl_feature(pipe, CL_DPC, enable_dpc);
+                                                LOG_DEBUG ("set dpc enable = %d", enable_dpc);
+                                                sprintf(retbuff, "set dpc enable = %d", enable_dpc);
+                                                goto end;
+                                            }
+                                        }
+					else if (strcmp(ppara->valuestring, "enable_dvs") == 0)
+					{
+					    cJSON *pval = cJSON_GetObjectItem ( json, "val" );
+						if(pval)
+						{
+							enable_dvs = pval->valueint;
+							LOG_DEBUG ("set enable dvs = %d", enable_dvs);
+							sprintf(retbuff, "set enable dvs = %d", enable_dvs);
+							goto end;
+						}
+					}
+					else if(strcmp(ppara->valuestring, "xcam_mode") == 0)
+					{
+					    cJSON *pval = cJSON_GetObjectItem ( json, "val" );
+						if(pval)
+						{
+						    xcam_mode = pval->valueint;
+						    LOG_DEBUG ("set xcam mode = %d", xcam_mode);
+							sprintf(retbuff, "set xcam mode = %d", xcam_mode);
+							goto end;
+						}
+					}
+					else if(strcmp(ppara->valuestring, "hdr_cl_mode") == 0)
+					{
+					    cJSON *pval = cJSON_GetObjectItem ( json, "val" );
+						if(pval)
+						{
+						    hdr_cl_mode = pval->valueint;
+                            media_pipe_set_cl_feature(pipe, CL_HDR, hdr_cl_mode);
+						    LOG_DEBUG ("set hdr-cl mode = %d", hdr_cl_mode);
+							sprintf(retbuff, "set hdr-cl mode = %d", hdr_cl_mode);
+							goto end;
+						}
 					}
 					else if (strcmp(ppara->valuestring, "stop") == 0)
 					{
@@ -1230,7 +1316,7 @@ video_frame_bright_callback (
 		    GstElementFactory *factory = gst_element_get_factory (v4l2src);
 		    const gchar *pluginname = gst_plugin_feature_get_name(GST_PLUGIN_FEATURE(factory));
 
-		    if(strcmp(pluginname,"v4l2src")!=0)
+		    if(strcmp(pluginname,"xcamsrc")!=0)
 		    {
 			    LOG_DEBUG("The '%s' element is a member of the category %s.\n"
 					    "Description: %s\n",
@@ -1260,11 +1346,11 @@ video_frame_bright_callback (
 		    ep_config=(Cameara3a_Exposure *)malloc(sizeof(Cameara3a_Exposure));
 		    ep_config->val_ep_mode = 0;
 		    ep_config->val_meter_mode= 1;
-		    ep_config->val_ep_window.x_start = focusarea.x;
-		    ep_config->val_ep_window.y_start = focusarea.y;
-		    ep_config->val_ep_window.x_end = focusarea.x+focusarea.width;
-		    ep_config->val_ep_window.y_end = focusarea.y+focusarea.height;
-		    ep_config->val_ep_window.weight = 50;
+		    ep_config->val_ep_window[0].x_start = focusarea.x;
+		    ep_config->val_ep_window[0].y_start = focusarea.y;
+		    ep_config->val_ep_window[0].x_end = focusarea.x+focusarea.width;
+		    ep_config->val_ep_window[0].y_end = focusarea.y+focusarea.height;
+		    ep_config->val_ep_window[0].weight = 50;
 		    //ep_config->val_ep_manual_analoggain =40;
 		    //ep_config->val_ep_manual_time = 4000;
 		    ep_config->val_ep_max_analoggain=100;
@@ -1274,7 +1360,7 @@ video_frame_bright_callback (
 		    xcam_interface = GST_XCAM_3A_GET_INTERFACE (xcam);
 		    xcam_interface->set_exposure_mode(xcam, (XCamAeMode)(ep_config->val_ep_mode));
 		    xcam_interface->set_ae_metering_mode(xcam, (XCamAeMeteringMode)(ep_config->val_meter_mode));
-		    xcam_interface->set_exposure_window(xcam, &ep_config->val_ep_window);
+		    xcam_interface->set_exposure_window(xcam, &ep_config->val_ep_window[0], 1);
 		    //xcam_interface->set_manual_analog_gain(xcam, ep_config->val_ep_manual_analoggain);
 		    //xcam_interface->set_manual_exposure_time(xcam, ep_config->val_ep_manual_time);
 		    //xcam_interface->set_max_analog_gain(xcam, ep_config->val_ep_max_analoggain);
@@ -1313,6 +1399,7 @@ video_frame_smart_callback (
 
 
     Mat cvframe;
+    double scale = 1.0;
     char cascadename[100];
     const string fn_csv = "/usr/share/OpenCV/csv.txt";
     const string dataname  = "/usr/share/OpenCV/Fisher.yml";
@@ -1323,6 +1410,9 @@ video_frame_smart_callback (
     static int init_state = 0;
     vector<Rect> faces;
     int i=0;
+    int im_width,im_height;
+    int prediction;
+    double confidence;
 
     data_smart = (SmartData *)g_list_nth_data(smart_queue, 0);
     if(facedetect_conf)
@@ -1815,6 +1905,7 @@ parse_config()
             LOG_DEBUG("enable 3A: %d", src_setting.enable_3a);
 
         }else
+#if 0
         if(strcmp(name, "capture-mode") == 0)
         {
             src_setting.capture_mode = atoi(node->child->value.text.string);
@@ -1822,6 +1913,7 @@ parse_config()
             LOG_DEBUG("capture-mode %d", src_setting.capture_mode);
 
         }else
+#endif
         if(strcmp(name, "frame-rate") == 0)
         {
             src_setting.frame_rate = atoi(node->child->value.text.string);
@@ -2000,6 +2092,30 @@ parse_config()
             LOG_DEBUG("\t smart_control:%d", smart_control);
 
         }else
+        if(strcmp(name, "dvs-rot-00") == 0)
+        {
+            rot_00 =
+                atof(node->child->value.text.string);
+            LOG_DEBUG("\t dvs-rot-00:%f", rot_00);
+        }else
+        if(strcmp(name, "dvs-rot-01") == 0)
+        {
+            rot_01 =
+                atof(node->child->value.text.string);
+            LOG_DEBUG("\t dvs-rot-01:%f", rot_01);
+        }else
+        if(strcmp(name, "dvs-rot-10") == 0)
+        {
+            rot_10 =
+                atof(node->child->value.text.string);
+            LOG_DEBUG("\t dvs-rot-10:%f", rot_10);
+        }else
+        if(strcmp(name, "dvs-rot-11") == 0)
+        {
+            rot_11 =
+                atof(node->child->value.text.string);
+            LOG_DEBUG("\t dvs-rot-11:%f", rot_11);
+        }else
         if(strcmp(name, "dvs-offset-x") == 0)
         {
             dvs_offset_x =
@@ -2024,6 +2140,36 @@ parse_config()
 
             LOG_DEBUG("\t default luma gain :%d", config.luma_gain);
 
+        }else
+        if (strcmp(name, "xcam-mode") == 0)
+        {
+            src_setting.image_processor = atoi(node->child->value.text.string);
+            LOG_DEBUG("\t xcam image processor: %s", src_setting.image_processor?"CL":"ISP");
+        }else
+        if (strcmp(name, "analyzer") == 0)
+        {
+            src_setting.analyzer = atoi(node->child->value.text.string);
+            LOG_DEBUG("\t xcam analyzer: %d", src_setting.analyzer);
+        }else
+        if (strcmp(name, "autohdr-cl-mode") == 0)
+        {
+            src_setting.cl_hdr_mode = atoi(node->child->value.text.string);
+            LOG_DEBUG("\t xcam cl hdr mode: %d", src_setting.cl_hdr_mode);
+        }else
+        if (strcmp(name, "denoise-mode") == 0)
+        {
+            src_setting.cl_denoise_mode = atoi(node->child->value.text.string);
+            LOG_DEBUG("\t xcam cl denoise mode: %d", src_setting.cl_denoise_mode);
+        }else
+        if (strcmp(name, "gamma-mode") == 0)
+        {
+            src_setting.cl_gamma_mode = atoi(node->child->value.text.string);
+            LOG_DEBUG("\t xcam cl gamma mode: %d", src_setting.cl_gamma_mode);
+        }else
+        if (strcmp(name, "enable-dpc") == 0)
+        {
+            src_setting.enable_dpc = atoi(node->child->value.text.string);
+            LOG_DEBUG("\t xcam cl dpc mode: %d", src_setting.enable_dpc);
         }else
         if(strcmp(name, "channel") == 0)
         {
@@ -2204,12 +2350,6 @@ Exit:
 
     return result;
 }
-static void
-init_qos(){
-   g_mutex_init(&qos.lock);
-   qos.need_resource = 0;
-   qos.need_resource_urgent = 0;
-}
 
 static void
 init_config()
@@ -2254,7 +2394,6 @@ int main (int argc,  char *agrv[])
     guint channel;
     printf("Mediapipe: Build Date %s %s version unknown\r\n",__DATE__,__TIME__);
     g_mutex_init(&jpeg_lock);
-    init_qos();
     init_config();
     if(!parse_config())
     {
@@ -2341,6 +2480,18 @@ int main (int argc,  char *agrv[])
         LOG_ERROR("Set frame rate Fail");
         goto end;
     }
+
+    result = media_pipe_set_src_image_processor (media_pipe, src_setting.image_processor, src_setting.analyzer);
+    if(!result)
+    {
+        LOG_ERROR("Set image processor Fail");
+        goto end;
+    }
+
+    media_pipe_set_cl_feature (media_pipe, CL_HDR, src_setting.cl_hdr_mode);
+    media_pipe_set_cl_feature (media_pipe, CL_DENOISE, src_setting.cl_denoise_mode);
+    media_pipe_set_cl_feature (media_pipe, CL_GAMMA, src_setting.cl_gamma_mode);
+    media_pipe_set_cl_feature (media_pipe, CL_DPC, src_setting.enable_dpc);
 
     result = media_pipe_set_src_size (media_pipe, 1920, 1080);
     if(!result)
@@ -2648,7 +2799,7 @@ reset_3a_config_exposure (Cameara3a_Exposure *ep_config)
     memset (ep_config, 0, sizeof (*ep_config));
     ep_config->val_ep_mode = XCAM_AE_MODE_AUTO;
     ep_config->val_meter_mode = XCAM_AE_METERING_MODE_AUTO;
-    //ep_config->val_ep_window = 0;
+    //ep_config->val_ep_window[0] = 0;
     ep_config->val_ep_offset = 0.0;
     ep_config->val_ep_speed = 1.0;
     ep_config->val_ep_flicker = XCAM_AE_FLICKER_MODE_AUTO;
@@ -2666,6 +2817,7 @@ reset_3a_config_picture_quality (Cameara3a_PicQuality *pq_config)
     memset (pq_config, 0, sizeof (*pq_config));
     pq_config->val_noise_reduction_level = 128;
     pq_config->val_tnr_level = 128;
+    pq_config->val_tnr_mode = 0;
     pq_config->val_pq_brightness = 128;
     pq_config->val_pq_contrast = 128;
     pq_config->val_pq_hue = 128;
@@ -2758,46 +2910,88 @@ parse_3a_config_exposure(mxml_node_t *ep_node, Cameara3a_Exposure *ep_config)
             ep_config->val_meter_mode= atoi(node->child->value.text.string);
 
 			GstVideoPreprocWireFrame *wf = sample_wire_frames;
-				
-			for (gint j = 0; j < MASK_REGION_MAX_NUM; j++) {
-				if( ep_config->val_meter_mode == 1) {
-					LOG_DEBUG ("Now set exposure window...");
-                    wf[j].enable = TRUE; 
-				} else {
-					LOG_DEBUG ("Now clean exposure window...");
-                    wf[j].enable = FALSE; 
+			gint wf_window_num = UI_EXPOSE_WINDOW_NUM;
+			// spot
+			if(ep_config->val_meter_mode == 1) {
+				// disable/enable wire frame
+				for (gint j = 0; j < WIRE_FRAME_REGION_MAX_NUM; j++) {
+					if(j == 0) {
+						LOG_DEBUG ("Now set exposure window %d", j);
+						wf[j].enable = TRUE; 
+					} else {
+						LOG_DEBUG ("Now clean exposure window %d", j);
+						wf[j].enable = FALSE; 
+					}
 				}
-                // only enable first one
-                break;
-            }
+			}
+			// weighted windows
+			else if(ep_config->val_meter_mode == 3) {
+				// disable/enable wire frame
+				for (gint j = 0; j < WIRE_FRAME_REGION_MAX_NUM; j++) {
+					if(j < wf_window_num) {
+						LOG_DEBUG ("Now set exposure window %d", j);
+						wf[j].enable = TRUE; 
+					} else {
+						LOG_DEBUG ("Now clean exposure window %d", j);
+						wf[j].enable = FALSE; 
+					}
+				}
+			}
+			else {
+				for (gint j = 0; j < WIRE_FRAME_REGION_MAX_NUM; j++) {
+					LOG_DEBUG ("Now clean exposure window %d", j);
+					wf[j].enable = FALSE; 
+				}
+			}
 			
             LOG_DEBUG("\tparsing ae-meter-mode (%d)", ep_config->val_meter_mode );
         } else
+        if (strcmp(name, "meter-window-count") == 0)
+        {
+            ep_config->val_ep_window_count = atof(node->child->value.text.string);
+            if (XCAM_AE_MAX_METERING_WINDOW_COUNT < ep_config->val_ep_window_count) {
+                LOG_WARNING("\tparsing metering window count(%d) error! reset count!", ep_config->val_ep_window_count);
+                ep_config->val_ep_window_count = XCAM_AE_MAX_METERING_WINDOW_COUNT;
+            }
+            LOG_DEBUG("\tparsing metering window count (%d)", ep_config->val_ep_window_count);
+        } else
         if (strcmp(name, "window") == 0)
         {
-            ep_config->val_ep_window.x_start = atoi(mxmlElementGetAttr(node, "startx"));
-            ep_config->val_ep_window.y_start = atoi(mxmlElementGetAttr(node, "starty"));
-            ep_config->val_ep_window.x_end = atoi(mxmlElementGetAttr(node, "endx"));
-            ep_config->val_ep_window.y_end = atoi(mxmlElementGetAttr(node, "endy"));
-            ep_config->val_ep_window.weight = atoi(mxmlElementGetAttr(node, "weight"));
+            for (gint i = 0; i < ep_config->val_ep_window_count; i++) {
+                char xStart[16] = { 0 };
+                char yStart[16] = { 0 };
+                char xEnd[16] = { 0 };
+                char yEnd[16] = { 0 };
+                char weight[16] = { 0 };
 
-            LOG_DEBUG("\tparsing exposure window (%d, %d - %d, %d, weight: %d)", ep_config->val_ep_window.x_start, ep_config->val_ep_window.y_start,
-                                    ep_config->val_ep_window.x_end, ep_config->val_ep_window.y_end, ep_config->val_ep_window.weight);
+                sprintf(xStart, "%s%d", "startx", i);				
+                sprintf(yStart, "%s%d", "starty", i);
+                sprintf(xEnd, "%s%d", "endx", i);
+                sprintf(yEnd, "%s%d", "endy", i);
+                sprintf(weight, "%s%d", "weight", i);
 
-			// set first wire frame as exposure window
-			guint xpos = (guint)ep_config->val_ep_window.x_start;
-	        guint ypos = (guint)ep_config->val_ep_window.y_start;
-	        guint width = (guint)(ep_config->val_ep_window.x_end - ep_config->val_ep_window.x_start);
-	        guint height = (guint)(ep_config->val_ep_window.y_end - ep_config->val_ep_window.y_start);
-	        LOG_DEBUG ("Now set wire frame (x: %d, y: %d, w: %d, h: %d)", xpos, ypos, width, height);
-			GstVideoPreprocWireFrame *wf = sample_wire_frames;
-	        for (gint j = 0; j < MASK_REGION_MAX_NUM; j++) {
-                    wf[j].region.x = xpos;
-                    wf[j].region.y = ypos;
-                    wf[j].region.w = width;
-                    wf[j].region.h = height;
-                    // only enable first one
-                    break;
+                LOG_DEBUG("\tparsing metering window, %s, %s, %s, %s, %s", xStart, yStart, xEnd, yEnd, weight);
+                ep_config->val_ep_window[i].x_start = atoi(mxmlElementGetAttr(node, xStart));
+                ep_config->val_ep_window[i].y_start = atoi(mxmlElementGetAttr(node, yStart));
+                ep_config->val_ep_window[i].x_end = atoi(mxmlElementGetAttr(node, xEnd));
+                ep_config->val_ep_window[i].y_end = atoi(mxmlElementGetAttr(node, yEnd));
+                ep_config->val_ep_window[i].weight = atoi(mxmlElementGetAttr(node, weight));
+            }
+            LOG_DEBUG("\tparsing exposure window (%d, %d - %d, %d, weight: %d)", ep_config->val_ep_window[0].x_start, ep_config->val_ep_window[0].y_start,
+                                    ep_config->val_ep_window[0].x_end, ep_config->val_ep_window[0].y_end, ep_config->val_ep_window[0].weight);
+
+            // set wire frame as exposure window
+            GstVideoPreprocWireFrame *wf = sample_wire_frames;
+            for (gint j = 0; j < ep_config->val_ep_window_count; j++) {
+				guint xpos = (guint)ep_config->val_ep_window[j].x_start;
+				guint ypos = (guint)ep_config->val_ep_window[j].y_start;
+				guint width = (guint)(ep_config->val_ep_window[j].x_end - ep_config->val_ep_window[j].x_start);
+				guint height = (guint)(ep_config->val_ep_window[j].y_end - ep_config->val_ep_window[j].y_start);
+				LOG_DEBUG ("Now set wire frame %d (x: %d, y: %d, w: %d, h: %d)", j, xpos, ypos, width, height);
+				wf[j].region.x = xpos;
+				wf[j].region.y = ypos;
+				wf[j].region.w = width;
+				wf[j].region.h = height;
             }
 			
         }else
@@ -2888,6 +3082,11 @@ parse_3a_config_others (mxml_node_t *others_node, Cameara3a_Others *others_confi
             others_config->val_night_mode = (atoi(node->child->value.text.string) > 0) ? TRUE:FALSE;
             LOG_DEBUG("\tparsing night mode (%d)", others_config->val_night_mode);
         }
+        if(strcmp(name, "analyze-interval") == 0)
+        {
+            others_config->val_analyze_interval = atoi(node->child->value.text.string);
+            LOG_DEBUG("\tparsing analyze interval (%d)", others_config->val_analyze_interval);
+        }
     }
     return TRUE;
 }
@@ -2915,6 +3114,11 @@ parse_3a_config_picture_quality (mxml_node_t *pq_node, Cameara3a_PicQuality *pq_
         {
             pq_config->val_tnr_level = atoi(node->child->value.text.string);
             LOG_DEBUG("\tparsing temporal noise reduction level (%d)", pq_config->val_tnr_level );
+        } else
+        if (strcmp(name, "tnr-mode") == 0)
+        {
+            pq_config->val_tnr_mode = atoi(node->child->value.text.string);
+            LOG_DEBUG("\tparsing temporal noise reduction mode (%d)", pq_config->val_tnr_mode );
         } else
         if (strcmp(name, "brightness") == 0)
         {
@@ -3211,24 +3415,25 @@ handle_keyboard (GIOChannel *source, GIOCondition cond, gpointer data)
       } else if (str[0] == 'p') {
          //0 : to capture 1080p raw data after preprocessing but before 264 encoding
          g_free(capture_raw_frame (pipe, 1));
-      }  else if (str[0] == 'q') {
-         jpgenc_misc_config.jpeg_keyboard_flag = 1;
-         printf("keyboard to save jpeg file.\n");
-      }  else if (str[0] == 'a') {
+      } else if (str[0] == 'q') {
+         //jpgenc_misc_config.jpeg_keyboard_flag = 1;
+	     media_pipe_set_src_frame_rate(pipe, 10);
+         printf("set frame rate to 10\n");
+      } else if (str[0] == 'a') {
          dump_smart_analysis_raw_data = 1;
-      }  else if (str[0] == '3') {
+      } else if (str[0] == '3') {
 	      media_pipe_set_v4l2_src_enable_3a(pipe, TRUE);
 	      LOG_PRINT("resume 3A");
-      }  else if (str[0] == '#') {
+      } else if (str[0] == '#') {
 	      media_pipe_set_v4l2_src_enable_3a(pipe, FALSE);
 	      LOG_PRINT("pause 3A");
-      }  else if (str[0] == '}') {
-	      media_pipe_set_channel_encoder_bitrate(pipe, VIDEO_CHANNEL_1080P, 8000);
-	      LOG_PRINT("set bitrate as 8000kbps for 1080P channel");
-      }  else if (str[0] == '{') {
-	      media_pipe_set_channel_encoder_bitrate(pipe, VIDEO_CHANNEL_1080P, 2000);
-	      LOG_PRINT("set bitrate as 2000kbps for 1080P channel");
-      }else {
+      } else if (str[0] == 'i') {
+	      media_pipe_set_encoder_frame_rate(pipe, VIDEO_CHANNEL_1080P, 30);
+	      LOG_PRINT("set encoder frame rate to 30fps for 1080p channel\n");
+      } else if (str[0] == 'u') {
+	      media_pipe_set_encoder_frame_rate(pipe, VIDEO_CHANNEL_1080P, 5);
+	      LOG_PRINT("set encoder frame rate to 5fps for 1080p channel\n");
+      } else {
          LOG_PRINT(" =========== mediapipe commands ==========");
          LOG_PRINT(" ===== '+' : increate luminace 10%%   =====");
          LOG_PRINT(" ===== '-' : decreate luminace 10%%   =====");
@@ -3246,8 +3451,8 @@ handle_keyboard (GIOChannel *source, GIOCondition cond, gpointer data)
          LOG_PRINT(" ===== 'a' : dump smart analysis raw data =====");
          LOG_PRINT(" ===== '3' : enable 3A =====");
 	 LOG_PRINT(" ===== '#' : disable 3A =====");
-	 LOG_PRINT(" ===== '}' : set bitrate as 8000kbps for 1080P channel =====");
-	 LOG_PRINT(" ===== '{' : set bitrate as 2000kbps for 1080P channel =====");
+         LOG_PRINT(" ===== 'i' : set encoder frame rate to 30fps for 1080p channel =====");
+         LOG_PRINT(" ===== 'u' : set encoder frame rate to 5fps for 1080p channel =====");
          LOG_PRINT(" =========================================");
       }
       if (set_luma == TRUE) {

@@ -52,7 +52,7 @@
     <autohdr-mode>0</autohdr-mode>            <!-- 0:disable. 1:auto mode. 2:drak mode. 3:mid mode. 4:white mode -->
     <enable-hdr-custom>0</enable-hdr-custom>  <!-- 0:disable hdr-custom.  1:enable hdr-custom -->
     <enable-hdr-custom-rgb>0</enable-hdr-custom-rgb>  <!-- 0:disable hdr-custom-rgb.  1:enable hdr-custom-rgb -->
-    <hdr-custom-table>2</hdr-custom-table>
+    <hdr-custom-table>8</hdr-custom-table>
     <hdr-custom-rgb-table>2</hdr-custom-rgb-table>
     <rotation>1</rotation>                    <!-- 1: don't rotate 2: 90-degree 3: 180-degree 4:270-degree   -->
     <flip>0</flip>                            <!-- 0: don't flip   1: flip horizontal  2: flip vertically  -->
@@ -65,6 +65,10 @@
     <jpeg-interval>1</jpeg-interval>          <!-- 1: do jpeg encode every frame, 2: do jpeg encode every 2 frames  -->
     <enable-qos>1</enable-qos>                <!-- 0: don't throttle jpeg encoding 1: throttle jpeg encoding when pipeline queue is full,   -->
     <warning-level>3</warning-level>          <!-- once the load-watcher queue or encode queue have warning-level buffers queued, qos starts to work -->
+    <dvs-rot-00>0.94</dvs-rot-00>
+    <dvs-rot-01>-0,34</dvs-rot-01>
+    <dvs-rot-10>0.34</dvs-rot-10>
+    <dvs-rot-11>0.94</dvs-rot-11>
     <dvs-offset-x>0</dvs-offset-x>            <!-- set video global offset for x axis, >0: move right, ==0: no offset, <0: move left -->
     <dvs-offset-y>0</dvs-offset-y>            <!-- set video global offset for y axis  >0: move down, ==0: no offset,  <0: move up   -->
 
